@@ -27,15 +27,15 @@ public class DsKhachhang {
         ds[ds.length-1]=khachhang;
         System.out.println("Them Thanh Cong");
     }
-    public boolean Them(Khachhang khachhang)
+    public void Them(Khachhang khachhang)
     {
         try {
             ds= Arrays.copyOf(ds,ds.length+1);
             ds[ds.length-1]=khachhang;
-            return true;
+            System.out.println("Them thanh cong");
         }catch (Exception e)
         {
-            return  false;
+            System.out.println("Them that bai");
         }
 
 
@@ -58,7 +58,7 @@ public class DsKhachhang {
         }
         System.out.println("Khong Tim Thay");
     }
-    public boolean Xoa(int x)
+    public void Xoa(int x)
     {
         for (int i=0; i<ds.length;i++) {
             if (ds[i].getMa() == x) {
@@ -66,10 +66,11 @@ public class DsKhachhang {
                     ds[j] = ds[j + 1];
                 }
                 ds = Arrays.copyOf(ds, ds.length - 1);
-                return true;
+                System.out.println("Xoa thanh cong");
+                return ;
             }
         }
-        return false;
+        System.out.println("Xoa that bai");
     }
     public void Sua()
     {
@@ -86,17 +87,18 @@ public class DsKhachhang {
         }
         System.out.println("Khong Tim Thay .");
     }
-    boolean  Sua(int ma)
+    void   Sua(int ma)
     {
         for (Khachhang khachhang : ds)
         {
             if(khachhang.getMa()==ma)
             {
                 khachhang.Sua();
-                return true;
+                System.out.println("Sua Thanh Cong");
+                return;
             }
         }
-        return false;
+        System.out.println("Khong Tim Thay .");
     }
    public void Timkiem()
     {
@@ -107,6 +109,7 @@ public class DsKhachhang {
             if(khachhang.getMa()==ma)
             {
                 khachhang.Xuat();
+                return;
             }
         }
         System.out.println("Khong Tim Thay");

@@ -1,0 +1,7 @@
+1,Asus,123 nguyen dinh chieu p13 q3 TP.hcm
+2,Apple,498/6 phan van hai p16 q9 TP.hcm
+3,Samsung,826 ngo gia thieu p9 q tab binh TP.hcm
+4,Oppo,222 dien bin phu p7 q3 TP.hcm
+5,Vivo,123 nguyen chi thanh p ba dinh  q.dong da TP.hanoi
+6,Realme,257 giai phong p13 q.hai ba tung TP.hcm
+7,Nokia,123 trung vuong p7 q.thanh xuan TP.vinh
