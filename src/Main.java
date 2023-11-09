@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-MenuDsKhachhang mn=new MenuDsKhachhang();
-mn.Menu();
-
+MenuDsHang menu =new MenuDsHang();
+menu.Menu();
     }
 }

@@ -17,7 +17,8 @@ public class DsKhachhang {
     }
 
     public void setDs(Khachhang[] ds) {
-        this.ds = ds;
+        this.ds= Arrays.copyOf(this.ds,ds.length);
+       this.ds = ds;
     }
     public void Them()
     {
@@ -38,6 +39,17 @@ public class DsKhachhang {
             System.out.println("Them that bai");
         }
 
+
+    }
+    public void Them(Khachhang[] khachhang)
+    {
+        int length=ds.length;
+        ds= Arrays.copyOf(ds,(length+khachhang.length));
+        for(int j=0,i=length;j<khachhang.length;j++,i++)
+        {
+            ds[i]=khachhang[j];
+
+        }
 
     }
     public void Xoa()

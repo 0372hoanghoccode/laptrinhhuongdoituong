@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Khachhang {
+public class Khachhang implements doituong{
     private int ma;
    private String ho;
    private String ten;
@@ -90,28 +90,19 @@ public Khachhang()
     }
     public void Sua()
     {
-        Khachhang khachhang= new Khachhang();
-        khachhang.Nhap();
-       if(khachhang.getMa() != -1)
-        {
-            ma = khachhang.getMa();
-        }
-        if(!khachhang.getHo().isEmpty())
-        {
-            ho = khachhang.getHo();
-        }
-        if(!khachhang.getTen().isEmpty())
-        {
-            ten = khachhang.getTen();
-        }
-        if(!khachhang.getDiachi().isEmpty())
-        {
-            diachi = khachhang.getDiachi();
-        }
-        if(!khachhang.getSdt().isEmpty())
-        {
-            sdt = khachhang.getSdt();
-        }
+      String x="";
+        System.out.println("Nhap ho (enter de bo qua) :");
+        x=new Scanner(System.in).nextLine();
+        if(!x.isEmpty()){ho=x; x="";}
+        System.out.println("Nhap Ten");
+        x=new Scanner(System.in).nextLine();
+        if(!x.isEmpty()){ten=x;x="";}
+        System.out.println("Nhap Dia Chi");
+        x=new Scanner(System.in).nextLine();
+        if(!x.isEmpty()){diachi=x;x="";}
+        System.out.println("Nhap Sdt");
+        x=new Scanner(System.in).nextLine();
+        if(!x.isEmpty()){sdt=x;}
     }
 
     @Override

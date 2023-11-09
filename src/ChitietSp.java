@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ChitietSp {
+public class ChitietSp implements doituong {
    private int ma;
   private   boolean camera;
   private   int masp;
@@ -133,13 +133,13 @@ public class ChitietSp {
         this.masp=new Scanner(System.in).nextInt();
         System.out.println("Nhap Bo Nho");
         this.bonho=new Scanner(System.in).nextInt();
-        System.out.println("Nhap Bo Duong Luong Pin");
+        System.out.println("Nhap Dung Luong Pin");
         this.dungluongpin=new Scanner(System.in).nextInt();
-        System.out.println("Co Ho Tro Camera ?");
+        System.out.println("Co Ho Tro Camera ? true/false ");
         this.camera=new Scanner(System.in).nextBoolean();
-        System.out.println("Co Ho Tro Bluetooth ?");
+        System.out.println("Co Ho Tro Bluetooth ? true/false ");
         this.bluetooth=new Scanner(System.in).nextBoolean();
-        System.out.println("Co Ho Tro Flash ?");
+        System.out.println("Co Ho Tro Flash ? true/false");
         this.flash=new Scanner(System.in).nextBoolean();
         System.out.println("Nhap Do Phan Giai");
         this.dophangiai=new Scanner(System.in).nextLine();
@@ -160,6 +160,37 @@ public class ChitietSp {
         System.out.print("Do phan giai : "+dophangiai+"\t");
         System.out.print("Cong sac : "+congsac+"\t");
         System.out.println("Loai pin : "+loaipin+"\t");
+
+    }
+    public void Sua()
+    {
+        Scanner sc=new Scanner(System.in);
+        String tr="";
+        int x=-1;
+        System.out.println("Nhap Ma Sp (enter de bo qua) :");
+        x=sc.nextInt();
+        if(x!=-1){this.masp=x;x=-1;}
+        System.out.println("Nhap Bo Nho (enter de bo qua) :");
+        x=sc.nextInt();
+        if(x!=-1){this.bonho=x;x=-1;}
+        System.out.println("Nhap Dung Luong Pin (enter de bo qua) :");
+        x=sc.nextInt();
+        if(x!=-1){this.bonho=x;x=-1;}
+        System.out.println("Co Ho Tro Camera true/false ? (enter de bo qua) :");
+        if (new Scanner(System.in).hasNextBoolean()){this.camera=sc.nextBoolean();}
+        System.out.println("Co Ho Tro Bluetooth ?");
+        if (new Scanner(System.in).hasNextBoolean()){this.bluetooth=sc.nextBoolean();}
+        System.out.println("Co Ho Tro Flash ?");
+        if (new Scanner(System.in).hasNextBoolean()){this.flash=sc.nextBoolean();}
+        System.out.println("Nhap Do Phan Giai");
+        tr=sc.nextLine();
+        if(tr.isEmpty()){this.dophangiai=tr;tr="";}
+        System.out.println("Nhap Cong Sac");
+        tr=sc.nextLine();
+        if(tr.isEmpty()){this.congsac=tr;tr="";}
+        System.out.println("Nhap Loai Pin");
+        tr=sc.nextLine();
+        if(tr.isEmpty()){this.loaipin=tr;}
 
     }
 }

@@ -16,6 +16,7 @@ public class DsHang {
     }
 
     public void setDs(Hang[] ds) {
+        this.ds= Arrays.copyOf(this.ds,ds.length);
         this.ds = ds;
     }
 
@@ -31,6 +32,17 @@ public class DsHang {
     {
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hang;
+    }
+    public void Them(Hang[] hang)
+    {
+        int length=ds.length;
+        ds= Arrays.copyOf(ds,(length+hang.length));
+     for(int j=0,i=length;j<hang.length;j++,i++)
+     {
+         ds[i]= new Hang(hang[j] );
+         ds[i]=hang[j];
+
+     }
         System.out.println("Them Thanh Cong");
 
     }

@@ -64,20 +64,14 @@ public class Hang  implements doituong{
     }
     public void Sua()
     {
-        Hang hang= new Hang();
-        hang.Nhap();
-        if(hang.getMa() != -1)
-        {
-            ma = hang.getMa();
-        }
-        if(!hang.getTenhang().isEmpty())
-        {
-            tenhang = hang.getTenhang();
-        }
-        if(!hang.getDiachi().isEmpty())
-        {
-            diachi = hang.getDiachi();
-        }
+        String x="";
+        System.out.println("Nhap ten hang (enter de bo qua) :");
+       x=new Scanner(System.in).nextLine();
+       if(!x.isEmpty()) {tenhang=x;x="";}
+
+        System.out.println("Nhap dia chi hang (enter de bo qua) :");
+         x=new Scanner(System.in).nextLine();
+        if(!x.isEmpty()) {tenhang=x;}
 
     }
 

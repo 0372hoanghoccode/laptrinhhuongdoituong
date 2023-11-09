@@ -1,16 +1,24 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuDsKhachhang {
     DsKhachhang dsKhachhang;
     MenuDsKhachhang()
     {
-        Khachhang [] arr=new Khachhang[3];
+        dsKhachhang=new DsKhachhang();
+        List<String>data =new ArrayList<>();
+        File file =new File();
+        data= file.ReadFile("dsKhachhang.txt");
+        for(int i=0;i<data.size();i++)
+        {
+            String arr[]=data.get(i).split(",");
+            Khachhang khachhang=new Khachhang(Integer.parseInt(arr[0]),arr[1],arr[2],arr[3],arr[4]);
+            dsKhachhang.Them(khachhang);
 
-        arr[0]= new Khachhang(1,"nguyen","toan","123 nguen thi minh khai p13 q8 tphcm","12246868687");
-        arr[1]= new Khachhang(2,"tran","quang","973/34 do thua luan p12 q tan binh","112847655");
-        arr[2]= new Khachhang(3,"nguyen","minh trang","123 giai phong don da hanoi","49859595");
-        dsKhachhang=new DsKhachhang(arr);
+        }
+
     }
 
 

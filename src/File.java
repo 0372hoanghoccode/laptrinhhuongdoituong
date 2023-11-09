@@ -1,21 +1,27 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class File {
     String filePath = "src/";
-    void ReadFile(String filename)
+    List<String> ReadFile(String filename)
     {
+        List<String> data=new ArrayList<>();
         filePath+=filename;
         try {
             // Read file line by line
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+
+                data.add(line);
             }
             reader.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return data;
     }
     void WriteFile(String[] content,String filename)
     {
