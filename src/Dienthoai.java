@@ -104,6 +104,38 @@ abstract class Dienthoai {
 
     }
     public void Sua(){
+        String x = "";
+        System.out.println("Nhap ten (nhap Enter de bo qua): ");
+        x = scanner.nextLine();
+        if (!x.isEmpty()) {
+            ten = x;
+            x = "";
+        }
+
+        System.out.println("Nhap kich thuoc (nhap Enter de bo qua): ");
+        x = scanner.nextLine();
+        if (!x.isEmpty()) {
+            kichThuoc = x;
+            x = "";
+        }
+
+        System.out.println("Nhap so luong (nhap Enter de giu nguyen): ");
+        x = scanner.nextLine();
+        if (!x.isEmpty()) {
+            soLuong = Integer.parseInt(x);
+        }
+
+        System.out.println("Nhap don gia (nhap Enter de giu nguyen): ");
+        x = scanner.nextLine();
+        if (!x.isEmpty()) {
+            donGia = Float.parseFloat(x);
+        }
+
+        System.out.println("Nhap ma hang (nhap Enter de giu nguyen): ");
+        x = scanner.nextLine();
+        if (!x.isEmpty()) {
+            maHang = Integer.parseInt(x);
+        }
 
     }
     abstract void Goi();

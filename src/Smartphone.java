@@ -27,6 +27,30 @@ public class Smartphone extends Dienthoai implements doituong {
         this.chip = chip;
     }
 
+    public String getHeDieuHanh() {
+        return heDieuHanh;
+    }
+
+    public void setHeDieuHanh(String heDieuHanh) {
+        this.heDieuHanh = heDieuHanh;
+    }
+
+    public int getRam() {
+        return ram;
+    }
+
+    public void setRam(int ram) {
+        this.ram = ram;
+    }
+
+    public String getChip() {
+        return chip;
+    }
+
+    public void setChip(String chip) {
+        this.chip = chip;
+    }
+
     @Override
     public void Nhap() {
         super.Nhap();

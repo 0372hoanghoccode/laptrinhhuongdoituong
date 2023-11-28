@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class DsHang {
-    private Hang[] ds;
+   static private Hang[] ds;
     public DsHang()
     {
         ds=new Hang[0];
@@ -18,6 +18,15 @@ public class DsHang {
     public void setDs(Hang[] ds) {
         this.ds= Arrays.copyOf(this.ds,ds.length);
         this.ds = ds;
+    }
+    public void addDs(Hang[] ds)
+    {
+        int length=this.ds.length;
+        this.ds= Arrays.copyOf(this.ds,length+ds.length);
+       for(int i=length,j=0;i<this.ds.length;i++,j++)
+       {
+           this.ds[i]=ds[j];
+       }
     }
 
     public void Them()

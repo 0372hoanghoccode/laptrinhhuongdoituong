@@ -1,0 +1,10 @@
+1,1,50,5000000,1,Asus Zenfone 8,5.5,Android 11,8GB RAM,Snapdragon 888
+0,2,30,3000000,2,Apple iPhone 12,6.1,iOS 14,4GB RAM,A14 Bionic
+1,3,40,1500000,3,Samsung Galaxy A32,6.4,Android 11,6GB RAM,MediaTek Helio G80
+1,4,70,1000000,4,Oppo A54,6.51,Android 10,4GB RAM,Mediatek Helio P35
+0,5,60,700000,5,Nokia 3310,2.4,Điện thoại phổ thông,Phím số
+1,6,80,900000,6,Realme C15,6.5Android 10,4GB RAM,Mediatek Helio G35
+1,7,25,1200000,7,Vivo Y20s,6.51Android 10,4GB RAM,Mediatek Helio P35
+0,8,90,500000,1,Asus Zenfone 5,5.7,Điện thoại phổ thông,Phím số
+1,9,35,1100000,3,Samsung Galaxy M32,6.4,Android 11,6GB RAM,MediaTek Helio G80
+1,10,50,800000,4,Oppo A15,6.52,,Android 10,3GB RAM,Mediatek Helio P35

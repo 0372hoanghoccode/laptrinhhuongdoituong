@@ -1,0 +1,6 @@
+1,nguyen,thi trang,27060000
+2,phan,kieu trang,7007000
+3,nguyen,van an,15303000
+4,tran,hoang,3000000
+5,le,minh nghia,37005000
+6,huynh,thi hoang lan,9900000

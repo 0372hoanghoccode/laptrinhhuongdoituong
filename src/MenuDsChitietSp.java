@@ -5,11 +5,11 @@ public class MenuDsChitietSp {
   DsChitietSp dsChitietSp;
     MenuDsChitietSp()
     {
-  ChitietSp[] arr=new ChitietSp[3];
-  arr[0]= new ChitietSp(1,true,3,true,"320X720px",32,false,"typeC","lipo",3200);
-  arr[1]= new ChitietSp(2,false,4,true,"420X420px",12,false,"microUsb","lion",120);
-  arr[2]= new ChitietSp(3,true,9,true,"920X720px",128,false,"typeC","lipo",6000);
-   dsChitietSp=new DsChitietSp(arr);
+//  ChitietSp[] arr=new ChitietSp[3];
+//  arr[0]= new ChitietSp(1,true,3,true,"320X720px",32,false,"typeC","lipo",3200);
+//  arr[1]= new ChitietSp(2,false,4,true,"420X420px",12,false,"microUsb","lion",120);
+//  arr[2]= new ChitietSp(3,true,9,true,"920X720px",128,false,"typeC","lipo",6000);
+//   dsChitietSp=new DsChitietSp(arr);
     }
 
 
