@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
@@ -6,18 +7,36 @@ public class HoaDon  implements doituong{
     private Date ngayLap;
     private int maNhanVien;
     private int maKhachHang;
+    private int tongSoluong;
     private float tongTien;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+    public int getTongSoluong() {
+        return tongSoluong;
+    }
+
+    public void setTongSoluong(int tongSoluong) {
+        this.tongSoluong = tongSoluong;
+    }
+
+    public SimpleDateFormat getDateFormat() {
+        return dateFormat;
+    }
+
+    public void setDateFormat(SimpleDateFormat dateFormat) {
+        this.dateFormat = dateFormat;
+    }
 
     public HoaDon() {
 
     }
 
-    public HoaDon(int maHoaDon, Date ngayLap, int maNhanVien, int maKhachHang, float tongTien) {
+    public HoaDon(int maHoaDon, Date ngayLap, int maNhanVien, int maKhachHang,int tongSoluong, float tongTien) {
         this.maHoaDon = maHoaDon;
         this.ngayLap = ngayLap;
         this.maNhanVien = maNhanVien;
         this.maKhachHang = maKhachHang;
+        this.tongSoluong=tongSoluong;
         this.tongTien = tongTien;
 
     }
@@ -28,6 +47,7 @@ public class HoaDon  implements doituong{
         this.maNhanVien = hoadon.maNhanVien;
         this.maKhachHang = hoadon.maKhachHang;
         this.tongTien = hoadon.tongTien;
+        this.tongSoluong=hoadon.tongSoluong;
     }
 
     public int getMaHoaDon() {
@@ -79,18 +99,34 @@ public class HoaDon  implements doituong{
         maNhanVien = sc.nextInt();
         System.out.print("Nhập mã khách hàng: ");
         maKhachHang = sc.nextInt();
+        System.out.print("Nhập số lương: ");
+        tongSoluong = sc.nextInt();
+        System.out.print("Nhập tổng tiền: ");
+        tongTien = sc.nextFloat();
         sc.nextLine();
-        System.out.print("Nhập ngày lập: dd/MM/yyyy ");
-        ngayLap=dateFormat.parse(sc.nextLine(),null);
+        System.out.print("Nhập ngày lập: dd/MM/yyyy  mặc định hôm nay(enter) ");
+        String s=sc.nextLine();
+        if(s.isEmpty())
+        {
+            ngayLap=new Date();
+
+        }else
+        {
+            try {
+                ngayLap = dateFormat.parse(s);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void Xuat() {
-        HoaDon hd = new HoaDon();
         System.out.println("-------------------------------");
-        System.out.println("Mã hóa đơn: " + hd.maHoaDon);
+        System.out.println("Mã hóa đơn: " + maHoaDon);
         System.out.println("Ngày lập hóa đơn: " + dateFormat.format(ngayLap));
         System.out.println("Mã nhân viên: " + maNhanVien);
-        System.out.println("Mã khách hàng mua: " + maKhachHang);
+        System.out.println("Mã khách hàng : " + maKhachHang);
+        System.out.println("Mã khách hàng : " + maKhachHang);
         System.out.println("Tổng tiền bán: " + tongTien);
     }
     public void Sua()

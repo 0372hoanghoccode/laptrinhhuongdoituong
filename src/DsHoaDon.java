@@ -54,6 +54,11 @@ public class DsHoaDon {
             }
         }
     }
+    public void Them()
+    {
+        HoaDon hoaDon=new HoaDon();
+
+    }
     public void xoaHoaDonTheoMaHoaDon() {
         if(soLuongHoaDon == 0){
             System.out.println("Chưa có hóa đơn");

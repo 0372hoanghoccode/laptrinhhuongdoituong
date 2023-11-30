@@ -13,7 +13,7 @@ public class MenuChiTietHoaDon {
         for (String line : data)
         {
             String arr[]=line.split(",");
-            danhSachChiTiet.Them((int)arr[0],);
+          //  danhSachChiTiet.Them((int)arr[0],);
         }
 
 
