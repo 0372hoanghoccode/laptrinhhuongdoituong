@@ -23,26 +23,62 @@ public class DsChitietSp {
     {
         for (int i=0;i< ds.length;i++)
         {
-            System.out.println("-----Vi tri Thu "+(i+1)+"-----");
+            System.out.println("-----Vị trí thứ "+(i+1)+"-----");
             ds[i].Xuat();
         }
     }
     public void  Them()
     {
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách trống");
+            return;
+        }
         ChitietSp chitietSp= new ChitietSp();
         chitietSp.Nhap();
+        while (!checkid(chitietSp.getMa()))
+        {
+            System.out.print("Mã chi tiết sản phẩm trùng, vui lòng nhập lại :");
+            chitietSp.setMa(new Scanner(System.in).nextInt());
+        }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=chitietSp;
     }
     public void Them(ChitietSp ct)
     {
+        if(ds.length==0 ||checkid(ct.getMa()))
+        {
+            return;
+        }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=ct;
 
     }
+    public void Them(int ma, boolean camera, int masp, boolean flash, String dophangiai, int bonho, boolean bluetooth, String congsac, String loaipin, int dungluongpin)
+    {
+        ChitietSp chitietSp=new ChitietSp(ma,camera,masp,flash,dophangiai,bonho,bluetooth,congsac,loaipin,dungluongpin);
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách trống");
+            return;
+        }
+        while (!checkid(chitietSp.getMa()))
+        {
+            System.out.print("Mã chi tiết sản phẩm trùng, vui lòng nhập lại :");
+            chitietSp.setMa(new Scanner(System.in).nextInt());
+        }
+        ds= Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=chitietSp;
+
+    }
     public void Xoa()
     {
-        System.out.println("Nhap Ma Chi Tiet Can Xoa :");
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách trống.");
+            return;
+        }
+        System.out.print("Nhập mã chi tiết sản phẩm cần xóa :");
         int ma=new Scanner(System.in).nextInt();
         for (int i=0; i<ds.length;i++) {
             if(ds[i].getMa()==ma)
@@ -55,10 +91,25 @@ public class DsChitietSp {
                 return;
             }
         }
-        System.out.println("Khong tim Thay ");
+        System.out.println("Mã chi tiết sản phẩm không tồn tại.");
+    }
+    public boolean checkid(int id)
+    {
+        for (ChitietSp ct :ds)
+        {
+            if(ct.getMa()==id)
+            {
+                return false;
+            }
+        }
+        return true;
     }
     public void Xoa(int ma)
     {
+        if(ds.length==0)
+        {
+            return;
+        }
         for (int i=0; i<ds.length;i++) {
             if(ds[i].getMa()==ma)
             {
@@ -70,13 +121,11 @@ public class DsChitietSp {
                 return;
             }
         }
-        System.out.println("Khong tim Thay ");
-
     }
 
     public void Sua()
     {
-        System.out.println("Nhap Ma Can Sua :");
+        System.out.print("Nhập mã chi tiết sản phẩm cần sửa :");
         int ma=new Scanner(System.in).nextInt();
         for (ChitietSp ct : ds)
         {
@@ -86,10 +135,12 @@ public class DsChitietSp {
                 return;
             }
         }
-          System.out.println("Khong Tim Thay .");
+          System.out.println("mã chi tiết sản phẩm không tồn tại.");
     }
     public void Sua(int ma)
     {
+        if(ds.length==0)return;
+
         for (ChitietSp ct : ds)
         {
             if(ct.getMa()==ma)
@@ -98,11 +149,10 @@ public class DsChitietSp {
                 return;
             }
         }
-        System.out.println("Khong Tim Thay .");
     }
     public void Timkiem()
     {
-        System.out.println("Nhap Ma Chi Tiet Cam Tim");
+        System.out.print("Nhập mã chi tiết sản phẩm cần sửa");
         int ma=new Scanner(System.in).nextInt();
         for (ChitietSp ct:ds)
         {
@@ -112,20 +162,20 @@ public class DsChitietSp {
                 return;
             }
         }
-        System.out.println("Khong Tim Thay");
+        System.out.println("Mã chi tiết sản phẩm không tồn tại");
     }
-    public void Timkiem(int ma)
+    public ChitietSp Timkiem(int ma)
     {
 
         for (ChitietSp ct:ds)
         {
             if(ct.getMa()==ma)
             {
-                ct.Xuat();
-                return;
+
+                return ct;
             }
         }
-        System.out.println("Khong Tim Thay");
+       return null;
     }
     ChitietSp[]  TimkiemtheoDophangiai(String dophangiai)
     {
@@ -141,44 +191,15 @@ public class DsChitietSp {
         }
        return dsct;
     }
-    ChitietSp[]  TimkiemtheoDophangiaireturn()
-    {
-        System.out.println("Nhap Do Phan Giai :");
-        String dophangiai=new Scanner(System.in).nextLine();
-        ChitietSp[] dsct=new ChitietSp[0];
 
-        for (ChitietSp ct:ds)
-        {
-            if(ct.getDophangiai().equals(dophangiai))
-            {
-                dsct= Arrays.copyOf(dsct,ds.length+1);
-                ds[ds.length-1]=ct;
-            }
-        }
-        return dsct;
-    }
-    void   TimkiemtheoDophangiai()
-    {
-        System.out.println("Nhap Do Phan Giai :");
-        String dophangiai=new Scanner(System.in).nextLine();
-        ChitietSp[] dsct=new ChitietSp[0];
-
-        for (ChitietSp ct:ds)
-        {
-            if(ct.getDophangiai().equals(dophangiai))
-            {
-                System.out.println("------------------");
-                ct.Xuat();
-            }
-        }
-    }
     void Thongke()
     {
 
-        System.out.println("Co tong cong "+ds.length+" chi tiet san pham ");
+        System.out.println("Có "+ds.length+" chi tiết sản phẩm ");
         ThongkehotroCamera();
         ThongkeCongsac();
         ThongkehotroFlash();
+        ThongketheohotroBluetooth();
     }
     void ThongketheohotroBluetooth()
     {
@@ -190,7 +211,7 @@ public class DsChitietSp {
                x++;
             }
         }
-        System.out.println("Co "+x+" San pham ho tro Bluetooth");
+        System.out.println("Có "+x+" sản phẩm hỗ trợ Bluetooth");
     }
     void ThongkehotroCamera()
     {
@@ -202,7 +223,7 @@ public class DsChitietSp {
                 x++;
             }
         }
-        System.out.println("Co "+x+" San pham ho tro Camera");
+        System.out.println("Có "+x+" sản phẩm hỗ trợ Camera");
 
     }
     void ThongkehotroFlash()
@@ -215,7 +236,7 @@ public class DsChitietSp {
                 x++;
             }
         }
-        System.out.println("Co "+x+" San pham ho tro Flash");
+        System.out.println("Có "+x+" sản phẩm hỗ trợ Flash");
 
     }
     void ThongkeCongsac()
@@ -238,13 +259,10 @@ public class DsChitietSp {
                 lightNing++;
             }
         }
-        System.out.println("Co "+microUsb+" san pham ho tro cong sac microUsb"
-                +"Co "+typeC+" san pham ho tro cong sac Type C"+
-                "Co "+lightNing+" san pham ho tro cong sac lightNing"
+        System.out.println("Có "+microUsb+" sản phẩm hỗ trợ ổng sạc microUsb"
+                +"Có "+typeC+" sản phẩm hỗ trợ ổng sạc Type C"+
+                "Có "+lightNing+" sản phẩm hỗ trợ ổng sạc lightNing"
         );
 
     }
-
-
-
 }

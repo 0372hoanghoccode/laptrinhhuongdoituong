@@ -7,16 +7,21 @@ public class NhanVien  implements doituong{
     private float luong;
 
     public NhanVien(){
-        maNhanVien = 0;
-        hoNhanVien = "";
-        tenNhanVien = "";
-        luong = 0.0F;
+
     }
     public NhanVien(int maNhanVien, String hoNhanVien, String tenNhanVien, float luong){
         this.maNhanVien = maNhanVien;
         this.hoNhanVien = hoNhanVien;
         this.tenNhanVien = tenNhanVien;
         this.luong = luong;
+    }
+    public NhanVien(NhanVien nhanVien)
+    {
+        this.maNhanVien = nhanVien.maNhanVien;
+        this.hoNhanVien = nhanVien.hoNhanVien;
+        this.tenNhanVien = nhanVien.tenNhanVien;
+        this.luong = nhanVien.luong;
+
     }
     public int getMaNhanVien() {
         return maNhanVien;
@@ -49,13 +54,8 @@ public class NhanVien  implements doituong{
     }
     public void Nhap(){
         Scanner sc = new Scanner(System.in);
-        do {
-            System.out.print("Nhập mã nhân viên: ");
-            maNhanVien = sc.nextInt();
-            if (maNhanVien <= 0) {
-                System.out.println("Mã nhân viên không hợp lệ.");
-            }
-        } while (maNhanVien <= 0);
+        System.out.print("Nhập mã nhân viên: ");
+        maNhanVien = sc.nextInt();
         sc.nextLine();
         System.out.print("Nhập họ nhân viên: ");
         hoNhanVien = sc.nextLine();
@@ -73,6 +73,19 @@ public class NhanVien  implements doituong{
     }
     public void Sua()
     {
-
+        String x="";
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhập mã nhân viên (enter để lấy dữ liệu cũ ): ");
+        x=sc.nextLine();
+        if(!x.isEmpty()){maNhanVien=Integer.parseInt(x);x="";}
+        System.out.print("Nhập họ nhân viên (enter để lấy dữ liệu cũ): ");
+        x=sc.nextLine();
+        if(!x.isEmpty()){hoNhanVien=x;x="";}
+        System.out.print("Nhập tên nhân viên (enter để lấy dữ liệu cũ): ");
+        x=sc.nextLine();
+        if(!x.isEmpty()){tenNhanVien=x;x="";}
+        System.out.print("Nhập lương nhân viên (enter để lấy dữ liệu cũ): ");
+        x=sc.nextLine();
+        if(!x.isEmpty()){luong=Float.parseFloat(x);}
     }
 }

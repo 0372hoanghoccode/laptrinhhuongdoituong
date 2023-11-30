@@ -10,54 +10,88 @@ public class DsDienthoai {
     }
 
     public DsDienthoai(Dienthoai[] dienthoai) {
-        ds = new Dienthoai[dienthoai.length];
         ds = dienthoai;
     }
 
     public void Them() {
-        System.out.println("Ban muon them ?");
-        System.out.println("1. Dien thoai pho thong");
+        System.out.print("Bạn muốn thêm : ? ");
+        System.out.print("1. Điện thoại phổ thông ");
         System.out.println("2. Smartphone");
-        int loai1 = scanner.nextInt();
+        int loai = scanner.nextInt();
+        Dienthoai dt;
         scanner.nextLine();
-
-        switch (loai1) {
+        switch (loai) {
             case 1:
-                DTPT dtpt = new DTPT();
-                dtpt.Nhap();
-                Them(dtpt);
+                dt = new DTPT();
+               dt.Nhap();
                 break;
             case 2:
-                Smartphone smartphone = new Smartphone();
-                smartphone.Nhap();
-                Them(smartphone);
+               dt = new Smartphone();
+                dt.Nhap();
+
                 break;
             default:
-                System.out.print("Khong hop le ");
-                break;
+                System.out.print("Không hợp lệ ");
+                return;
         }
+        while (!checkid(dt.getMaSanPham()))
+        {
+            System.out.print("Trùng mã sản phẩm , vui lòng nhập lại :");
+            dt.setMaSanPham(new Scanner(System.in).nextInt());
+        }
+        ds = new Dienthoai[ds.length + 1];
+        ds[ds.length-1]=dt;
     }
 
     public void Them(Dienthoai dt) {
-        Dienthoai[] newDs = new Dienthoai[ds.length + 1];
-        for (int i = 0; i < ds.length; i++) {
-            newDs[i] = ds[i];
+        if(!checkid(dt.getMaSanPham()))
+        {
+            return;
         }
-        newDs[ds.length] = dt;
-        ds = newDs;
+        ds = new Dienthoai[ds.length + 1];
+        ds[ds.length-1]=dt;
+    }
+    public void Them(int maSanPham, int soLuong, float donGia, int maHang, String ten, String kichThuoc,String banphim)
+    {
+        if(!checkid(maSanPham))
+        {
+            return;
+        }
+        Dienthoai dt=new DTPT(maSanPham,soLuong,donGia,maHang,ten,kichThuoc,banphim);
+        ds = new Dienthoai[ds.length + 1];
+        ds[ds.length-1]=dt;
+
+    }
+    public void Them(int maSanPham, int soLuong, float donGia, int maHang, String ten, String kichThuoc,String hedieuhanh,int ram,String chip)
+    {
+        if(!checkid(maSanPham))
+        {
+            return;
+        }
+        Dienthoai dt=new Smartphone(maSanPham,soLuong,donGia,maHang,ten,kichThuoc,hedieuhanh,ram,chip);
+        ds = new Dienthoai[ds.length + 1];
+        ds[ds.length-1]=dt;
+
+    }
+    public boolean checkid(int id)
+    {
+        for (Dienthoai dt :ds)
+        {
+          if(  dt.getMaSanPham()==id)
+              return false;
+        }
+        return true;
     }
 
-    public void Them(Dienthoai[] dienthoai) {
-        Dienthoai[] newDs = new Dienthoai[ds.length + dienthoai.length];
-        for (int i = 0; i < ds.length; i++) {
-            newDs[i] = ds[i];
-        }
-        System.arraycopy(dienthoai, 0, newDs, ds.length, dienthoai.length);
-        ds = newDs;
-    }
+
 
     public void Xoa() {
-        System.out.println("Nhap Ma");
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách trống.");
+            return;
+        }
+        System.out.print("Nhập mã sản phẩm cần xóa :");
         int x = new Scanner(System.in).nextInt();
         for (int i = 0; i < ds.length; i++) {
             if (ds[i].getMaSanPham() == x) {
@@ -65,62 +99,59 @@ public class DsDienthoai {
                     ds[j] = ds[j + 1];
                 }
                 ds = Arrays.copyOf(ds, ds.length - 1);
-                System.out.println("Xoa Thanh Cong");
+                System.out.println("Xóa thành công");
                 return;
             }
         }
-        System.out.println("Khong Tim Thay");
+        System.out.println("Mã sản phẩm không còn lại.");
     }
 
     public void Xoa(int x) {
+        if(ds.length==0)
+        {
+            return;
+        }
         for (int i = 0; i < ds.length; i++) {
             if (ds[i].getMaSanPham() == x) {
                 for (int j = i; j < ds.length - 1; j++) {
                     ds[j] = ds[j + 1];
                 }
                 ds = Arrays.copyOf(ds, ds.length - 1);
-                System.out.println("Xoa thanh cong");
                 return;
             }
         }
-        System.out.println("Xoa that bai");
     }
 
 
     public void Sua() {
-        System.out.println("Nhap ma san pham can sua: ");
-        int maSanPham = scanner.nextInt();
-
-        Dienthoai dt = getDienthoai(maSanPham);
-
-        if (dt != null) {
-
-            System.out.println("Thong tin hien tai cua dien thoai:");
-            dt.Xuat();
-
-            System.out.println("Nhap thong tin moi cho dien thoai:");
-            dt.Sua();
-
-            System.out.println("Cap nhat thong tin thanh cong!");
-        } else {
-            System.out.println("Khong tim thay dien thoai co ma " + maSanPham);
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách trống.");
+            return;
         }
+        System.out.print("Nhập mã sản phẩm cần sửa: ");
+        int maSanPham = scanner.nextInt();
+       for (Dienthoai dt:ds)
+       {
+           if(dt.getMaSanPham()==maSanPham)
+           {
+               dt.Sua();
+           }
+
+       }
+            System.out.println("Mã sàn phẩm không tồn tại.");
+
     }
 
     public void Sua(int maSanPham) {
-        Dienthoai dt = getDienthoai(maSanPham);
 
-        if (dt != null) {
+        for (Dienthoai dt:ds)
+        {
+            if(dt.getMaSanPham()==maSanPham)
+            {
+                dt.Sua();
+            }
 
-            System.out.println("Thong tin hien tai cua dien thoai:");
-            dt.Xuat();
-
-            System.out.println("Nhap thong tin moi cho dien thoai:");
-            dt.Sua();
-
-            System.out.println("Cap nhat thong tin thanh cong!");
-        } else {
-            System.out.println("Khong tim thay dien thoai co ma " + maSanPham);
         }
     }
 
@@ -132,6 +163,23 @@ public class DsDienthoai {
         }
         return null;
     }
+    public void XemDs()
+    {
+        for (int i=0;i<ds.length;i++)
+        {
+            System.out.println(".......Vị trí thứ "+(i+1)+"......");
+            if(ds[i] instanceof DTPT)
+            {
+                DTPT dtpt=(DTPT) ds[i];
+                dtpt.Xuat();
+            }else
+            {
+                Smartphone smartphone=(Smartphone) ds[i];
+                smartphone.Xuat();
+            }
+        }
+    }
+
 
     public void Thongke() {
         int dtpt = 0;
@@ -144,22 +192,10 @@ public class DsDienthoai {
                 dtpt++;
             }
         }
-        System.out.println("Co : " + ds.length + " dien thoai trong do co " + dtpt + " dien thoai pho thong va " + dtsmp + " dien thoai smartphone");
+        System.out.println("Có : " + ds.length + " điện thoại trong đó có " + dtpt + " điện thoại phổ thông và " + dtsmp + " điện thoại smartphone");
     }
 
-    public void Xuat(String loai) {
-        System.out.println("Danh sách " + loai + ":");
-        for (Dienthoai d : ds) {
-            if (d instanceof Smartphone) {
-                System.out.print("SMARTPHONE : ");
-                d.Xuat();
-            }
-            if (d instanceof DTPT) {
-                System.out.print("DTPT : ");
-                d.Xuat();
-            }
-        }
-    }
+
 
     public void Xuat() {
         for (Dienthoai d : ds) {
@@ -183,42 +219,18 @@ public class DsDienthoai {
         return null;
     }
 
-    public void timVaInSanPham(int maSanPham) {
+    public void Timkiem() {
+        System.out.print("Nhập mã sản phẩm");
+        int maSanPham=scanner.nextInt();
         for (Dienthoai d : ds) {
             if (d.getMaSanPham() == maSanPham) {
                 d.Xuat();
             }
         }
 
-        System.out.println("Khong tim thay san pham voi ma: " + maSanPham);
+        System.out.println("Mã sản phẩm không tồn tại.");
     }
 
-    public void timVaInSanPham() {
-        System.out.println("Nhap ma san pham");
-        int maSanPham = new Scanner(System.in).nextInt();
-        for (Dienthoai d : ds) {
-            if (d.getMaSanPham() == maSanPham) {
-                d.Xuat();
-            }
-        }
-
-        System.out.println("Khong tim thay san pham voi ma: " + maSanPham);
-    }
-
-    public void TimkiemTheoTen() {
-        boolean empty = false;
-        System.out.println("Nhap ten san pham");
-        String tenSanPham = new Scanner(System.in).nextLine();
-        for (Dienthoai d : ds) {
-            empty = true;
-            if (d.getTen().equals(tenSanPham)) {
-                d.Xuat();
-            }
-        }
-
-        if (!empty)
-            System.out.println("Khong tim thay san pham voi ten: " + tenSanPham);
-    }
     public static void Muahang(int ma,int sl)
     {
         for(int i=0;i<ds.length;i++)

@@ -6,9 +6,6 @@ public class Hang  implements doituong{
     private String diachi;
     public Hang()
     {
-        ma=-1;
-        tenhang="";
-        diachi="";
     }
 
     public int getMa() {

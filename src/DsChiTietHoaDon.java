@@ -1,135 +1,156 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class DsChiTietHoaDon {
-    private ChiTietHoaDon[] danhSachChiTietHoaDon;
-    static int soLuongChiTiet;
-    private static int max = 10;
+    private ChiTietHoaDon[] ds;
+
     Scanner sc = new Scanner(System.in);
     public DsChiTietHoaDon(){
-        soLuongChiTiet = 0;
-        danhSachChiTietHoaDon = new ChiTietHoaDon[max];
+        ds = new ChiTietHoaDon[0];
     }
+    public DsChiTietHoaDon(ChiTietHoaDon[] ds)
+    {
+        this.ds=ds;
+    }
+    public ChiTietHoaDon[] getDanhSachChiTietHoaDon() {
+        return ds;
+    }
+
+    public void setDanhSachChiTietHoaDon(ChiTietHoaDon[] ds) {
+        this.ds = ds;
+    }
+
     public void Them(){
         ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
         chiTietHoaDon.Nhap();
-
-            danhSachChiTietHoaDon[soLuongChiTiet] = chiTietHoaDon;
-            soLuongChiTiet++;
-
+        while (!checkid(chiTietHoaDon.getMaChiTietHoaDon()))
+        {
+            System.out.print("Trùng mã chi tiết hóa đơn, vui lòng nhập lại :");
+            chiTietHoaDon.setMaChiTietHoaDon(sc.nextInt());
+        }
+           ds= Arrays.copyOf(ds,ds.length+1);
+           ds[ds.length-1]=chiTietHoaDon;
     }
     public void Them( ChiTietHoaDon chiTietHoaDon){
-
-            danhSachChiTietHoaDon[soLuongChiTiet] = chiTietHoaDon;
-            soLuongChiTiet++;
+          if(!checkid(chiTietHoaDon.getMaChiTietHoaDon()))
+          {
+              return;
+          }
+        ds=Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=chiTietHoaDon;
 
     }
     public void Them(int machitiet, int maHoaDon,int maSanPham,int soLuongMua,float donGia,float thanhTien){
         ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(machitiet,maHoaDon, maSanPham, soLuongMua, donGia, thanhTien);
-        danhSachChiTietHoaDon[soLuongChiTiet] = chiTietHoaDon;
-        soLuongChiTiet++;
+        if(!checkid(chiTietHoaDon.getMaChiTietHoaDon()))
+        {
+            return;
+        }
+       ds=Arrays.copyOf(ds,ds.length+1);
+       ds[ds.length-1]=chiTietHoaDon;
     }
-    public void xoaChiTietTheoMaHoaDon(){
-        if(soLuongChiTiet == 0){
+    public void Xoa(){
+        if(ds.length == 0){
             System.out.println("Chưa có chi tiết hóa đơn");
-        }else{
-            HoaDon hoaDon = new HoaDon();
-            int index = -1;
-            for(int i = 0; i < soLuongChiTiet; i++){
-                if(danhSachChiTietHoaDon[i].getMaHoaDon() == hoaDon.getMaHoaDon()){
-                    index = i;
-                    break;
+            return;
+        }
+          System.out.print("Nhập mã chi tiết hóa đơn cần xóa :");
+        int ma =sc.nextInt();
+            for(int i = 0; i < ds.length; i++){
+                if(ds[i].getMaHoaDon() ==ma){
+                    for(int j=i;j<ds.length-1;j++)
+                    {
+                        ds[j]=ds[j+1];
+                    }
+                    ds=Arrays.copyOf(ds,ds.length-1);
+                    return;
                 }
             }
-            if(index != -1) {
-                for (int i = 0; i < soLuongChiTiet; i++) {
-                    danhSachChiTietHoaDon[i] = danhSachChiTietHoaDon[i + 1];
-                }
-                soLuongChiTiet--;
-                System.out.println("Đã xóa chi tiết");
-            }
-            else {
                 System.out.println("Mã hóa đơn không tồn tại");
+    }
+    public void Xoa(int ma){
+        if(ds.length == 0){
+            System.out.println("Chưa có chi tiết hóa đơn");
+            return;
+        }
+        for(int i = 0; i < ds.length; i++){
+            if(ds[i].getMaHoaDon() ==ma){
+                for(int j=i;j<ds.length-1;j++)
+                {
+                    ds[j]=ds[j+1];
+                }
+                ds=Arrays.copyOf(ds,ds.length-1);
+                return;
             }
         }
     }
-    public ChiTietHoaDon timChiTietTheoMaHoaDon(){
+    public void Timkiem(){
         System.out.print("Nhập mã hóa đơn:" );
         int maHoaDon = sc.nextInt();
-        boolean found = false;
-        for(int i = 0; i < soLuongChiTiet; i++){
-            if(danhSachChiTietHoaDon[i].getMaHoaDon() == maHoaDon){
-                danhSachChiTietHoaDon[i].Xuat();
-                found = true;
+        for(int i = 0; i < ds.length; i++){
+            if(ds[i].getMaHoaDon() == maHoaDon){
+               ds[i].Xuat();
+               return;
             }
         }
-        if(!found){
-            System.out.println("Mã hóa đơn không tồn tại");
+
+            System.out.println("Mã chi tiết hóa đơn không tồn tại");
+
+    }
+    private ChiTietHoaDon Timkiem(int maHoaDon){
+        for(int i = 0;i < ds.length; i++){
+            if(ds[i].getMaHoaDon() == maHoaDon){
+
+                return ds[i];
+            }
         }
         return null;
     }
-    public void SuaChiTiet() {
-        if (soLuongChiTiet == 0) {
+
+    public boolean checkid(int ma)
+    {
+        for (ChiTietHoaDon chiTietHoaDon:ds)
+        {
+            if( chiTietHoaDon.getMaChiTietHoaDon()==ma)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void Sua() {
+        if (ds.length == 0) {
             System.out.println("Chưa có chi tiết hóa đơn");
-        } else {
-            System.out.print("Nhập mã hóa đơn để sửa chi tiết: ");
+            return;
+        }
+            System.out.print("Nhập mã chi tiết hóa đơn: ");
             int maHoaDonCanSua = sc.nextInt();
-            ChiTietHoaDon chiTietHoaDonCanSua = timMaHoaDonCanSuaChiTiet(maHoaDonCanSua);
-            chiTietHoaDonCanSua.Xuat();
-            if(chiTietHoaDonCanSua != null){
-                boolean tiepTuSua = true;
-                while(tiepTuSua){
-                    System.out.println("------------------------");
-                    System.out.println("Chọn thông tin cần sửa");
-                    System.out.println("1.Mã sản phẩm");
-                    System.out.println("2.Số lượng mua");
-                    System.out.println("0.Kết thúc");
-                    System.out.print("Nhập lựa chon: ");
-                    int luachon = sc.nextInt();
-                    sc.nextLine();
-                    switch (luachon){
-                        case 1:
-                            System.out.print("Nhập mã sản phẩm mới: ");
-                            int newMaSanPham = sc.nextInt();
-                            chiTietHoaDonCanSua.setMaSanPham(newMaSanPham);
-                            System.out.println("Đã cập nhập!");
-                            break;
-                        case 2:
-                            System.out.print("Nhập số lượng mua mới: ");
-                            int newSoLuongMua = sc.nextInt();
-                            chiTietHoaDonCanSua.setSoLuongMua(newSoLuongMua);
-                            System.out.println("Đã cập nhập!");
-                            break;
-                        case 0:
-                            tiepTuSua = false;
-                        default:
-                            System.out.println("Lựa chọn không hợp lệ");
-                    }
+            for (ChiTietHoaDon chiTietHoaDon : ds)
+            {
+                if(maHoaDonCanSua==chiTietHoaDon.getMaChiTietHoaDon())
+                {
+                    chiTietHoaDon.Sua();
+                    return;
                 }
-                System.out.println("Sửa chi tiết hóa đơn thành công");
             }
-            else {
-                System.out.println("Không tìm thấy chi tiết hóa đơn");
-            }
-        }
+            System.out.println("Không tìm thấy mã.");
     }
-    private ChiTietHoaDon timMaHoaDonCanSuaChiTiet(int maHoaDon){
-        for(int i = 0;i < soLuongChiTiet; i++){
-            if(danhSachChiTietHoaDon[i].getMaHoaDon() == maHoaDon){
-                System.out.println("Tìm thành công");
-                return danhSachChiTietHoaDon[i];
-            }
-        }
-        return null;
-    }
-    public void hienThiChiTietHoaDon(){
-        if(soLuongChiTiet == 0){
+
+    public void XemDs(){
+        if(ds.length == 0){
             System.out.println("Chưa có hóa đơn");
-        }else{
-            for(int i = 0; i < soLuongChiTiet; i++){
-                danhSachChiTietHoaDon[i].Xuat();
-            }
+            return;
         }
+            for(int i = 0; i < ds.length; i++){
+                System.out.println(".......Vị trí thứ"+(i+1)+"........");
+                ds[i].Xuat();
+            }
+
+    }
+    public void Thongke()
+    {
+        System.out.println("Có "+ds.length+" chi tiết hóa đơn");
     }
     public static void Themchitiethoadontofile(float  [][]arr,int mahd)
     {
@@ -138,7 +159,7 @@ public class DsChiTietHoaDon {
         for(int i=0,j=(maxid+1);i< arr.length;i++,j++)
         {
             String data=j+","+mahd+ arr[i][0]+","+arr[i][3]+","+arr[i][4]+","+arr[i][5];
-            file.WriteNewLine("dschitiethoadon",data);
+            file.WriteNewLine("dschitiethoadon.txt",data);
         }
 
 

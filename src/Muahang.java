@@ -1,5 +1,6 @@
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-
+import java.time.LocalDate;
 public class Muahang {
 
 Muahang()
@@ -42,7 +43,10 @@ Muahang()
             tongtien+=arr[i][5];
             tongsoluong+=(int)arr[i][3];
         }
-      int mahd=  DsHoaDon.Themhoadontofile((int)arr[0][1],(int)arr[0][2],tongsoluong,tongtien);
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = now.format(formatter);
+      int mahd=DsHoaDon.Themhoadontofile((int)arr[0][1],(int)arr[0][2],tongsoluong,tongtien,formattedDate);
         for (int i=0;i<sl;i++)
         {
             DsDienthoai.Muahang((int)arr[i][0],(int)arr[i][3]);

@@ -16,48 +16,57 @@ public class DsHang {
     }
 
     public void setDs(Hang[] ds) {
-        this.ds= Arrays.copyOf(this.ds,ds.length);
         this.ds = ds;
     }
-    public void addDs(Hang[] ds)
-    {
-        int length=this.ds.length;
-        this.ds= Arrays.copyOf(this.ds,length+ds.length);
-       for(int i=length,j=0;i<this.ds.length;i++,j++)
-       {
-           this.ds[i]=ds[j];
-       }
-    }
-
     public void Them()
     {
         Hang hang=new Hang();
         hang.Nhap();
+        while (!checkid(hang.getMa()))
+        {
+            System.out.print("Trùng mã hãng, vui lòng nhập lại :");
+            hang.setMa(new Scanner(System.in).nextInt());
+        }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hang;
-        System.out.println("Them Thanh Cong");
+        System.out.println("Thêm thành công.");
     }
     public void Them(Hang hang)
     {
+        while (!checkid(hang.getMa()))
+        {
+            System.out.print("Trùng mã hãng, vui lòng nhập lại :");
+            hang.setMa(new Scanner(System.in).nextInt());
+        }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hang;
     }
-    public void Them(Hang[] hang)
+    public void Them(int ma, String tenhang, String diachi)
     {
-        int length=ds.length;
-        ds= Arrays.copyOf(ds,(length+hang.length));
-     for(int j=0,i=length;j<hang.length;j++,i++)
-     {
-         ds[i]= new Hang(hang[j] );
-         ds[i]=hang[j];
-
-     }
-        System.out.println("Them Thanh Cong");
-
+        Hang hang=new Hang(ma,tenhang,diachi);
+        while (!checkid(hang.getMa()))
+        {
+            System.out.print("Trùng mã hãng, vui lòng nhập lại :");
+            hang.setMa(new Scanner(System.in).nextInt());
+        }
+        ds= Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=hang;
     }
+    public boolean checkid(int id)
+    {
+        for (Hang hang :ds)
+        {
+            if(hang.getMa()==id)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void Xoa()
     {
-        System.out.println("Nhap Ma");
+        System.out.print("Nhập mã :");
         int x=new Scanner(System.in).nextInt();
         for (int i=0; i<ds.length;i++) {
             if(ds[i].getMa()==x)
@@ -67,11 +76,11 @@ public class DsHang {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
-                System.out.println("Xoa Thanh Cong");
+                System.out.println("Xóa thành công");
                 return;
             }
         }
-        System.out.println("Khong Tim Thay");
+        System.out.println("Mã hãng khng tồn tại.");
     }
     public void Xoa(int x)
     {
@@ -81,26 +90,24 @@ public class DsHang {
                     ds[j] = ds[j + 1];
                 }
                 ds = Arrays.copyOf(ds, ds.length - 1);
-                System.out.println("Xoa thanh cong");
                 return ;
             }
         }
-        System.out.println("Xoa that bai");
     }
     public void Sua()
     {
-        System.out.println("Nhap Ma Can Sua :");
+        System.out.println("Nhập mã cần sửa :");
         int ma=new Scanner(System.in).nextInt();
         for (Hang hang : ds)
         {
             if(hang.getMa()==ma)
             {
                 hang.Sua();
-                System.out.println("Sua Thanh Cong");
+                System.out.println("Sửa thành công.");
                 return;
             }
         }
-        System.out.println("Khong Tim Thay .");
+        System.out.println("Không tìm thấy.");
     }
     void   Sua(int ma)
     {
@@ -109,15 +116,13 @@ public class DsHang {
             if(hang.getMa()==ma)
             {
                 hang.Sua();
-                System.out.println("Sua Thanh Cong");
                 return;
             }
         }
-        System.out.println("Khong Tim Thay .");
     }
     public void Timkiem()
     {
-        System.out.println("Nhap Ma");
+        System.out.print("Nhập mã :");
         int ma=new Scanner(System.in).nextInt();
         for (Hang hang :ds)
         {
@@ -127,7 +132,7 @@ public class DsHang {
                 return;
             }
         }
-        System.out.println("Khong Tim Thay");
+        System.out.println("Mã hãng không tồn tại.");
     }
     public Hang Timkiem(int ma)
     {
@@ -140,29 +145,28 @@ public class DsHang {
         }
         return null;
     }
-    public void Xem()
+    public void XemDs()
     {
+        if(ds.length==0){System.out.println("Danh sách trống."); return;}
         for (int i=0;i<ds.length;i++)
         {
-            System.out.println("-----"+(i+1)+"-----");
+            System.out.println("-----Vị trí thứ "+(i+1)+"-----");
             ds[i].Xuat();
         }
     }
     public void Thongke()
     {
-        System.out.println("Co "+ds.length+" khach hang");
+        System.out.println("Có "+ds.length+" khách hàng.");
+        Thongkeds();
     }
 
-    public String Thongkeds()
+    public void Thongkeds()
     {
-        String dscachang="";
         for (Hang hang :ds)
         {
-          dscachang+=  hang.getTenhang()+"/";
+          System.out.println(hang.getTenhang());
         }
-        return  dscachang;
     }
-
 
 
 }

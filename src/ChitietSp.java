@@ -127,70 +127,75 @@ public class ChitietSp implements doituong {
     }
     public void Nhap()
     {
-        System.out.println("Nhap Ma");
+        System.out.print("Nhập mã chi tiết sản phẩm :");
         this.ma=new Scanner(System.in).nextInt();
-        System.out.println("Nhap Ma Sp");
+        System.out.print("Nhập mã sản phẩm :");
         this.masp=new Scanner(System.in).nextInt();
-        System.out.println("Nhap Bo Nho");
+        System.out.print("Nhập bộ nhớ (Gb) :");
         this.bonho=new Scanner(System.in).nextInt();
-        System.out.println("Nhap Dung Luong Pin");
+        System.out.print("Nhập dung lượng pin (mAh):");
         this.dungluongpin=new Scanner(System.in).nextInt();
-        System.out.println("Co Ho Tro Camera ? true/false ");
+        System.out.print("Hỗ trợ camera ? true/false: ");
         this.camera=new Scanner(System.in).nextBoolean();
-        System.out.println("Co Ho Tro Bluetooth ? true/false ");
+        System.out.print("Hỗ trợ Bluetooth ? true/false: ");
         this.bluetooth=new Scanner(System.in).nextBoolean();
-        System.out.println("Co Ho Tro Flash ? true/false");
+        System.out.print("Hỗ trợ Flash ? true/false:");
         this.flash=new Scanner(System.in).nextBoolean();
-        System.out.println("Nhap Do Phan Giai");
+        System.out.print("Nhập độ phân giải(pixel) :");
         this.dophangiai=new Scanner(System.in).nextLine();
-        System.out.println("Nhap Cong Sac");
+        System.out.print("Nhập cổng sạc :");
         this.congsac=new Scanner(System.in).nextLine();
-        System.out.println("Nhap Loai Pin");
+        System.out.print("Nhập loaại pin :");
         this.loaipin=new Scanner(System.in).nextLine();
     }
     public void Xuat()
     {
-        System.out.print("Ma Chi Tiet "+ma+"\t");
-        System.out.print("Ma Sp : "+masp+"\t");
-        System.out.print("Camera : "+camera+"\t");
-        System.out.print("Flash : "+flash+"\t");
-        System.out.print("Bluetooth : "+bluetooth+"\t");
-        System.out.print("Bo nho : "+bonho+"\t");
-        System.out.print("Dung luong pin : "+dungluongpin+"\t");
-        System.out.print("Do phan giai : "+dophangiai+"\t");
-        System.out.print("Cong sac : "+congsac+"\t");
-        System.out.println("Loai pin : "+loaipin+"\t");
+
+        System.out.println("Mã chi tiết sản phẩm :"+ma);
+        System.out.println("Mã san phẩm : "+masp);
+        System.out.println("Camera : "+camera);
+        System.out.println("Flash : "+flash);
+        System.out.println("Bluetooth : "+bluetooth);
+        System.out.println("Bộ nhớ : "+bonho+" Gb");
+        System.out.println("Dung lượng pin : "+dungluongpin+" mAh");
+        System.out.println("Dộ phân giải : "+dophangiai+" pixel");
+        System.out.println("Cổng sạc : "+congsac);
+        System.out.println("Loại pin : "+loaipin);
 
     }
     public void Sua()
     {
         Scanner sc=new Scanner(System.in);
         String tr="";
-        int x=-1;
-        System.out.println("Nhap Ma Sp (enter de bo qua) :");
-        x=sc.nextInt();
-        if(x!=-1){this.masp=x;x=-1;}
-        System.out.println("Nhap Bo Nho (enter de bo qua) :");
-        x=sc.nextInt();
-        if(x!=-1){this.bonho=x;x=-1;}
-        System.out.println("Nhap Dung Luong Pin (enter de bo qua) :");
-        x=sc.nextInt();
-        if(x!=-1){this.bonho=x;x=-1;}
-        System.out.println("Co Ho Tro Camera true/false ? (enter de bo qua) :");
-        if (new Scanner(System.in).hasNextBoolean()){this.camera=sc.nextBoolean();}
-        System.out.println("Co Ho Tro Bluetooth ?");
-        if (new Scanner(System.in).hasNextBoolean()){this.bluetooth=sc.nextBoolean();}
-        System.out.println("Co Ho Tro Flash ?");
-        if (new Scanner(System.in).hasNextBoolean()){this.flash=sc.nextBoolean();}
-        System.out.println("Nhap Do Phan Giai");
+        System.out.println("Nhập mã chi sản phẩm (enter để lấy dưc liệu cũ):");
         tr=sc.nextLine();
-        if(tr.isEmpty()){this.dophangiai=tr;tr="";}
-        System.out.println("Nhap Cong Sac");
+        if(!tr.isEmpty()){this.ma=Integer.parseInt(tr);tr="";}
+        System.out.println("Nhập mã sản phẩm (enter để lấy dưc liệu cũ):");
         tr=sc.nextLine();
-        if(tr.isEmpty()){this.congsac=tr;tr="";}
-        System.out.println("Nhap Loai Pin");
+        if(!tr.isEmpty()){this.masp=Integer.parseInt(tr);tr="";}
+        System.out.println("Nhập bộ nhớ (enter để lấy dữ liệu cũ):");
         tr=sc.nextLine();
-        if(tr.isEmpty()){this.loaipin=tr;}
-
+        if(!tr.isEmpty()){this.bonho=Integer.parseInt(tr);tr="";}
+        System.out.println("Nhập dung lượng pin (enter để lấy dưc liệu cũ):");
+        tr=sc.nextLine();
+        if(!tr.isEmpty()){this.dungluongpin=Integer.parseInt(tr);tr="";}
+        System.out.println("Hỗ trợ camera true/false ? (enter để lấy dưc liệu cũ):");
+        tr=sc.nextLine();
+        if(!tr.isEmpty()){this.camera=Boolean.parseBoolean(tr);tr="";}
+        System.out.println("Hỗ tr Bluetooth ? (enter để lấy dưc liệu cũ):");
+        tr=sc.nextLine();
+        if(!tr.isEmpty()){this.bluetooth=Boolean.parseBoolean(tr);tr="";}
+        System.out.println("Hỗ trợ Flash ? (enter để lấy dưc liệu cũ):");
+        tr=sc.nextLine();
+        if(!tr.isEmpty()){this.flash=Boolean.parseBoolean(tr);tr="";}
+        System.out.print("Nhập độ phân giải (enter để lấy dưc liệu cũ):");
+        tr=sc.nextLine();
+        if(!tr.isEmpty()){this.dophangiai=tr;tr="";}
+        System.out.println("Nhập cổng sạc (enter để lấy dưc liệu cũ):");
+        tr=sc.nextLine();
+        if(!tr.isEmpty()){this.congsac=tr;tr="";}
+        System.out.println("Nập loại pin (enter để lấy dưc liệu cũ):");
+        tr=sc.nextLine();
+        if(!tr.isEmpty()){this.loaipin=tr;}
     }
 }

@@ -109,7 +109,6 @@ public class HoaDon  implements doituong{
         if(s.isEmpty())
         {
             ngayLap=new Date();
-
         }else
         {
             try {
@@ -131,6 +130,32 @@ public class HoaDon  implements doituong{
     }
     public void Sua()
     {
+        String s="";
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhập mã hóa đơn (enter để lấy dữ liệu cũ):  ");
+        s=sc.nextLine();
+        if (!s.isEmpty()){this.maHoaDon=Integer.parseInt(s);s="";}
+        System.out.print("Nhập mã nhân viên (enter để lấy dữ liệu cũ): ");
+        s=sc.nextLine();
+        if (!s.isEmpty()){this.maNhanVien=Integer.parseInt(s);s="";}
+        System.out.print("Nhập mã khách hàng (enter để lấy dữ liệu cũ): ");
+        s=sc.nextLine();
+        if (!s.isEmpty()){this.maKhachHang=Integer.parseInt(s);s="";}
+        System.out.print("Nhập số lương (enter để lấy dữ liệu cũ): ");
+        s=sc.nextLine();
+        if (!s.isEmpty()){this.tongSoluong=Integer.parseInt(s);s="";}
+        System.out.print("Nhập tổng tiền (enter để lấy dữ liệu cũ): ");
+        s=sc.nextLine();
+        if (!s.isEmpty()){this.tongTien=Integer.parseInt(s);s="";}
+        System.out.print("Nhập ngày lập: dd/MM/yyyy  (enter để lấy dữ liệu cũ) ");
+        s=sc.nextLine();
+        if (!s.isEmpty()){
+            try {
+                ngayLap = dateFormat.parse(s);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
     }
 }

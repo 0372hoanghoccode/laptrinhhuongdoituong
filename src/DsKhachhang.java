@@ -17,7 +17,6 @@ public class DsKhachhang {
     }
 
     public void setDs(Khachhang[] ds) {
-        this.ds= Arrays.copyOf(this.ds,ds.length);
        this.ds = ds;
     }
     public void Them()
@@ -27,6 +26,15 @@ public class DsKhachhang {
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=khachhang;
         System.out.println("Them Thanh Cong");
+    }
+    public boolean checkid(int id)
+    {
+        for (Khachhang kh : ds)
+        {
+            if(kh.getMa()==id)
+                return false;
+        }
+        return true;
     }
     public void Them(Khachhang khachhang)
     {

@@ -82,56 +82,59 @@ abstract class Dienthoai {
     }
 
     public void Nhap() {
-        System.out.println("Nhap ma san pham: ");
+        System.out.println("Nhập mã sản phẩm: ");
         maSanPham = scanner.nextInt();
-        System.out.println("Nhap so luong: ");
+        System.out.println("Nhập số lượng: ");
         soLuong = scanner.nextInt();
-        System.out.println("Nhap don gia: ");
+        System.out.println("Nhập đơn giá: ");
         donGia = scanner.nextFloat();
-        System.out.println("Nhap ma hang: ");
+        System.out.println("Nhập mã hãng: ");
         maHang = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Nhap ten: ");
+        System.out.println("Nhập tên sản phẩm: ");
         ten = scanner.nextLine();
-        System.out.println("Nhap kich thuoc: ");
+        System.out.println("Nhập kích thước: ");
         kichThuoc = scanner.nextLine();
     }
 
     public void Xuat() {
-        System.out.printf("Ma san pham: %d\nSo luong: %d\nDon gia: %.2f\nMa hang: %d\nTen: %s\nKich thuoc: %s\n",
-                maSanPham, soLuong, donGia, maHang, ten, kichThuoc);
-
-
+        System.out.println("Mã sản phẩm :" +maSanPham);
+        System.out.println("Tên sản phẩm :" +ten);
+        System.out.println("Số lượng:" +soLuong);
+        System.out.println("Đơn giá :" +donGia);
+        System.out.println("Mã hãng :" +maHang);
+        System.out.println("Kích thước :" +kichThuoc);
     }
     public void Sua(){
         String x = "";
-        System.out.println("Nhap ten (nhap Enter de bo qua): ");
+        System.out.println("Nhập mã sản phẩm (enter để lấy dữ liệu cũ): ");
         x = scanner.nextLine();
-        if (!x.isEmpty()) {
-            ten = x;
-            x = "";
-        }
+        if (!x.isEmpty()) {maSanPham = Integer.parseInt(x);x = "";}
 
-        System.out.println("Nhap kich thuoc (nhap Enter de bo qua): ");
+        System.out.println("Nhập tên (enter để lấy dữ liệu cũ): ");
+        x = scanner.nextLine();
+        if (!x.isEmpty()) {ten = x;x = "";}
+
+        System.out.println("Nhập kích thước (enter để lấy dữ liệu cũ): ");
         x = scanner.nextLine();
         if (!x.isEmpty()) {
             kichThuoc = x;
             x = "";
         }
 
-        System.out.println("Nhap so luong (nhap Enter de giu nguyen): ");
+        System.out.println("Nhập số lượng (enter để lấy dữ liệu cũ): ");
         x = scanner.nextLine();
         if (!x.isEmpty()) {
             soLuong = Integer.parseInt(x);
         }
 
-        System.out.println("Nhap don gia (nhap Enter de giu nguyen): ");
+        System.out.println("Nhập đơn giá (enter để lấy dữ liệu cũ): ");
         x = scanner.nextLine();
         if (!x.isEmpty()) {
             donGia = Float.parseFloat(x);
         }
 
-        System.out.println("Nhap ma hang (nhap Enter de giu nguyen): ");
+        System.out.println("Nhập  mã hãng (enter để lấy dữ liệu cũ): ");
         x = scanner.nextLine();
         if (!x.isEmpty()) {
             maHang = Integer.parseInt(x);
