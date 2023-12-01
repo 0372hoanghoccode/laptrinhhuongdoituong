@@ -1,195 +1,170 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class DsNhanVien {
-    private NhanVien[] danhSachNhanVien;
-    int soLuongNhanVien;
-    private static int max = 100;
+    private NhanVien[] ds;
     Scanner sc = new Scanner(System.in);
     public DsNhanVien() {
-        danhSachNhanVien = new NhanVien[max];
-        soLuongNhanVien = 0;
+        ds = new NhanVien[0];
     }
-    public void themNhanVien() {
+    public DsNhanVien(NhanVien[] ds)
+    {
+        this.ds=ds;
+    }
+    public void Them() {
             NhanVien nhanVien = new NhanVien();
             nhanVien.Nhap();
-            boolean kiemtraMaNhanVien = false;
-            for (int i = 0; i < soLuongNhanVien; i++) {
-                if (danhSachNhanVien[i].getMaNhanVien() == nhanVien.getMaNhanVien()) {
-                    kiemtraMaNhanVien = true;
-                    break;
-                }
+            while (!checkid(nhanVien.getMaNhanVien()))
+            {
+                System.out.print("Mã trùng, vui lòng nhập lại :");
+                nhanVien.setMaNhanVien(sc.nextInt());
             }
-            if (!kiemtraMaNhanVien) {
-                if (soLuongNhanVien < danhSachNhanVien.length) {
-                    danhSachNhanVien[soLuongNhanVien] = nhanVien;
-                    soLuongNhanVien++;
-                    System.out.println("Thêm thành công");
-                } else {
-                    System.out.println("Danh sách đã đầy");
-                }
-            } else {
-                System.out.println("Mã nhân viên đã tồn tại");
-            }
+            ds= Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=nhanVien;
+    }
+    public void Them(int maNhanVien, String hoNhanVien, String tenNhanVien, float luong) {
+        NhanVien nhanVien = new NhanVien(maNhanVien,hoNhanVien,tenNhanVien,luong);
+        if(!checkid(nhanVien.getMaNhanVien()))
+        {
+            return;
+        }
+        ds= Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=nhanVien;
+    }
+    public void Them(NhanVien nhanVien) {
+
+        if(!checkid(nhanVien.getMaNhanVien()))
+        {
+            return;
+        }
+        ds= Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=nhanVien;
     }
 
-    public void xoaNhanVien() {
-        if (soLuongNhanVien == 0) {
-            System.out.println("Chưa có nhân viên");
-        } else {
-            System.out.print("Nhập mã nhân viên để xóa: ");
-            int maNhanVien = sc.nextInt();
-            int index = -1;
-            for (int i = 0; i < soLuongNhanVien; i++) {
-                if (danhSachNhanVien[i].getMaNhanVien() == maNhanVien) {
-                    index = i;
-                    break;
-                }
-            }
-            if (index != -1) {
-                for (int i = index; i < soLuongNhanVien - 1; i++) {
-                    danhSachNhanVien[i] = danhSachNhanVien[i + 1];
-                }
-                soLuongNhanVien--;
-                System.out.println("Đã xóa thành công");
-            } else {
-                System.out.println("Mã nhân viên không tồn tại");
-            }
-        }
-    }
-
-    public NhanVien timNhanVienTheoMa(){
-        if(soLuongNhanVien == 0){
-            System.out.println("Chưa có nhân viên");
-        }else {
-            boolean found = false;
-            System.out.print("Nhập mã nhân viên để tìm: ");
-            int maNhanVien = sc.nextInt();
-            for (int i = 0; i < soLuongNhanVien; i++) {
-                if (danhSachNhanVien[i].getMaNhanVien() == maNhanVien) {
-                    System.out.println("Tìm thành công");
-                    danhSachNhanVien[i].Xuat();
-                    found = true;
-                }
-            }
-            if (!found) {
-                System.out.println("Mã nhân viên không tồn tại");
-            }
-        }
-        return null;
-    }
-
-    public void timNhanVienTheoTen() {
-        if (soLuongNhanVien == 0) {
-            System.out.println("Chưa có nhân viên");
-        } else {
-            System.out.print("Nhập tên nhân viên cần tìm: ");
-            String tenNhanVien = sc.nextLine();
-            boolean found = false;
-            for (int i = 0; i < soLuongNhanVien; i++) {
-                if (danhSachNhanVien[i].getTenNhanVien().equals(tenNhanVien)) {
-                    System.out.println("Tìm thành công:");
-                    danhSachNhanVien[i].Xuat();
-                    found = true;
-                }
-            }
-            if (!found) {
-                System.out.println("Tên nhân viên không tồn tại");
-            }
-        }
-    }
-    private boolean kiemTraMaNhanVien(int maNhanVien) {
-        for (int i = 0; i < soLuongNhanVien; i++) {
-            if (danhSachNhanVien[i].getMaNhanVien() == maNhanVien) {
+    boolean checkid(int id)
+    {
+        for (NhanVien nhanVien :ds)
+        {
+            if(nhanVien.getMaNhanVien()==id)
+            {
                 return false;
             }
         }
         return true;
     }
-    public void suaNhanVien() {
-        if(soLuongNhanVien == 0) {
-            System.out.println("Chưa có nhân viên");
-        }else {
-            System.out.print("Nhập mã nhân viên cần sửa: ");
+
+    public void Xoa() {
+        if (ds.length == 0) {
+            System.out.println("Danh sách trống");
+            return;
+        }
+            System.out.print("Nhập mã nhân viên để xóa :");
             int maNhanVien = sc.nextInt();
-            NhanVien nhanVienCanSua = timNhanVienCanSua(maNhanVien);
-            nhanVienCanSua.Xuat();
-            if (nhanVienCanSua != null) {
-                boolean tiepTucSua = true;
-                while (tiepTucSua) {
-                    System.out.println("----------------------------");
-                    System.out.println("Chọn thông tin cần sửa");
-                    System.out.println("1. Mã nhân viên");
-                    System.out.println("2. Họ nhân viên");
-                    System.out.println("3. Tên nhân viên");
-                    System.out.println("4. Lương nhân viên");
-                    System.out.println("0. Kết thúc sửa");
-                    System.out.print("Nhập lựa chọn: ");
-                    int luachon = sc.nextInt();
-                    switch (luachon) {
-                        case 1:
-                            System.out.print("Nhập mã nhân viên mới: ");
-                            int newMaNhanVien = sc.nextInt();
-                            if (kiemTraMaNhanVien(newMaNhanVien)) {
-                                nhanVienCanSua.setMaNhanVien(newMaNhanVien);
-                                System.out.println("Đã cập nhập!");
-                            } else {
-                                System.out.println("Mã nhân viên đã tồn tại");
-                            }
-                            break;
-                        case 2:
-                            System.out.print("Nhập họ nhân viên mới: ");
-                            String newHoNhanVien = sc.next();
-                            nhanVienCanSua.setHoNhanVien(newHoNhanVien);
-                            System.out.println("Đã cập nhập!");
-                            break;
-                        case 3:
-                            System.out.print("Nhập tên nhân viên mới: ");
-                            String newTenNhanVien = sc.next();
-                            nhanVienCanSua.setTenNhanVien(newTenNhanVien);
-                            System.out.println("Đã cập nhập!");
-                            break;
-                        case 4:
-                            System.out.print("Nhập lương nhân viên mới: ");
-                            float newLuong = sc.nextFloat();
-                            nhanVienCanSua.setLuong(newLuong);
-                            System.out.println("Đã cập nhập!");
-                            break;
-                        case 0:
-                            tiepTucSua = false;
-                            break;
-                        default:
-                            System.out.println("Lựa chọn không hợp lệ.");
-                            break;
+            for (int i=0;i< ds.length;i++)
+            {
+                if (ds[i].getMaNhanVien()==maNhanVien)
+                {
+                    for(int j=i;j<ds.length-1;j++)
+                    {
+                        ds[j]=ds[j+1];
                     }
+                    ds=Arrays.copyOf(ds,ds.length-1);
+                    System.out.println("Xóa thành công");
+                    return;
                 }
-                System.out.println("Thông tin nhân viên đã được cập nhật!");
-            } else {
-                    System.out.println("Không tìm thấy mã nhân viên");
+            }
+                System.out.println("Mã nhân viên không tồn tại");
+    }
+    public void Xoa(int maNhanVien) {
+        if (ds.length == 0) {
+            return;
+        }
+        for (int i=0;i< ds.length;i++)
+        {
+            if (ds[i].getMaNhanVien()==maNhanVien)
+            {
+                for(int j=i;j<ds.length-1;j++)
+                {
+                    ds[j]=ds[j+1];
+                }
+                ds=Arrays.copyOf(ds,ds.length-1);
+                return;
             }
         }
     }
-    private NhanVien timNhanVienCanSua(int maNhanVien) {
-        for (int i = 0; i < soLuongNhanVien; i++) {
-            if (danhSachNhanVien[i].getMaNhanVien() == maNhanVien) {
-                System.out.println("Tìm thành công");
-                return danhSachNhanVien[i];
+
+    public void Timkiem(){
+        if(ds.length == 0){
+            System.out.println("Danh sách trống.");
+            return ;
+        }
+          System.out.print("Nhập mã nhân viên :");
+           int maNhanVien= sc.nextInt();
+            for (int i = 0; i < ds.length; i++) {
+                if (ds[i].getMaNhanVien() == maNhanVien) {
+                    ds[i].Xuat();
+                    return;
+                }
+            }
+                System.out.println("Mã nhân viên không tồn tại");
+    }
+    public NhanVien Timkiem(int ma){
+        for (int i = 0; i < ds.length; i++) {
+            if (ds[i].getMaNhanVien() == ma) {
+                return ds[i];
             }
         }
         return null;
     }
-    public void hienthiNhanVien() {
-        if (soLuongNhanVien == 0) {
-            System.out.println("Chưa có nhân vien");
-        } else {
-            for (int i = 0; i < soLuongNhanVien; i++) {
-                danhSachNhanVien[i].Xuat();
+    public void XemDs()
+    {
+        for (int i=0;i< ds.length;i++)
+        {
+            System.out.println(".......Vị trí thứ "+(i+1)+"........");
+            ds[i].Xuat();
+        }
+    }
+    public void Sua() {
+        if(ds.length == 0) {
+            System.out.println("Danh sách trống");
+            return;
+        }
+            System.out.print("Nhập mã nhân viên cần sửa: ");
+            int maNhanVien = sc.nextInt();
+
+           for (NhanVien nhanVien :ds)
+           {
+               if(nhanVien.getMaNhanVien()==maNhanVien)
+               {
+                   nhanVien.Sua();
+                   System.out.println("Thông tin nhân viên đã được cập nhật!");
+               }
+           }
+    System.out.println("Mã nhân viên không tồn tại.");
+    }
+    public void Sua(int ma) {
+        if(ds.length == 0) {
+            return;
+        }
+        for (NhanVien nhanVien :ds)
+        {
+            if(nhanVien.getMaNhanVien()==ma)
+            {
+                nhanVien.Sua();
             }
         }
     }
-    public void thongKeMucLuong() {
-        if(soLuongNhanVien == 0) {
-            System.out.println("Chưa có nhân viên");
-        }else{
+
+public void Thongke()
+{
+    System.out.println("Có "+ds.length+" nhân viên.");
+
+}
+    public void ThongKeMucLuong() {
+        if(ds.length == 0) {
+            System.out.println("Danh sách trống");
+            return;
+        }
             float luongThongKe;
             int luaChon;
             do {
@@ -228,43 +203,44 @@ public class DsNhanVien {
                         System.out.println("Lựa chọn không hợp lệ.");
                 }
             } while (luaChon != 0);
-        }
     }
     private void tinhLuongLonHon(float luongThongKe) {
         int count = 0;
-        for (int i = 0; i < soLuongNhanVien; i++) {
-            if (danhSachNhanVien[i].getLuong() > luongThongKe) {
+        for (int i = 0; i < ds.length; i++) {
+            if (ds[i].getLuong() > luongThongKe) {
                 count++;
             }
         }
-        System.out.println("Có " + count + " nhân viên có mức lương lớn hơn lương thống kê");
+        System.out.println("Có " + count + " nhân viên có mức lương lớn hơn "+luongThongKe);
     }
     private void tinhLuongNhoHon(float luongThongKe){
         int count = 0;
-        for(int i = 0; i < soLuongNhanVien; i++){
-            if(danhSachNhanVien[i].getLuong() < luongThongKe){
+        for(int i = 0; i < ds.length; i++){
+            if(ds[i].getLuong() < luongThongKe){
                 count++;
             }
         }
-        System.out.println("Có " + count + " nhân viên có mức lương nhỏ hơn lương thống kê");
+        System.out.println("Có " + count + " nhân viên có mức lương nhỏ hơn "+luongThongKe);
     }
     private void tinhSoLuongTrongKhoan(float luongBatDau, float luongKetThuc){
         int count = 0;
-        for(int i = 0; i < soLuongNhanVien; i++){
-            if(danhSachNhanVien[i].getLuong() >= luongBatDau && danhSachNhanVien[i].getLuong() <= luongKetThuc){
+        for(int i = 0; i < ds.length; i++){
+            if(ds[i].getLuong() >= luongBatDau && ds[i].getLuong() <= luongKetThuc){
                 count++;
             }
         }
-        System.out.println("Có " + count + " nhân viên thỏa");
+        System.out.println("Có " + count + " nhân viên thỏa từ "+luongBatDau+" đến "+luongKetThuc);
     }
+    public void Themtofile(NhanVien nhanVien)
+    {
 
-    public void xoaTatCaNhanVien() {
-        if (soLuongNhanVien == 0) {
-            System.out.println("Chưa có nhân viên");
-        } else {
-            danhSachNhanVien = new NhanVien[max];
-            soLuongNhanVien = 0;
-            System.out.println("Đã xóa tất cả nhân viên");
-        }
+    }
+    public void Xoatofile(int id)
+    {
+
+    }
+    public void Suatofile(NhanVien nhanVien,int id)
+    {
+
     }
 }

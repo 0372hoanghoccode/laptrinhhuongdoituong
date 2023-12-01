@@ -7,37 +7,49 @@ public class MenuChiTietHoaDon {
     Scanner sc = new Scanner(System.in);
     MenuChiTietHoaDon()
     {
-        danhSachChiTiet = new DsChiTietHoaDon();
         File file=new File();
-        List<String> data=file.ReadFile("dschitiethoadon");
-        for (String line : data)
+        List<String>  data=file.ReadFile("dschitiethoadon.txt");
+        ChiTietHoaDon [] arr2=new ChiTietHoaDon[data.size()];
+        for (int i=0;i<data.size();i++)
         {
-            String arr[]=line.split(",");
-          //  danhSachChiTiet.Them((int)arr[0],);
+            String arr[]=data.get(i).split(",");
+            ChiTietHoaDon chiTietHoaDon=new ChiTietHoaDon(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]),Integer.parseInt(arr[3]),Float.parseFloat(arr[4]),Float.parseFloat(arr[5]));
+            arr2[i]=chiTietHoaDon;
         }
-
-
+        danhSachChiTiet=new DsChiTietHoaDon(arr2);
     }
     public void menu(){
         int luachon;
         do{
             System.out.println("--------------------------------------------");
-            System.out.println("-- 1.Xem thông tin chi tiết hóa đơn       --");
-            System.out.println("-- 2.Tìm chi tiết hóa đơn theo mã hóa đơn --");
-            System.out.println("-- 3.Xóa chi tiết hóa đơn theo mã hóa đơn --");
             System.out.println("-- 0.Thoát                                --");
+            System.out.println("-- 1.Xem danh sách chi tiết hóa đơn       --");
+            System.out.println("-- 2.Thêm chi tiết hóa đơn                --");
+            System.out.println("-- 3.Xóa chi tiết hóa đơn                 --");
+            System.out.println("-- 4.Sửa chi tiết hóa đơn                 --");
+            System.out.println("-- 5.Tìm kiếm chi tiết hóa đơn            --");
+            System.out.println("-- 6.Thống kê chi tiết hóa đơn            --");
             System.out.println("--------------------------------------------");
             System.out.print("Nhập lựa chọn: ");
             luachon = sc.nextInt();
             switch (luachon){
                 case 1:
-                    danhSachChiTiet.hienThiChiTietHoaDon();
+                    danhSachChiTiet.XemDs();
                     break;
                 case 2:
-                    danhSachChiTiet.timChiTietTheoMaHoaDon();
+                    danhSachChiTiet.Them();
                     break;
                 case 3:
-                    danhSachChiTiet.xoaChiTietTheoMaHoaDon();
+                    danhSachChiTiet.Xoa();
+                    break;
+                case 4:
+                    danhSachChiTiet.Sua();
+                    break;
+                case 5:
+                    danhSachChiTiet.Timkiem();
+                    break;
+                case 6:
+                    danhSachChiTiet.Thongke();
                     break;
                 case 0:
                     System.out.println("Thoát chương trình");

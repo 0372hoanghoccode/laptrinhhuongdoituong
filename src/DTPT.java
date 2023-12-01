@@ -35,20 +35,27 @@ public class DTPT extends Dienthoai implements doituong{
     @Override
     public void Nhap() {
         super.Nhap();
-        System.out.println("Nhap loai ban phim: ");
+        System.out.println("Nhập loại bàn phím :");
         banPhim = scanner.nextLine();
     }
 
     @Override
     public void Xuat() {
         super.Xuat();
-        System.out.println("Loai ban phim: " + banPhim);
+        System.out.println("Loại bàn phím :" + banPhim);
     }
     public void Sua()
     {
+        super.Sua();
+        String y="";
+        System.out.println("Nhập  loai bàn phím (enter để lấy dữ liệu cũ): ");
+        y = scanner.nextLine();
+        if (!y.isEmpty()) {
+            this.banPhim =y;
+        }
 
     }
     public void Goi(){
-        System.out.println( " Dang Goi thuong............ " );
+        System.out.println( "Đang gọi thường............ " );
     }
 }

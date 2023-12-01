@@ -1,26 +1,41 @@
+import jdk.dynalink.linker.LinkerServices;
+
 import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuDsChitietSp {
   DsChitietSp dsChitietSp;
     MenuDsChitietSp()
     {
-//  ChitietSp[] arr=new ChitietSp[3];
-//  arr[0]= new ChitietSp(1,true,3,true,"320X720px",32,false,"typeC","lipo",3200);
-//  arr[1]= new ChitietSp(2,false,4,true,"420X420px",12,false,"microUsb","lion",120);
-//  arr[2]= new ChitietSp(3,true,9,true,"920X720px",128,false,"typeC","lipo",6000);
-//   dsChitietSp=new DsChitietSp(arr);
+        File file=new File();
+      List<String> data= file.ReadFile("dschitietsanpham.txt");
+      ChitietSp[] arr=new ChitietSp[data.size()];
+      for (int i=0;i<data.size();i++)
+      {
+          String[] sliparr=data.get(i).split(",");
+          arr[i]=new ChitietSp(Integer.parseInt(sliparr[0]),Boolean.parseBoolean(sliparr[1]),Integer.parseInt(sliparr[2]),Boolean.parseBoolean(sliparr[3]),sliparr[4],Integer.parseInt(sliparr[5]),Boolean.parseBoolean(sliparr[6]),String.valueOf(sliparr[7]),String.valueOf(sliparr[8]),Integer.parseInt(sliparr[9]));
+      }
+      dsChitietSp=new DsChitietSp(arr);
     }
 
 
     void  Menu()
     {
         while (true) {
-            System.out.println("Vui long chon 0 : Thong ke 1: xem DS 2: Them 3: Sua 4 : Xoa 5 : Tim Kiem 6 : Tim kiem Theo Do Phan Giai 7 : Thong ke ho tro camera 8 : Nghi/Thoat");
+            System.out.println("--------------------------------------------");
+            System.out.println("-- 0.Thoát                                --");
+            System.out.println("-- 1.Xem danh sách chi tiết sản phẩm      --");
+            System.out.println("-- 2.Thêm chi tiết sản phẩm               --");
+            System.out.println("-- 3.Xóa chi tiết sản phẩm                --");
+            System.out.println("-- 4.Sửa chi tiết sản phẩm                --");
+            System.out.println("-- 5.Tìm kiếm chi tiết sản phẩm           --");
+            System.out.println("-- 6.Thống kê chi tiết sản phẩm           --");
+            System.out.println("--------------------------------------------");
+            System.out.print("Nhập lựa chọn: ");
             switch (new Scanner(System.in).nextInt()) {
                 case 0:
-                    dsChitietSp.Thongke();
-                    break;
+                    return;
                 case 1:
                     dsChitietSp.XemDs();
                     break;
@@ -28,23 +43,19 @@ public class MenuDsChitietSp {
                     dsChitietSp.Them();
                     break;
                 case 3:
-                    dsChitietSp.Sua();
+                    dsChitietSp.Xoa();
                     break;
                 case 4:
-                    dsChitietSp.Xoa();
+                    dsChitietSp.Sua();
                     break;
                 case 5:
                     dsChitietSp.Timkiem();
                     break;
                 case 6:
-                    dsChitietSp.TimkiemtheoDophangiai();
+                    dsChitietSp.Thongke();
                     break;
-                case 7:
-                    dsChitietSp.ThongkehotroCamera();
-                case 8:
-                    return;
                 default:
-                    System.out.println("Gia Tri Khong Hop Le");
+                    System.out.println("Giá trị không hợp lệ");
 
 
             }

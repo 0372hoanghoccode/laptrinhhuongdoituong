@@ -8,11 +8,6 @@ public class Khachhang implements doituong{
    private String sdt;
 public Khachhang()
 {
-    ma=-1;
-    ho="";
-    ten="";
-    diachi="";
-    sdt="";
 
 }
     public Khachhang(int ma, String ho, String ten, String diachi, String sdt) {
@@ -31,6 +26,7 @@ public Khachhang()
         this.sdt=kh.sdt;
 
     }
+
 
     public int getMa() {
         return ma;
@@ -73,40 +69,35 @@ public Khachhang()
     }
     public void Nhap()
     {
-        System.out.println("Nhap Ma");
+        System.out.print("Nhập mã khách hàng :");
         ma=new Scanner(System.in).nextInt();
-        System.out.println("Nhap Ho");
+        System.out.print("Nhập họ :");
         ho=new Scanner(System.in).nextLine();
-        System.out.println("Nhap Ten");
+        System.out.print("Nhập tên :");
         ten=new Scanner(System.in).nextLine();
-        System.out.println("Nhap Dia Chi");
+        System.out.print("Nhập địa chỉ :");
         diachi=new Scanner(System.in).nextLine();
-        System.out.println("Nhap Sdt");
+        System.out.print("Nhập số điện thoại :");
         sdt=new Scanner(System.in).nextLine();
     }
     public void Xuat()
     {
-        System.out.println("Khach hang co ma :"+ma+" ho : "+ho+" ten : "+ten+" dia chi : "+diachi+ " sdt : "+sdt);
+        System.out.println("Khách hàng có mã :"+ma+" \nhọ :"+ho+"\ntên :"+ten+"\nđịa chỉ :"+diachi+ "\nsdt :"+sdt);
     }
     public void Sua()
     {
       String x="";
-        System.out.println("Nhap ho (enter de bo qua) :");
+        System.out.print("Nhập họ (enter để lấy giá trị cũ) :");
         x=new Scanner(System.in).nextLine();
         if(!x.isEmpty()){ho=x; x="";}
-        System.out.println("Nhap Ten");
+        System.out.print("Nhập tên (enter để lấy giá trị cũ) :");
         x=new Scanner(System.in).nextLine();
         if(!x.isEmpty()){ten=x;x="";}
-        System.out.println("Nhap Dia Chi");
+        System.out.print("Nhập địa chỉ (enter để lấy giá trị cũ) :");
         x=new Scanner(System.in).nextLine();
         if(!x.isEmpty()){diachi=x;x="";}
-        System.out.println("Nhap Sdt");
+        System.out.print("Nhập số điện thoại (enter để lấy giá trị cũ) :");
         x=new Scanner(System.in).nextLine();
         if(!x.isEmpty()){sdt=x;}
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }

@@ -4,47 +4,53 @@ import java.util.Scanner;
 public class MenuDsHang {
    DsHang dshang;
     public MenuDsHang() {
-        dshang=new DsHang();
         File file=new File();
      List<String> data=file.ReadFile("dshang.txt");
+     Hang arr[]=new Hang[data.size()];
      for (int i=0;i<data.size();i++)
      {
-         String arr[]=data.get(i).split(",");
-         Hang hang=new Hang(Integer.parseInt(arr[0]),arr[1],arr[2]);
-         dshang.Them(hang);
-
+         String splitarr[]=data.get(i).split(",");
+         arr[i]=new Hang(Integer.parseInt(splitarr[0]),splitarr[1],splitarr[2]);
      }
+     dshang=new DsHang(arr);
     }
 
     void  Menu()
     {
         while (true) {
-            System.out.println("Vui long chon 0 : Thong ke 1: xem DS 2: Them 3: Sua 4 : Xoa 5 : Tim Kiem 6 :  Nghi/Thoat");
+            System.out.println("--------------------------------------------");
+            System.out.println("-- 0.Thoát                                --");
+            System.out.println("-- 1.Xem danh sách hãng                   --");
+            System.out.println("-- 2.Thêm chi tiết hãng                   --");
+            System.out.println("-- 3.Xóa chi tiết hãng                    --");
+            System.out.println("-- 4.Sửa chi tiết hãng                    --");
+            System.out.println("-- 5.Tìm kiếm hãng                        --");
+            System.out.println("-- 6.Thống kê hãng                        --");
+            System.out.println("--------------------------------------------");
+            System.out.print("Nhập lựa chọn: ");
             switch (new Scanner(System.in).nextInt()) {
                 case 0:
-                    dshang.Thongke();
-                    break;
+                    return;
                 case 1:
-                    dshang.Xem();
+                    dshang.XemDs();
                     break;
                 case 2:
                     dshang.Them();
                     break;
                 case 3:
-                    dshang.Sua();
+                    dshang.Xoa();
                     break;
                 case 4:
-                    dshang.Xoa();
+                    dshang.Sua();
                     break;
                 case 5:
                     dshang.Timkiem();
                     break;
                 case 6:
-                  return;
+                    dshang.Thongke();
+                    break;
                 default:
-                    System.out.println("Gia Tri Khong Hop Le");
-
-
+                    System.out.println("Giá trị khng hợp lệ.");
             }
         }
 

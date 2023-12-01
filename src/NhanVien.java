@@ -75,9 +75,6 @@ public class NhanVien  implements doituong{
     {
         String x="";
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã nhân viên (enter để lấy dữ liệu cũ ): ");
-        x=sc.nextLine();
-        if(!x.isEmpty()){maNhanVien=Integer.parseInt(x);x="";}
         System.out.print("Nhập họ nhân viên (enter để lấy dữ liệu cũ): ");
         x=sc.nextLine();
         if(!x.isEmpty()){hoNhanVien=x;x="";}

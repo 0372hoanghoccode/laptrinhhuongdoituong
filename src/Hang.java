@@ -46,29 +46,28 @@ public class Hang  implements doituong{
     public void Nhap()
     {
         Scanner sc=new Scanner(System.in);
-        System.out.println("Nhap ma");
+        System.out.print("Nhập mã hãng :");
         ma=sc.nextInt();
         sc.nextLine();
-        System.out.println("Nhap ten hang");
+        System.out.print("Nhập tên hãng :");
         tenhang=sc.nextLine();
-        System.out.println("Nhap dia chi");
+        System.out.print("Nhập địa chỉ :");
         diachi=sc.nextLine();
 
     }
     public  void Xuat()
     {
-        System.out.println("Ma : "+ma+" ten hang : "+tenhang+" diachi : "+diachi);
+        System.out.println("Mã "+ma+" tên "+tenhang+" địa chỉ "+diachi);
     }
     public void Sua()
     {
         String x="";
-        System.out.println("Nhap ten hang (enter de bo qua) :");
+        System.out.print("Nhập tên hãng (enter để lấy dữ liệu cũ) :");
        x=new Scanner(System.in).nextLine();
        if(!x.isEmpty()) {tenhang=x;x="";}
-
-        System.out.println("Nhap dia chi hang (enter de bo qua) :");
+        System.out.print("Nhập địa chỉ hãng (enter để lấy dữ liệu cũ) :");
          x=new Scanner(System.in).nextLine();
-        if(!x.isEmpty()) {tenhang=x;}
+        if(!x.isEmpty()) {diachi=x;}
 
     }
 

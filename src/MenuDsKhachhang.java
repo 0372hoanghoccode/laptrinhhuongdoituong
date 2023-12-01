@@ -7,18 +7,16 @@ public class MenuDsKhachhang {
     DsKhachhang dsKhachhang;
     MenuDsKhachhang()
     {
-        dsKhachhang=new DsKhachhang();
-        List<String>data =new ArrayList<>();
         File file =new File();
-        data= file.ReadFile("dsKhachhang.txt");
+        List<String>data= file.ReadFile("dskhachhang.txt");
+        Khachhang[] arr=new Khachhang[data.size()];
         for(int i=0;i<data.size();i++)
         {
-            String arr[]=data.get(i).split(",");
-            Khachhang khachhang=new Khachhang(Integer.parseInt(arr[0]),arr[1],arr[2],arr[3],arr[4]);
-            dsKhachhang.Them(khachhang);
+            String splitarr[]=data.get(i).split(",");
+            arr[i]=new Khachhang(Integer.parseInt(splitarr[0]),splitarr[1],splitarr[2],splitarr[3],splitarr[4]);
 
         }
-
+        dsKhachhang=new DsKhachhang(arr);
     }
 
 
@@ -27,35 +25,39 @@ public class MenuDsKhachhang {
     void  Menu()
     {
         while (true) {
-            System.out.println("Vui long chon 0 : Thong ke 1: xem DS 2: Them 3: Sua 4 : Xoa 5 : Tim Kiem 6 : Thong ke theo ho 7 : Thong ke theo ten 8 : Nghi/Thoat");
+            System.out.println("--------------------------------------------");
+            System.out.println("-- 0.Thoát                                --");
+            System.out.println("-- 1.Xem danh sách khách hàng             --");
+            System.out.println("-- 2.Thêm khách hàng                      --");
+            System.out.println("-- 3.Xóa xóa khách hàng                   --");
+            System.out.println("-- 4.Sửa khách hàng                       --");
+            System.out.println("-- 5.Tìm kiếm khaách hàng                 --");
+            System.out.println("-- 6.Thống kê khách hàng                  --");
+            System.out.println("--------------------------------------------");
+            System.out.print("Nhập lựa chọn: ");
             switch (new Scanner(System.in).nextInt()) {
                 case 0:
-                    dsKhachhang.Thongke();
-                    break;
+                    return;
                 case 1:
-                    dsKhachhang.Xem();
+                    dsKhachhang.XemDs();
                     break;
                 case 2:
                     dsKhachhang.Them();
                     break;
                 case 3:
-                    dsKhachhang.Sua();
+                    dsKhachhang.Xoa();
                     break;
                 case 4:
-                    dsKhachhang.Xoa();
+                    dsKhachhang.Sua();
                     break;
                 case 5:
                     dsKhachhang.Timkiem();
                     break;
                 case 6:
-                    dsKhachhang.ThongketheoHo();
+                    dsKhachhang.Thongke();
                     break;
-                case 7:
-                    dsKhachhang.ThongketheoTen();
-                case 8:
-                    return;
                 default:
-                    System.out.println("Gia Tri Khong Hop Le");
+                    System.out.println("Giá trị không hợp lệ.");
 
 
             }

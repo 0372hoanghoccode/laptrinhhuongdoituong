@@ -150,7 +150,7 @@ public class DsHoaDon {
        }
 
        for (int i=0;i<ds.length;i++) {
-           System.out.println("-----Vị trí "+(i+1)+"   -----");
+           System.out.println("-----Vị trí thứ "+(i+1)+"-------");
            ds[i].Xuat();
        }
    }
@@ -209,5 +209,17 @@ public class DsHoaDon {
         String data=(max+1)+","+manv+","+makh+","+ngay+","+soluong+","+tongtien;
         file.WriteNewLine(data,"dshoadon.txt");
      return max+1;
+    }
+    public void Themtofile(HoaDon hoaDon)
+    {
+
+    }
+    public void Xoatofile(int id)
+    {
+
+    }
+    public void Suatofile(HoaDon hoaDon,int id)
+    {
+
     }
 }

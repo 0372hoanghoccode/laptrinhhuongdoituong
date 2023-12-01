@@ -83,7 +83,6 @@ public class ChiTietHoaDon implements doituong {
         thanhTien = sc.nextFloat();
     }
     public void Xuat(){
-        System.out.println("------------------------");
         System.out.println("Mã hóa đơn: " + getMaHoaDon());
         System.out.println("Mã sản phẩm: " + maSanPham);
         System.out.println("Số lượng mua " + soLuongMua);
@@ -93,9 +92,6 @@ public class ChiTietHoaDon implements doituong {
     public void Sua()
     {
         String x="";
-        System.out.print("Nhập mã chi tiết hóa đơn (enter để lấy dữ liệu cũ): ");
-        x = sc.nextLine();
-        if(x.isEmpty()){maChiTietHoaDon=Integer.parseInt(x);x="";}
         System.out.print("Nhập mã hóa đơn (enter để lấy dữ liệu cũ): ");
         x = sc.nextLine();
         if(x.isEmpty()){maHoaDon=Integer.parseInt(x);x="";}

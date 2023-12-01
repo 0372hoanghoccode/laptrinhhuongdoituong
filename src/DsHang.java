@@ -168,5 +168,17 @@ public class DsHang {
         }
     }
 
+    public void Themtofile(Hang hang)
+    {
+
+    }
+    public void Xoatofile(int id)
+    {
+
+    }
+    public void Suatofile(Hang hang,int id)
+    {
+
+    }
 
 }

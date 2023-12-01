@@ -139,7 +139,6 @@ public class DsChitietSp {
     }
     public void Sua(int ma)
     {
-        if(ds.length==0)return;
 
         for (ChitietSp ct : ds)
         {
@@ -177,20 +176,7 @@ public class DsChitietSp {
         }
        return null;
     }
-    ChitietSp[]  TimkiemtheoDophangiai(String dophangiai)
-    {
-        ChitietSp[] dsct=new ChitietSp[0];
 
-        for (ChitietSp ct:ds)
-        {
-            if(ct.getDophangiai().equals(dophangiai))
-            {
-                dsct= Arrays.copyOf(dsct,ds.length+1);
-                ds[ds.length-1]=ct;
-            }
-        }
-       return dsct;
-    }
 
     void Thongke()
     {
@@ -259,10 +245,22 @@ public class DsChitietSp {
                 lightNing++;
             }
         }
-        System.out.println("Có "+microUsb+" sản phẩm hỗ trợ ổng sạc microUsb"
-                +"Có "+typeC+" sản phẩm hỗ trợ ổng sạc Type C"+
-                "Có "+lightNing+" sản phẩm hỗ trợ ổng sạc lightNing"
+        System.out.println("Có "+microUsb+" sản phẩm hỗ trợ ổng sạc microUsb "
+                +"Có "+typeC+" sản phẩm hỗ trợ ổng sạc Type C "+
+                "Có "+lightNing+" sản phẩm hỗ trợ ổng sạc lightning."
         );
+
+    }
+    public void Themtofile(ChitietSp chitietSp)
+    {
+
+    }
+    public void Xoatofile(int id)
+    {
+
+    }
+    public void Suatofile(ChitietSp chitietSp,int id)
+    {
 
     }
 }

@@ -39,7 +39,7 @@ public class DsDienthoai {
             System.out.print("Trùng mã sản phẩm , vui lòng nhập lại :");
             dt.setMaSanPham(new Scanner(System.in).nextInt());
         }
-        ds = new Dienthoai[ds.length + 1];
+        ds = Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=dt;
     }
 
@@ -253,15 +253,28 @@ public class DsDienthoai {
 
         }
     }
-    public  void Themtofile()
+    public void Gọi()
+    {
+        System.out.print("Vui lòng nhập mã sản phẩm :");
+        int ma=scanner.nextInt();
+        for (Dienthoai dienthoai :ds)
+        {
+            if(dienthoai.getMaSanPham()==ma)
+            {
+                dienthoai.Goi();
+                return;
+            }
+        }
+    }
+    public void Themtofile(Dienthoai dienthoai)
     {
 
     }
-    public  void Xoatofile()
+    public void Xoatofile(int id)
     {
 
     }
-    public  void Suatofile()
+    public void Suatofile(Dienthoai dienthoai,int id)
     {
 
     }

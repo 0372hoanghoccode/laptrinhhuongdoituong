@@ -125,16 +125,13 @@ public class HoaDon  implements doituong{
         System.out.println("Ngày lập hóa đơn: " + dateFormat.format(ngayLap));
         System.out.println("Mã nhân viên: " + maNhanVien);
         System.out.println("Mã khách hàng : " + maKhachHang);
-        System.out.println("Mã khách hàng : " + maKhachHang);
-        System.out.println("Tổng tiền bán: " + tongTien);
+        System.out.println("Số lượng mua : " + tongSoluong);
+        System.out.println("Tổng tiền : " + tongTien);
     }
     public void Sua()
     {
         String s="";
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã hóa đơn (enter để lấy dữ liệu cũ):  ");
-        s=sc.nextLine();
-        if (!s.isEmpty()){this.maHoaDon=Integer.parseInt(s);s="";}
         System.out.print("Nhập mã nhân viên (enter để lấy dữ liệu cũ): ");
         s=sc.nextLine();
         if (!s.isEmpty()){this.maNhanVien=Integer.parseInt(s);s="";}

@@ -143,7 +143,7 @@ public class DsChiTietHoaDon {
             return;
         }
             for(int i = 0; i < ds.length; i++){
-                System.out.println(".......Vị trí thứ"+(i+1)+"........");
+                System.out.println(".......Vị trí thứ "+(i+1)+"........");
                 ds[i].Xuat();
             }
 
@@ -162,6 +162,19 @@ public class DsChiTietHoaDon {
             file.WriteNewLine("dschitiethoadon.txt",data);
         }
 
+
+    }
+
+    public void Themtofile(List<ChiTietHoaDon> chiTietHoaDon)
+    {
+
+    }
+    public void Xoatofile(int id)
+    {
+
+    }
+    public void Suatofile(ChiTietHoaDon chiTietHoaDon,int id)
+    {
 
     }
 

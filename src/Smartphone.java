@@ -54,25 +54,24 @@ public class Smartphone extends Dienthoai implements doituong {
     @Override
     public void Nhap() {
         super.Nhap();
-        System.out.println("Nhap he dieu hanh: ");
+        System.out.print("Nhập hệ điều hành :");
         heDieuHanh = scanner.nextLine();
-        System.out.println("Nhap RAM: ");
+        System.out.print("Nhập dung lương RAM (Gb) :");
         ram = scanner.nextInt();
-        scanner.nextLine(); 
-        System.out.println("Nhap chip: ");
+        System.out.print("Nhập chip :");
         chip = scanner.nextLine();
     }
 
     @Override
     public void Xuat() {
         super.Xuat();
-        System.out.printf("He dieu hanh: %s\nRAM: %d\nChip: %s\n", heDieuHanh, ram, chip);
+        System.out.printf("Hệ điều hành: %s\nRAM: %d\nChip: %s\n", heDieuHanh, ram, chip);
     }
     public void Sua()
     {
 
     }
     public void Goi(){
-        System.out.println(" Dang Goi Video call............ ");
+        System.out.println("Đang gọi video call............ ");
     }
 }

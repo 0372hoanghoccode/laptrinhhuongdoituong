@@ -152,7 +152,7 @@ public class ChitietSp implements doituong {
     {
 
         System.out.println("Mã chi tiết sản phẩm :"+ma);
-        System.out.println("Mã san phẩm : "+masp);
+        System.out.println("Mã sản phẩm : "+masp);
         System.out.println("Camera : "+camera);
         System.out.println("Flash : "+flash);
         System.out.println("Bluetooth : "+bluetooth);
@@ -167,9 +167,6 @@ public class ChitietSp implements doituong {
     {
         Scanner sc=new Scanner(System.in);
         String tr="";
-        System.out.println("Nhập mã chi sản phẩm (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.ma=Integer.parseInt(tr);tr="";}
         System.out.println("Nhập mã sản phẩm (enter để lấy dưc liệu cũ):");
         tr=sc.nextLine();
         if(!tr.isEmpty()){this.masp=Integer.parseInt(tr);tr="";}
