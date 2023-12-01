@@ -48,7 +48,7 @@ public class DTPT extends Dienthoai implements doituong{
     {
         super.Sua();
         String y="";
-        System.out.println("Nhập  loai bàn phím (enter để lấy dữ liệu cũ): ");
+        System.out.print("Nhập  loai bàn phím (enter để lấy dữ liệu cũ) :");
         y = scanner.nextLine();
         if (!y.isEmpty()) {
             this.banPhim =y;

@@ -69,6 +69,24 @@ public class Smartphone extends Dienthoai implements doituong {
     }
     public void Sua()
     {
+        super.Sua();
+        String x="";
+        System.out.print("Nhập hệ điều hành (enter để lấy dữ liệu cũ) :");
+        x = scanner.nextLine();
+        if(!x.isEmpty()){
+            heDieuHanh=x;x="";
+        }
+        System.out.print("Nhập dung lương RAM (Gb) (enter để lấy dữ liệu cũ) :");
+        x = scanner.nextLine();
+        if(!x.isEmpty()){
+            ram=Integer.parseInt(x);x="";
+        }
+        System.out.print("Nhập chip (enter để lấy dữ liệu cũ) :");
+        x = scanner.nextLine();
+        if(!x.isEmpty()){
+            chip=x;
+        }
+
 
     }
     public void Goi(){
