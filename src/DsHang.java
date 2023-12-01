@@ -156,7 +156,7 @@ public class DsHang {
     }
     public void Thongke()
     {
-        System.out.println("Có "+ds.length+" khách hàng.");
+        System.out.println("Có "+ds.length+" hãng.");
         Thongkeds();
     }
 

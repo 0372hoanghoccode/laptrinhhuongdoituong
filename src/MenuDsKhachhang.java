@@ -17,6 +17,7 @@ public class MenuDsKhachhang {
 
         }
         dsKhachhang=new DsKhachhang(arr);
+        Menu();
     }
 
 

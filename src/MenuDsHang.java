@@ -13,6 +13,7 @@ public class MenuDsHang {
          arr[i]=new Hang(Integer.parseInt(splitarr[0]),splitarr[1],splitarr[2]);
      }
      dshang=new DsHang(arr);
+     Menu();
     }
 
     void  Menu()

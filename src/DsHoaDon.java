@@ -202,11 +202,13 @@ public class DsHoaDon {
 
 
 
-    public static int Themhoadontofile(int manv,int makh,int soluong,float tongtien,String ngay)
+    public static int Themhoadontofile(HoaDon hoaDon)
     {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = format.format(hoaDon.getNgayLap());
         File file=new File();
-        int max=file.getMaxId("dshoadon");
-        String data=(max+1)+","+manv+","+makh+","+ngay+","+soluong+","+tongtien;
+        int max=file.getMaxId("dshoadon.txt");
+        String data=(max+1)+","+ hoaDon.getMaNhanVien()+","+ hoaDon.getMaKhachHang()+","+strDate+","+ hoaDon.getTongSoluong()+","+ hoaDon.getTongTien();
         file.WriteNewLine(data,"dshoadon.txt");
      return max+1;
     }

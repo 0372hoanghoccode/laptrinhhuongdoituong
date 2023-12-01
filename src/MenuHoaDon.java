@@ -22,11 +22,12 @@ public class MenuHoaDon {
             }
         }
         danhsachHoaDon = new DsHoaDon(arr);
+        Menu();
     }
 
     Scanner sc = new Scanner(System.in);
 
-    public void menu() {
+    public void Menu() {
         while (true) {
             System.out.println("--------------------------------------------");
             System.out.println("-- 0.Thoát                                --");

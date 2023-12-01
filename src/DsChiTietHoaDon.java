@@ -152,13 +152,13 @@ public class DsChiTietHoaDon {
     {
         System.out.println("Có "+ds.length+" chi tiết hóa đơn");
     }
-    public static void Themchitiethoadontofile(float  [][]arr,int mahd)
+    public static void Themchitiethoadontofile(List<ChiTietHoaDon> ds)
     {
         File file=new File();
-        int maxid=file.getMaxId("dschitiethoadon");
-        for(int i=0,j=(maxid+1);i< arr.length;i++,j++)
+        int maxid=file.getMaxId("dschitiethoadon.txt");
+        for(int i=0,j=(maxid+1);i< ds.size();i++,j++)
         {
-            String data=j+","+mahd+ arr[i][0]+","+arr[i][3]+","+arr[i][4]+","+arr[i][5];
+            String data=j+","+ds.get(i).getMaHoaDon()+","+ ds.get(i).getMaSanPham()+","+ds.get(i).getSoLuongMua()+","+ds.get(i).getDonGia()+","+ds.get(i).getThanhTien();
             file.WriteNewLine("dschitiethoadon.txt",data);
         }
 

@@ -17,6 +17,7 @@ public class MenuChiTietHoaDon {
             arr2[i]=chiTietHoaDon;
         }
         danhSachChiTiet=new DsChiTietHoaDon(arr2);
+        menu();
     }
     public void menu(){
         int luachon;

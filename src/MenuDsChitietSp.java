@@ -17,6 +17,7 @@ public class MenuDsChitietSp {
           arr[i]=new ChitietSp(Integer.parseInt(sliparr[0]),Boolean.parseBoolean(sliparr[1]),Integer.parseInt(sliparr[2]),Boolean.parseBoolean(sliparr[3]),sliparr[4],Integer.parseInt(sliparr[5]),Boolean.parseBoolean(sliparr[6]),String.valueOf(sliparr[7]),String.valueOf(sliparr[8]),Integer.parseInt(sliparr[9]));
       }
       dsChitietSp=new DsChitietSp(arr);
+      Menu();
     }
 
 

@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,8 +16,9 @@ public class MenuDsNhanVien {
 
         }
         danhSachNhanVien=new DsNhanVien(arr);
+        Menu();
     }
-    public void menu() {
+    public void Menu() {
         int luachon;
         do {
             Scanner sc = new Scanner(System.in);

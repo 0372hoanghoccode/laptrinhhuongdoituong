@@ -4,10 +4,7 @@ import java.util.Scanner;
 public class MenuDsDienthoai {
     private DsDienthoai dsDienthoai ;
 
-    public MenuDsDienthoai() {
-        DocTuFile();
-    }
-    private void DocTuFile() {
+     MenuDsDienthoai() {
         File file = new File();
         List<String> data = file.ReadFile("dsdienthoai.txt");
         Dienthoai[] arr=new Dienthoai[data.size()];
@@ -21,9 +18,10 @@ public class MenuDsDienthoai {
                 }
             }
         dsDienthoai=new DsDienthoai(arr);
+        Menu();
         }
 
-    public void menu() {
+    public void Menu() {
         while(true) {
             System.out.println("--------------------------------------------");
             System.out.println("-- 0.Thoát                                --");
