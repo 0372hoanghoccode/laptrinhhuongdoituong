@@ -37,10 +37,11 @@ Muahang()
         {
             //o ma sp ,1 so luong, 2 don giam, 3 thanh tien
             System.out.println("......Sản phẩm thứ "+(i+1)+".....");
-            System.out.print("Nhập mã sản phẩm : ");
+            System.out.print("Nhập mã sản phẩm :");
             arr[i][0]=new Scanner(System.in).nextInt();
             Dienthoai dt=DsDienthoai.getDienthoai((int)arr[i][0]);
-            System.out.print("Nhập số lượng");
+            if(dt==null){System.err.println("Điện thoại null lỗi................");}
+            System.out.print("Nhập số lượng :");
             arr[i][1]=new Scanner(System.in).nextInt();
             while (arr[i][1]>dt.getSoLuong()){
                 System.out.println("Vui lòng nhập lại : phải bé hơn hoặc bằng "+dt.getSoLuong());
@@ -51,16 +52,16 @@ Muahang()
             tongtien+=arr[i][3];
             tongsoluong+=(int)arr[i][1];
         }
-        int mahd=DsHoaDon.Themhoadontofile(new HoaDon(-1,new Date(),manv,makh,tongsoluong,tongtien));
-        List<ChiTietHoaDon>chiTietHoaDon=new ArrayList<>();
 
+        int mahd=DsHoaDon.Themhoadontofile(new HoaDon(-1,new Date(),manv,makh,tongsoluong,tongtien));
+        List<ChiTietHoaDon> chiTietHoaDons=new ArrayList<>();
         for (int i=0;i<sl;i++)
         {
             ChiTietHoaDon chitiet=new ChiTietHoaDon(-1,mahd,(int)arr[i][0],(int)arr[i][1],arr[i][2],arr[i][3]);
-            chiTietHoaDon.add(chitiet);
-            DsDienthoai.Muahang((int)arr[i][0],(int)arr[i][3]);
-
+            chiTietHoaDons.add(chitiet);
+            DsDienthoai.Muahang((int)arr[i][0],(int)arr[i][1]);
         }
-        DsChiTietHoaDon.Themchitiethoadontofile(chiTietHoaDon);
+        DsChiTietHoaDon.ThemDschitiethoadontofile(chiTietHoaDons);
+        System.out.println("Mua hàng thành công.");
     }
 }

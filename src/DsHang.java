@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -29,28 +30,29 @@ public class DsHang {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hang;
+        Themtofile(hang);
         System.out.println("Thêm thành công.");
     }
     public void Them(Hang hang)
     {
-        while (!checkid(hang.getMa()))
+        if (!checkid(hang.getMa()))
         {
-            System.out.print("Trùng mã hãng, vui lòng nhập lại :");
-            hang.setMa(new Scanner(System.in).nextInt());
+           return;
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hang;
+        Themtofile(hang);
     }
     public void Them(int ma, String tenhang, String diachi)
     {
         Hang hang=new Hang(ma,tenhang,diachi);
-        while (!checkid(hang.getMa()))
+        if (!checkid(hang.getMa()))
         {
-            System.out.print("Trùng mã hãng, vui lòng nhập lại :");
-            hang.setMa(new Scanner(System.in).nextInt());
+            return;
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hang;
+        Themtofile(hang);
     }
     public boolean checkid(int id)
     {
@@ -76,7 +78,8 @@ public class DsHang {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
-                System.out.println("Xóa thành công");
+                Xoatofile(x);
+                System.out.println("Xóa thành công.");
                 return;
             }
         }
@@ -90,6 +93,7 @@ public class DsHang {
                     ds[j] = ds[j + 1];
                 }
                 ds = Arrays.copyOf(ds, ds.length - 1);
+                Xoatofile(x);
                 return ;
             }
         }
@@ -103,23 +107,14 @@ public class DsHang {
             if(hang.getMa()==ma)
             {
                 hang.Sua();
+                Suatofile(hang,ma);
                 System.out.println("Sửa thành công.");
                 return;
             }
         }
         System.out.println("Không tìm thấy.");
     }
-    void   Sua(int ma)
-    {
-        for (Hang hang : ds)
-        {
-            if(hang.getMa()==ma)
-            {
-                hang.Sua();
-                return;
-            }
-        }
-    }
+
     public void Timkiem()
     {
         System.out.print("Nhập mã :");
@@ -170,14 +165,19 @@ public class DsHang {
 
     public void Themtofile(Hang hang)
     {
-
+        File file=new File();
+        String data=hang.getMa()+","+hang.getTenhang()+","+hang.getDiachi();
+        file.WriteNewLine(data,"dshang.txt");
     }
     public void Xoatofile(int id)
     {
-
+        new File().deleterow("dshang.txt",id);
     }
     public void Suatofile(Hang hang,int id)
     {
+        File file=new File();
+        String data=hang.getMa()+","+hang.getTenhang()+","+hang.getDiachi();
+        file.UpdateRow(data,"dshang.txt",id);
 
     }
 

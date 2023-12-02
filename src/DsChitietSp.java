@@ -43,6 +43,8 @@ public class DsChitietSp {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=chitietSp;
+        Themtofile(chitietSp);
+        System.out.println("Thêm thành công");
     }
     public void Them(ChitietSp ct)
     {
@@ -52,16 +54,15 @@ public class DsChitietSp {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=ct;
-
+        Themtofile(ct);
     }
     public void Them(int ma, boolean camera, int masp, boolean flash, String dophangiai, int bonho, boolean bluetooth, String congsac, String loaipin, int dungluongpin)
     {
-        ChitietSp chitietSp=new ChitietSp(ma,camera,masp,flash,dophangiai,bonho,bluetooth,congsac,loaipin,dungluongpin);
         if(ds.length==0)
         {
-            System.out.println("Danh sách trống");
             return;
         }
+        ChitietSp chitietSp=new ChitietSp(ma,camera,masp,flash,dophangiai,bonho,bluetooth,congsac,loaipin,dungluongpin);
         while (!checkid(chitietSp.getMa()))
         {
             System.out.print("Mã chi tiết sản phẩm trùng, vui lòng nhập lại :");
@@ -69,7 +70,7 @@ public class DsChitietSp {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=chitietSp;
-
+        Themtofile(chitietSp);
     }
     public void Xoa()
     {
@@ -88,21 +89,12 @@ public class DsChitietSp {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
+                Xoatofile(ma);
+                System.out.println("Xóa thành công.");
                 return;
             }
         }
         System.out.println("Mã chi tiết sản phẩm không tồn tại.");
-    }
-    public boolean checkid(int id)
-    {
-        for (ChitietSp ct :ds)
-        {
-            if(ct.getMa()==id)
-            {
-                return false;
-            }
-        }
-        return true;
     }
     public void Xoa(int ma)
     {
@@ -118,10 +110,23 @@ public class DsChitietSp {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
+                Xoatofile(ma);
                 return;
             }
         }
     }
+    public boolean checkid(int id)
+    {
+        for (ChitietSp ct :ds)
+        {
+            if(ct.getMa()==id)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public void Sua()
     {
@@ -132,6 +137,8 @@ public class DsChitietSp {
             if(ct.getMa()==ma)
             {
                 ct.Nhap();
+                Suatofile(ct,ma);
+                System.out.println("Sửa thành công.");
                 return;
             }
         }
@@ -145,6 +152,7 @@ public class DsChitietSp {
             if(ct.getMa()==ma)
             {
                 ct.Nhap();
+                Suatofile(ct,ma);
                 return;
             }
         }
@@ -253,14 +261,22 @@ public class DsChitietSp {
     }
     public void Themtofile(ChitietSp chitietSp)
     {
+        File file=new File();
+        String data=chitietSp.getMa()+","+chitietSp.isCamera()+","+chitietSp.getMasp()+","+chitietSp.isFlash()+","+chitietSp.getDophangiai()+","+
+        chitietSp.getBonho()+","+chitietSp.isBluetooth()+","+chitietSp.getCongsac()+","+chitietSp.getLoaipin()+","+chitietSp.getDungluongpin();
+        file.WriteNewLine(data,"dschitietsanpham.txt");
 
     }
     public void Xoatofile(int id)
     {
-
+        new File().deleterow("dschitietsanpham.txt",id);
     }
     public void Suatofile(ChitietSp chitietSp,int id)
     {
+        File file=new File();
+        String data=chitietSp.getMa()+","+chitietSp.isCamera()+","+chitietSp.getMasp()+","+chitietSp.isFlash()+","+chitietSp.getDophangiai()+","+
+        chitietSp.getBonho()+","+chitietSp.isBluetooth()+","+chitietSp.getCongsac()+","+chitietSp.getLoaipin()+","+chitietSp.getDungluongpin();
+        file.UpdateRow(data,"dschitietsanpham.txt",id);
 
     }
 }

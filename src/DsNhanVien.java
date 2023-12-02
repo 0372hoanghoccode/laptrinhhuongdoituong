@@ -30,6 +30,7 @@ public class DsNhanVien {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=nhanVien;
+        Themtofile(nhanVien);
     }
     public void Them(NhanVien nhanVien) {
 
@@ -39,6 +40,7 @@ public class DsNhanVien {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=nhanVien;
+        Themtofile(nhanVien);
     }
 
     boolean checkid(int id)
@@ -70,6 +72,7 @@ public class DsNhanVien {
                     }
                     ds=Arrays.copyOf(ds,ds.length-1);
                     System.out.println("Xóa thành công");
+                    Xoatofile(maNhanVien);
                     return;
                 }
             }
@@ -88,6 +91,7 @@ public class DsNhanVien {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
+                Xoatofile(maNhanVien);
                 return;
             }
         }
@@ -137,7 +141,9 @@ public class DsNhanVien {
                if(nhanVien.getMaNhanVien()==maNhanVien)
                {
                    nhanVien.Sua();
+                   Suatofile(nhanVien,maNhanVien);
                    System.out.println("Thông tin nhân viên đã được cập nhật!");
+
                }
            }
     System.out.println("Mã nhân viên không tồn tại.");
@@ -151,6 +157,7 @@ public class DsNhanVien {
             if(nhanVien.getMaNhanVien()==ma)
             {
                 nhanVien.Sua();
+                Suatofile(nhanVien,ma);
             }
         }
     }
@@ -233,14 +240,20 @@ public void Thongke()
     }
     public void Themtofile(NhanVien nhanVien)
     {
-
+        File file=new File();
+        String data=nhanVien.getMaNhanVien()+","+nhanVien.getHoNhanVien()+","+nhanVien.getTenNhanVien()+","+ nhanVien.getLuong();
+        file.WriteNewLine(data,"dsnhanvien.txt");
     }
     public void Xoatofile(int id)
     {
+        new File().deleterow("dsnhanvien.txt",id);
 
     }
     public void Suatofile(NhanVien nhanVien,int id)
     {
+        String data=nhanVien.getMaNhanVien()+","+nhanVien.getHoNhanVien()+","+nhanVien.getTenNhanVien()+","+ nhanVien.getLuong();
+        File file=new File();
+        file.UpdateRow(data,"dsnhanvien.txt",id);
 
     }
 }

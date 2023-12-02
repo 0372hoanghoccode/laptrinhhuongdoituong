@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -29,8 +30,11 @@ public class DsChiTietHoaDon {
             System.out.print("Trùng mã chi tiết hóa đơn, vui lòng nhập lại :");
             chiTietHoaDon.setMaChiTietHoaDon(sc.nextInt());
         }
+
            ds= Arrays.copyOf(ds,ds.length+1);
            ds[ds.length-1]=chiTietHoaDon;
+           Themtofile(chiTietHoaDon);
+           System.out.println("Thêm thành công.");
     }
     public void Them( ChiTietHoaDon chiTietHoaDon){
           if(!checkid(chiTietHoaDon.getMaChiTietHoaDon()))
@@ -39,7 +43,7 @@ public class DsChiTietHoaDon {
           }
         ds=Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=chiTietHoaDon;
-
+        Themtofile(chiTietHoaDon);
     }
     public void Them(int machitiet, int maHoaDon,int maSanPham,int soLuongMua,float donGia,float thanhTien){
         ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(machitiet,maHoaDon, maSanPham, soLuongMua, donGia, thanhTien);
@@ -49,10 +53,11 @@ public class DsChiTietHoaDon {
         }
        ds=Arrays.copyOf(ds,ds.length+1);
        ds[ds.length-1]=chiTietHoaDon;
+        Themtofile(chiTietHoaDon);
     }
     public void Xoa(){
         if(ds.length == 0){
-            System.out.println("Chưa có chi tiết hóa đơn");
+            System.out.println("Chưa có chi tiết hóa đơn.");
             return;
         }
           System.out.print("Nhập mã chi tiết hóa đơn cần xóa :");
@@ -64,16 +69,14 @@ public class DsChiTietHoaDon {
                         ds[j]=ds[j+1];
                     }
                     ds=Arrays.copyOf(ds,ds.length-1);
+                    Xoatofile(ma);
+                    System.out.println("Xóa thành công.");
                     return;
                 }
             }
                 System.out.println("Mã hóa đơn không tồn tại");
     }
     public void Xoa(int ma){
-        if(ds.length == 0){
-            System.out.println("Chưa có chi tiết hóa đơn");
-            return;
-        }
         for(int i = 0; i < ds.length; i++){
             if(ds[i].getMaHoaDon() ==ma){
                 for(int j=i;j<ds.length-1;j++)
@@ -81,28 +84,29 @@ public class DsChiTietHoaDon {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
+                Xoatofile(ma);
                 return;
             }
         }
     }
     public void Timkiem(){
-        System.out.print("Nhập mã hóa đơn:" );
+        System.out.print("Nhập mã hóa đơn :" );
         int maHoaDon = sc.nextInt();
-        for(int i = 0; i < ds.length; i++){
-            if(ds[i].getMaHoaDon() == maHoaDon){
-               ds[i].Xuat();
-               return;
+        for (ChiTietHoaDon d : ds) {
+            if (d.getMaHoaDon() == maHoaDon) {
+                d.Xuat();
+                return;
             }
         }
 
             System.out.println("Mã chi tiết hóa đơn không tồn tại");
 
     }
-    private ChiTietHoaDon Timkiem(int maHoaDon){
-        for(int i = 0;i < ds.length; i++){
-            if(ds[i].getMaHoaDon() == maHoaDon){
+    public ChiTietHoaDon Timkiem(int maHoaDon){
+        for (ChiTietHoaDon d : ds) {
+            if (d.getMaHoaDon() == maHoaDon) {
 
-                return ds[i];
+                return d;
             }
         }
         return null;
@@ -124,22 +128,24 @@ public class DsChiTietHoaDon {
             System.out.println("Chưa có chi tiết hóa đơn");
             return;
         }
-            System.out.print("Nhập mã chi tiết hóa đơn: ");
+            System.out.print("Nhập mã chi tiết hóa đơn :");
             int maHoaDonCanSua = sc.nextInt();
             for (ChiTietHoaDon chiTietHoaDon : ds)
             {
                 if(maHoaDonCanSua==chiTietHoaDon.getMaChiTietHoaDon())
                 {
                     chiTietHoaDon.Sua();
+                    Suatofile(chiTietHoaDon,maHoaDonCanSua);
+                    System.out.println("Sửa thành công.");
                     return;
                 }
             }
-            System.out.println("Không tìm thấy mã.");
+            System.out.println("Mã chi tiết hóa đơn không tồn tại.");
     }
 
     public void XemDs(){
         if(ds.length == 0){
-            System.out.println("Chưa có hóa đơn");
+            System.out.println("Chưa có hóa đơn.");
             return;
         }
             for(int i = 0; i < ds.length; i++){
@@ -152,30 +158,37 @@ public class DsChiTietHoaDon {
     {
         System.out.println("Có "+ds.length+" chi tiết hóa đơn");
     }
-    public static void Themchitiethoadontofile(List<ChiTietHoaDon> ds)
+    public static void ThemDschitiethoadontofile(List<ChiTietHoaDon> ds)
     {
         File file=new File();
         int maxid=file.getMaxId("dschitiethoadon.txt");
         for(int i=0,j=(maxid+1);i< ds.size();i++,j++)
         {
             String data=j+","+ds.get(i).getMaHoaDon()+","+ ds.get(i).getMaSanPham()+","+ds.get(i).getSoLuongMua()+","+ds.get(i).getDonGia()+","+ds.get(i).getThanhTien();
-            file.WriteNewLine("dschitiethoadon.txt",data);
+            file.WriteNewLine(data,"dschitiethoadon.txt");
         }
 
 
     }
 
-    public void Themtofile(List<ChiTietHoaDon> chiTietHoaDon)
+    public void Themtofile(ChiTietHoaDon chiTietHoaDon)
     {
-
+        File file=new File();
+        String data=chiTietHoaDon.getMaChiTietHoaDon()+","+chiTietHoaDon.getMaHoaDon()+","+chiTietHoaDon.getMaSanPham()+","+chiTietHoaDon.getSoLuongMua()+","+chiTietHoaDon.getDonGia()+","+
+                chiTietHoaDon.getThanhTien();
+        file.WriteNewLine(data,"dschitiethoadon.txt");
     }
     public void Xoatofile(int id)
     {
+        new File().deleterow("dschitiethoadon.txt",id);
 
     }
     public void Suatofile(ChiTietHoaDon chiTietHoaDon,int id)
     {
-
+        File file=new File();
+        String data=chiTietHoaDon.getMaChiTietHoaDon()+","+chiTietHoaDon.getMaHoaDon()+","+chiTietHoaDon.getMaSanPham()+","+chiTietHoaDon.getSoLuongMua()+","+chiTietHoaDon.getDonGia()+","+
+                chiTietHoaDon.getThanhTien();
+        file.UpdateRow(data,"dschitiethoadon.txt",id);
     }
 
 }

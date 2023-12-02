@@ -31,6 +31,7 @@ public class DsKhachhang {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=khachhang;
+        Themtofile(khachhang);
         System.out.println("Thêm thành công.");
     }
     public boolean checkid(int id)
@@ -44,18 +45,29 @@ public class DsKhachhang {
     }
     public void Them(Khachhang khachhang)
     {
-        while (!checkid(khachhang.getMa()))
+        if (!checkid(khachhang.getMa()))
         {
-            System.out.print("Trùng mã, vui lòng nhập lại mã :");
-            khachhang.setMa(new Scanner(System.in).nextInt());
+           return;
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=khachhang;
+        Themtofile(khachhang);
+    }
+    public void Them(int ma, String ho, String ten, String diachi, String sdt)
+    {
+        Khachhang khachhang=new Khachhang(ma,ho,ten,diachi,sdt);
+        if (!checkid(khachhang.getMa()))
+        {
+            return;
+        }
+        ds= Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=khachhang;
+        Themtofile(khachhang);
     }
     public void Xoa()
     {
         if(ds.length==0){
-            System.out.println("Danh sách trống.");
+            System.out.println("Danh sách trống."); return;
         }
         System.out.print("Nhập mã khách hàng cần xóa :");
         int x=new Scanner(System.in).nextInt();
@@ -67,6 +79,7 @@ public class DsKhachhang {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
+                Xoatofile(x);
                 System.out.println("Xóa thành công.");
                 return;
             }
@@ -80,6 +93,7 @@ public class DsKhachhang {
                 for (int j = i; j < ds.length - 1; j++) {
                     ds[j] = ds[j + 1];
                 }
+                Xoatofile(x);
                 ds = Arrays.copyOf(ds, ds.length - 1);
                 return ;
             }
@@ -94,6 +108,7 @@ public class DsKhachhang {
             if(khachhang.getMa()==ma)
             {
                 khachhang.Sua();
+                Suatofile(khachhang,ma);
                 System.out.println("Sửa thành công.");
                 return;
             }
@@ -107,6 +122,7 @@ public class DsKhachhang {
             if(khachhang.getMa()==ma)
             {
                 khachhang.Sua();
+                Suatofile(khachhang,ma);
                 return;
             }
         }
@@ -179,14 +195,21 @@ public class DsKhachhang {
     }
     public void Themtofile(Khachhang khachhang)
     {
+        File file=new File();
+        String data=khachhang.getMa()+","+khachhang.getHo()+","+khachhang.getTen()+","+ khachhang.getDiachi()+","+khachhang.getSdt();
+        file.WriteNewLine(data,"dskhachhang.txt");
 
     }
     public void Xoatofile(int id)
     {
-
+        new File().deleterow("dskhachhang.txt",id);
     }
     public void Suatofile(Khachhang khachhang,int id)
     {
+        File file=new File();
+        String data=khachhang.getMa()+","+khachhang.getHo()+","+khachhang.getTen()+","+ khachhang.getDiachi()+","+khachhang.getSdt();
+        file.UpdateRow(data,"dskhachhang.txt",id);
+
 
     }
 

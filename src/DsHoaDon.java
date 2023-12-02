@@ -36,6 +36,8 @@ public class DsHoaDon {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hoaDon;
+        Themtofile(hoaDon);
+        System.out.println("Thêm thành công.");
     }
     boolean checkma(int ma)
     {
@@ -56,6 +58,7 @@ public class DsHoaDon {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hoaDon;
+        Themtofile(hoaDon);
     }
     public void Them(int maHoaDon, Date ngayLap, int maNhanVien, int maKhachHang,int tongSoluong, float tongTien)
     {
@@ -67,7 +70,7 @@ public class DsHoaDon {
         }
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hoaDon;
-
+        Themtofile(hoaDon);
     }
 
     public void Xoa() {
@@ -84,7 +87,8 @@ public class DsHoaDon {
                         ds[j]=ds[j+1];
                     }
                     ds=Arrays.copyOf(ds,ds.length-1);
-                    System.out.println("Xóa thành công");
+                    Xoatofile(maHoaDon);
+                    System.out.println("Xóa thành công.");
                     return;
                 }
             }
@@ -98,7 +102,7 @@ public class DsHoaDon {
                     ds[j]=ds[j+1];
                 }
                 ds=Arrays.copyOf(ds,ds.length-1);
-                System.out.println("Xóa thành công.");
+                Xoatofile(ma);
                 return;
             }
         }
@@ -111,9 +115,10 @@ public class DsHoaDon {
         }
         System.out.print("Nhập mã hóa đơn cần sửa: ");
         int maHoaDon = sc.nextInt();
-        for (int i = 0; i < ds.length; i++) {
-            if (ds[i].getMaHoaDon() == maHoaDon) {
-               ds[i].Sua();
+        for (HoaDon hoaDon : ds) {
+            if (hoaDon.getMaHoaDon() == maHoaDon) {
+               hoaDon.Sua();
+                Suatofile(hoaDon,maHoaDon);
                 System.out.println("Sửa thành công.");
                 return;
             }
@@ -214,14 +219,24 @@ public class DsHoaDon {
     }
     public void Themtofile(HoaDon hoaDon)
     {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = format.format(hoaDon.getNgayLap());
+        File file=new File();
+        String data=hoaDon.getMaHoaDon()+","+strDate+","+hoaDon.getMaNhanVien()+","+ hoaDon.getMaKhachHang()+","+hoaDon.getTongSoluong()+","+hoaDon.getTongTien();
+        file.WriteNewLine(data,"dshoadon.txt");
 
     }
     public void Xoatofile(int id)
     {
-
+        new File().deleterow("dshoadon.txt",id);
     }
     public void Suatofile(HoaDon hoaDon,int id)
     {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = format.format(hoaDon.getNgayLap());
+        File file=new File();
+        String data=hoaDon.getMaHoaDon()+","+strDate+","+hoaDon.getMaNhanVien()+","+ hoaDon.getMaKhachHang()+","+hoaDon.getTongSoluong()+","+hoaDon.getTongTien();
+        file.UpdateRow(data,"dshoadon.txt",id);
 
     }
 }

@@ -14,7 +14,7 @@ public class MainMenu {
                 case 0:
                     return;
                 case 1:
-                    new Muahang();
+                    new Muahang().mua();
                     break;
                 case 2:
                     new MenuDsDienthoai();

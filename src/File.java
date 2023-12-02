@@ -93,7 +93,6 @@ public class File {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null) {
-
                String arr[]=line.split(",");
                if(Integer.parseInt(arr[0])>max)
                    max=Integer.parseInt(arr[0]);
@@ -104,7 +103,6 @@ public class File {
             e.printStackTrace();
         }
         return max;
-
     }
    public void deleterow(String filename,int id)
    {

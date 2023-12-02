@@ -18,38 +18,39 @@ public class DsDienthoai {
         System.out.print("1. Điện thoại phổ thông ");
         System.out.println("2. Smartphone");
         int loai = scanner.nextInt();
-        Dienthoai dt;
-        scanner.nextLine();
+        Dienthoai dienthoai;
         switch (loai) {
             case 1:
-                dt = new DTPT();
-               dt.Nhap();
+                dienthoai = new DTPT();
+                dienthoai.Nhap();
                 break;
             case 2:
-               dt = new Smartphone();
-                dt.Nhap();
-
+                dienthoai = new Smartphone();
+                dienthoai.Nhap();
                 break;
             default:
                 System.out.print("Không hợp lệ ");
                 return;
         }
-        while (!checkid(dt.getMaSanPham()))
+        while (!checkid(dienthoai.getMaSanPham()))
         {
             System.out.print("Trùng mã sản phẩm , vui lòng nhập lại :");
-            dt.setMaSanPham(new Scanner(System.in).nextInt());
+            dienthoai.setMaSanPham(scanner.nextInt());
         }
         ds = Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=dt;
+        ds[ds.length-1]=dienthoai;
+        Themtofile(dienthoai);
+        System.out.println("Thêm thành công.");
     }
 
-    public void Them(Dienthoai dt) {
-        if(!checkid(dt.getMaSanPham()))
+    public void Them(Dienthoai dienthoai) {
+        if(!checkid(dienthoai.getMaSanPham()))
         {
             return;
         }
         ds = new Dienthoai[ds.length + 1];
-        ds[ds.length-1]=dt;
+        ds[ds.length-1]=dienthoai;
+        Themtofile(dienthoai);
     }
     public void Them(int maSanPham, int soLuong, float donGia, int maHang, String ten, String kichThuoc,String banphim)
     {
@@ -57,10 +58,10 @@ public class DsDienthoai {
         {
             return;
         }
-        Dienthoai dt=new DTPT(maSanPham,soLuong,donGia,maHang,ten,kichThuoc,banphim);
+        Dienthoai dienthoai=new DTPT(maSanPham,soLuong,donGia,maHang,ten,kichThuoc,banphim);
         ds = new Dienthoai[ds.length + 1];
-        ds[ds.length-1]=dt;
-
+        ds[ds.length-1]=dienthoai;
+        Themtofile(dienthoai);
     }
     public void Them(int maSanPham, int soLuong, float donGia, int maHang, String ten, String kichThuoc,String hedieuhanh,int ram,String chip)
     {
@@ -68,9 +69,9 @@ public class DsDienthoai {
         {
             return;
         }
-        Dienthoai dt=new Smartphone(maSanPham,soLuong,donGia,maHang,ten,kichThuoc,hedieuhanh,ram,chip);
+        Dienthoai dienthoai=new Smartphone(maSanPham,soLuong,donGia,maHang,ten,kichThuoc,hedieuhanh,ram,chip);
         ds = new Dienthoai[ds.length + 1];
-        ds[ds.length-1]=dt;
+        ds[ds.length-1]=dienthoai;
 
     }
     public boolean checkid(int id)
@@ -99,30 +100,13 @@ public class DsDienthoai {
                     ds[j] = ds[j + 1];
                 }
                 ds = Arrays.copyOf(ds, ds.length - 1);
-                System.out.println("Xóa thành công");
+                Xoatofile(x);
+                System.out.println("Xóa thành công.");
                 return;
             }
         }
         System.out.println("Mã sản phẩm không còn lại.");
     }
-
-    public void Xoa(int x) {
-        if(ds.length==0)
-        {
-            return;
-        }
-        for (int i = 0; i < ds.length; i++) {
-            if (ds[i].getMaSanPham() == x) {
-                for (int j = i; j < ds.length - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                ds = Arrays.copyOf(ds, ds.length - 1);
-                return;
-            }
-        }
-    }
-
-
     public void Sua() {
         if(ds.length==0)
         {
@@ -136,6 +120,7 @@ public class DsDienthoai {
            if(dt.getMaSanPham()==maSanPham)
            {
                dt.Sua();
+
            }
 
        }
@@ -145,40 +130,18 @@ public class DsDienthoai {
 
     public void Sua(int maSanPham) {
 
-        for (Dienthoai dt:ds)
+        for (Dienthoai dienthoai:ds)
         {
-            if(dt.getMaSanPham()==maSanPham)
+            if(dienthoai.getMaSanPham()==maSanPham)
             {
-                dt.Sua();
+                dienthoai.Sua();
+                Suatofile(dienthoai,maSanPham);
             }
 
         }
     }
 
-    public static Dienthoai getDienthoai(int maSanPham) {
-        for (int i = 0; i < ds.length; i++) {
-            if (ds[i].getMaSanPham() == maSanPham) {
-                return ds[i];
-            }
-        }
-        return null;
-    }
-    public void XemDs()
-    {
-        for (int i=0;i<ds.length;i++)
-        {
-            System.out.println(".......Vị trí thứ "+(i+1)+"......");
-            if(ds[i] instanceof DTPT)
-            {
-                DTPT dtpt=(DTPT) ds[i];
-                dtpt.Xuat();
-            }else
-            {
-                Smartphone smartphone=(Smartphone) ds[i];
-                smartphone.Xuat();
-            }
-        }
-    }
+
 
 
     public void Thongke() {
@@ -197,15 +160,16 @@ public class DsDienthoai {
 
 
 
-    public void Xuat() {
-        for (Dienthoai d : ds) {
-            if (d instanceof Smartphone) {
-                System.out.print("SMARTPHONE : ");
-                d.Xuat();
+    public void XemDs() {
+        for (int i=0;i< ds.length;i++) {
+            System.out.println(".......Vị trí thứ "+(i+1)+"......");
+            if (ds[i] instanceof Smartphone) {
+                System.out.println("SMARTPHONE : ");
+                ds[i].Xuat();
             }
-            if (d instanceof DTPT) {
-                System.out.print("DTPT : ");
-                d.Xuat();
+            if (ds[i] instanceof DTPT) {
+                System.out.println("DTPT : ");
+                ds[i].Xuat();
             }
         }
     }
@@ -220,7 +184,7 @@ public class DsDienthoai {
     }
 
     public void Timkiem() {
-        System.out.print("Nhập mã sản phẩm");
+        System.out.print("Nhập mã sản phẩm :");
         int maSanPham=scanner.nextInt();
         for (Dienthoai d : ds) {
             if (d.getMaSanPham() == maSanPham) {
@@ -241,13 +205,13 @@ public class DsDienthoai {
                File file=new File();
                String newdata="";
                if(ds[i] instanceof DTPT){
-                   newdata+=String.valueOf(ma)+","+ String.valueOf(0)+","+ds[i].getSoLuong()+","+ ds[i].getDonGia()+","+ ds[i].getMaHang()+","+ds[i].getTen()+","+ds[i].getKichThuoc()+","+((DTPT) ds[i]).getBanPhim();
+                   newdata+=ma+","+ String.valueOf(0)+","+ds[i].getSoLuong()+","+ ds[i].getDonGia()+","+ ds[i].getMaHang()+","+ds[i].getTen()+","+ds[i].getKichThuoc()+","+((DTPT) ds[i]).getBanPhim();
 
                }else {
                    newdata+= String.valueOf(ma)+","+String.valueOf(1)+","+ds[i].getSoLuong()+","+ ds[i].getDonGia()+","+ ds[i].getMaHang()+","+ds[i].getTen()+","+ds[i].getKichThuoc()+","+((Smartphone)ds[i]).getHeDieuHanh()+","+((Smartphone)ds[i]).getRam()+","+((Smartphone)ds[i]).getChip();
                }
 
-              file.UpdateRow(newdata,"dsdienthoai",ds[i].getMaSanPham());
+              file.UpdateRow(newdata,"dsdienthoai.txt",ds[i].getMaSanPham());
                return;
            }
 
@@ -266,17 +230,54 @@ public class DsDienthoai {
             }
         }
     }
+
+    public static Dienthoai getDienthoai(int maSanPham) {
+        for (int i = 0; i < ds.length; i++) {
+            if (ds[i].getMaSanPham() == maSanPham) {
+                return ds[i];
+            }
+        }
+        return null;
+    }
     public void Themtofile(Dienthoai dienthoai)
     {
-
+        String data="";
+        File file=new File();
+        if(dienthoai instanceof DTPT)
+        {
+            DTPT dtpt=(DTPT) dienthoai;
+           data=dienthoai.getMaSanPham()+","+0+","+dienthoai.getSoLuong()+","+dienthoai.getDonGia()+","+dienthoai.getMaHang()+","+dienthoai.getTen()+","+
+                   dienthoai.getKichThuoc()+","+dtpt.getBanPhim();
+        }
+        else
+        {
+            Smartphone smartphone=(Smartphone) dienthoai;
+            data=dienthoai.getMaSanPham()+","+0+","+dienthoai.getSoLuong()+","+dienthoai.getDonGia()+","+dienthoai.getMaHang()+","+dienthoai.getTen()+","+
+                    dienthoai.getKichThuoc()+","+smartphone.getHeDieuHanh()+","+smartphone.getRam()+","+smartphone.getChip();
+        }
+       file.WriteNewLine(data,"dsdienthoai.txt");
     }
     public void Xoatofile(int id)
     {
-
+        new File().deleterow("dsdienthoai.txt",id);
     }
     public void Suatofile(Dienthoai dienthoai,int id)
     {
-
+        String data="";
+        File file=new File();
+        if(dienthoai instanceof DTPT)
+        {
+            DTPT dtpt=(DTPT) dienthoai;
+            data=dienthoai.getMaSanPham()+","+0+","+dienthoai.getSoLuong()+","+dienthoai.getDonGia()+","+dienthoai.getMaHang()+","+dienthoai.getTen()+","+
+                    dienthoai.getKichThuoc()+","+dtpt.getBanPhim();
+        }
+        else
+        {
+            Smartphone smartphone=(Smartphone) dienthoai;
+            data=dienthoai.getMaSanPham()+","+0+","+dienthoai.getSoLuong()+","+dienthoai.getDonGia()+","+dienthoai.getMaHang()+","+dienthoai.getTen()+","+
+                    dienthoai.getKichThuoc()+","+smartphone.getHeDieuHanh()+","+smartphone.getRam()+","+smartphone.getChip();
+        }
+        file.UpdateRow(data,"dsdienthoai.txt",id);
     }
 
 }

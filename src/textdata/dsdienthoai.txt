@@ -1,4 +1,4 @@
-1,1,50,5000000,1,Asus Zenfone 8,5.5,Android 11,8,Snapdragon 888
+1,1,-4999900,5000000.0,1,Asus Zenfone 8,5.5,Android 11,8,Snapdragon 888
 2,1,30,3000000,2,Apple iPhone 12,6.1,iOS 14,4,A14 Bionic
 3,1,40,1500000,3,Samsung Galaxy A32,6.4,Android 11,6,MediaTek Helio G80
 4,1,70,1000000,4,Oppo A54,6.51,Android 10,4,Mediatek Helio P35
