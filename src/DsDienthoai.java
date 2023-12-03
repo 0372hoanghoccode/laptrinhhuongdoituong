@@ -29,7 +29,7 @@ public class DsDienthoai {
                 dienthoai.Nhap();
                 break;
             default:
-                System.out.print("Không hợp lệ ");
+                System.out.println("Không hợp lệ.");
                 return;
         }
         while (!checkid(dienthoai.getMaSanPham()))
@@ -107,13 +107,26 @@ public class DsDienthoai {
         }
         System.out.println("Mã sản phẩm không còn lại.");
     }
+    public void Xoa(int ma) {
+        for (int i = 0; i < ds.length; i++) {
+            if (ds[i].getMaSanPham() == ma) {
+                for (int j = i; j < ds.length - 1; j++) {
+                    ds[j] = ds[j + 1];
+                }
+                ds = Arrays.copyOf(ds, ds.length - 1);
+                Xoatofile(ma);
+                return;
+            }
+        }
+    }
+
     public void Sua() {
         if(ds.length==0)
         {
             System.out.println("Danh sách trống.");
             return;
         }
-        System.out.print("Nhập mã sản phẩm cần sửa: ");
+        System.out.print("Nhập mã sản phẩm cần sửa :");
         int maSanPham = scanner.nextInt();
        for (Dienthoai dt:ds)
        {
@@ -128,21 +141,18 @@ public class DsDienthoai {
 
     }
 
-    public void Sua(int maSanPham) {
+    public void Sua(int maSanPham,Dienthoai dt) {
 
         for (Dienthoai dienthoai:ds)
         {
             if(dienthoai.getMaSanPham()==maSanPham)
             {
-                dienthoai.Sua();
-                Suatofile(dienthoai,maSanPham);
+                dienthoai=dt;
+                Suatofile(dt,maSanPham);
             }
 
         }
     }
-
-
-
 
     public void Thongke() {
         int dtpt = 0;
@@ -217,7 +227,7 @@ public class DsDienthoai {
 
         }
     }
-    public void Gọi()
+    public void Goi()
     {
         System.out.print("Vui lòng nhập mã sản phẩm :");
         int ma=scanner.nextInt();

@@ -142,6 +142,17 @@ public class DsChiTietHoaDon {
             }
             System.out.println("Mã chi tiết hóa đơn không tồn tại.");
     }
+    public void Sua(ChiTietHoaDon chiTietHoaDon,int maHoaDonCanSua) {
+        for (ChiTietHoaDon ct : ds)
+        {
+            if(maHoaDonCanSua==ct.getMaChiTietHoaDon())
+            {
+                ct=chiTietHoaDon;
+                Suatofile(chiTietHoaDon,maHoaDonCanSua);
+                return;
+            }
+        }
+    }
 
     public void XemDs(){
         if(ds.length == 0){
@@ -157,6 +168,20 @@ public class DsChiTietHoaDon {
     public void Thongke()
     {
         System.out.println("Có "+ds.length+" chi tiết hóa đơn");
+    }
+    public void ThongkeTheoSanpham()
+    {
+        int count=0;
+        System.out.print("Nhập mã sản phẩm :");
+        int ma=sc.nextInt();
+        for (ChiTietHoaDon chiTietHoaDon :ds)
+        {
+            if(chiTietHoaDon.getMaSanPham()==ma)
+            {
+                count+=chiTietHoaDon.getSoLuongMua();
+            }
+        }
+        System.out.println("Sản phẩm có mã "+ma+ " đã bán được "+count+" sản phẩm.");
     }
     public static void ThemDschitiethoadontofile(List<ChiTietHoaDon> ds)
     {

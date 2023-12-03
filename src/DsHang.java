@@ -68,6 +68,10 @@ public class DsHang {
 
     public void Xoa()
     {
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách hãng trống.");return;
+        }
         System.out.print("Nhập mã :");
         int x=new Scanner(System.in).nextInt();
         for (int i=0; i<ds.length;i++) {
@@ -83,7 +87,7 @@ public class DsHang {
                 return;
             }
         }
-        System.out.println("Mã hãng khng tồn tại.");
+        System.out.println("Mã hãng không tồn tại.");
     }
     public void Xoa(int x)
     {
@@ -100,6 +104,11 @@ public class DsHang {
     }
     public void Sua()
     {
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách hãng trống.");
+            return;
+        }
         System.out.println("Nhập mã cần sửa :");
         int ma=new Scanner(System.in).nextInt();
         for (Hang hang : ds)
@@ -114,9 +123,26 @@ public class DsHang {
         }
         System.out.println("Không tìm thấy.");
     }
+    public void Sua(int ma, Hang h)
+    {
 
+        for (Hang hang : ds)
+        {
+            if(hang.getMa()==ma)
+            {
+               hang=h;
+                Suatofile(h,ma);
+                return;
+            }
+        }
+    }
     public void Timkiem()
     {
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách hãng trống.");
+            return;
+        }
         System.out.print("Nhập mã :");
         int ma=new Scanner(System.in).nextInt();
         for (Hang hang :ds)
@@ -142,7 +168,7 @@ public class DsHang {
     }
     public void XemDs()
     {
-        if(ds.length==0){System.out.println("Danh sách trống."); return;}
+        if(ds.length==0){System.out.println("Danh sách hãng trống."); return;}
         for (int i=0;i<ds.length;i++)
         {
             System.out.println("-----Vị trí thứ "+(i+1)+"-----");

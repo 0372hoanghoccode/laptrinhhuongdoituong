@@ -56,7 +56,7 @@ public class MenuDsDienthoai {
                     dsDienthoai.Thongke();
                     break;
                 case 7:
-                    dsDienthoai.Gọi();
+                    dsDienthoai.Goi();
                     break;
                 default:
                     System.out.println("Giá trị không hợp lệ.");

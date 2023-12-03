@@ -19,10 +19,6 @@ public class MenuDsKhachhang {
         dsKhachhang=new DsKhachhang(arr);
         Menu();
     }
-
-
-
-
     void  Menu()
     {
         while (true) {
@@ -32,8 +28,10 @@ public class MenuDsKhachhang {
             System.out.println("-- 2.Thêm khách hàng                      --");
             System.out.println("-- 3.Xóa xóa khách hàng                   --");
             System.out.println("-- 4.Sửa khách hàng                       --");
-            System.out.println("-- 5.Tìm kiếm khaách hàng                 --");
+            System.out.println("-- 5.Tìm kiếm khách hàng                  --");
             System.out.println("-- 6.Thống kê khách hàng                  --");
+            System.out.println("-- 7.Thống kê theo họ                     --");
+            System.out.println("-- 8.Thống kê theo tên                    --");
             System.out.println("--------------------------------------------");
             System.out.print("Nhập lựa chọn: ");
             switch (new Scanner(System.in).nextInt()) {
@@ -56,6 +54,12 @@ public class MenuDsKhachhang {
                     break;
                 case 6:
                     dsKhachhang.Thongke();
+                    break;
+                case 7:
+                    dsKhachhang.ThongketheoHo();
+                    break;
+                case 8:
+                    dsKhachhang.ThongketheoTen();
                     break;
                 default:
                     System.out.println("Giá trị không hợp lệ.");

@@ -55,11 +55,11 @@ public class DsKhachhang {
     }
     public void Them(int ma, String ho, String ten, String diachi, String sdt)
     {
-        Khachhang khachhang=new Khachhang(ma,ho,ten,diachi,sdt);
-        if (!checkid(khachhang.getMa()))
+        if (!checkid(ma))
         {
             return;
         }
+        Khachhang khachhang=new Khachhang(ma,ho,ten,diachi,sdt);
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=khachhang;
         Themtofile(khachhang);
@@ -67,7 +67,7 @@ public class DsKhachhang {
     public void Xoa()
     {
         if(ds.length==0){
-            System.out.println("Danh sách trống."); return;
+            System.out.println("Danh sách khách hàng trống."); return;
         }
         System.out.print("Nhập mã khách hàng cần xóa :");
         int x=new Scanner(System.in).nextInt();
@@ -113,22 +113,26 @@ public class DsKhachhang {
                 return;
             }
         }
-        System.out.println("Mã khách hàng khng tồn tại");
+        System.out.println("Mã khách hàng không tồn tại");
     }
-    void   Sua(int ma)
+    void   Sua(int ma,Khachhang kh)
     {
         for (Khachhang khachhang : ds)
         {
             if(khachhang.getMa()==ma)
             {
-                khachhang.Sua();
-                Suatofile(khachhang,ma);
+                khachhang=kh;
+                Suatofile(kh,ma);
                 return;
             }
         }
     }
    public void Timkiem()
     {
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách khách hàng trống.");return;
+        }
         System.out.print("Nhập mã khách hàng cần tìm kiếm :");
         int ma=new Scanner(System.in).nextInt();
         for (Khachhang khachhang :ds)

@@ -57,7 +57,7 @@ public class DsNhanVien {
 
     public void Xoa() {
         if (ds.length == 0) {
-            System.out.println("Danh sách trống");
+            System.out.println("Danh sách nhân viên trống");
             return;
         }
             System.out.print("Nhập mã nhân viên để xóa :");
@@ -79,9 +79,6 @@ public class DsNhanVien {
                 System.out.println("Mã nhân viên không tồn tại");
     }
     public void Xoa(int maNhanVien) {
-        if (ds.length == 0) {
-            return;
-        }
         for (int i=0;i< ds.length;i++)
         {
             if (ds[i].getMaNhanVien()==maNhanVien)
@@ -96,10 +93,38 @@ public class DsNhanVien {
             }
         }
     }
+    public void Sua() {
+        if(ds.length == 0) {
+            System.out.println("Danh sách nhân viên trống");
+            return;
+        }
+        System.out.print("Nhập mã nhân viên cần sửa :");
+        int maNhanVien = sc.nextInt();
+        for (NhanVien nhanVien :ds)
+        {
+            if(nhanVien.getMaNhanVien()==maNhanVien)
+            {
+                nhanVien.Sua();
+                Suatofile(nhanVien,maNhanVien);
+                System.out.println("Thông tin nhân viên đã được cập nhật.");
+            }
+        }
+        System.out.println("Mã nhân viên không tồn tại.");
+    }
+    public void Sua(int ma, NhanVien nv ) {
+        for (NhanVien nhanVien :ds)
+        {
+            if(nhanVien.getMaNhanVien()==ma)
+            {
+                nhanVien=nv;
+                Suatofile(nv,ma);
+            }
+        }
+    }
 
     public void Timkiem(){
         if(ds.length == 0){
-            System.out.println("Danh sách trống.");
+            System.out.println("Danh sách nhân viên trống.");
             return ;
         }
           System.out.print("Nhập mã nhân viên :");
@@ -128,39 +153,7 @@ public class DsNhanVien {
             ds[i].Xuat();
         }
     }
-    public void Sua() {
-        if(ds.length == 0) {
-            System.out.println("Danh sách trống");
-            return;
-        }
-            System.out.print("Nhập mã nhân viên cần sửa: ");
-            int maNhanVien = sc.nextInt();
 
-           for (NhanVien nhanVien :ds)
-           {
-               if(nhanVien.getMaNhanVien()==maNhanVien)
-               {
-                   nhanVien.Sua();
-                   Suatofile(nhanVien,maNhanVien);
-                   System.out.println("Thông tin nhân viên đã được cập nhật!");
-
-               }
-           }
-    System.out.println("Mã nhân viên không tồn tại.");
-    }
-    public void Sua(int ma) {
-        if(ds.length == 0) {
-            return;
-        }
-        for (NhanVien nhanVien :ds)
-        {
-            if(nhanVien.getMaNhanVien()==ma)
-            {
-                nhanVien.Sua();
-                Suatofile(nhanVien,ma);
-            }
-        }
-    }
 
 public void Thongke()
 {

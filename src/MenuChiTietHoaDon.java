@@ -30,10 +30,13 @@ public class MenuChiTietHoaDon {
             System.out.println("-- 4.Sửa chi tiết hóa đơn                 --");
             System.out.println("-- 5.Tìm kiếm chi tiết hóa đơn            --");
             System.out.println("-- 6.Thống kê chi tiết hóa đơn            --");
+            System.out.println("-- 7.Thống kê theo sản phẩm               --");
             System.out.println("--------------------------------------------");
             System.out.print("Nhập lựa chọn: ");
             luachon = sc.nextInt();
             switch (luachon){
+                case 0:
+                    return;
                 case 1:
                     danhSachChiTiet.XemDs();
                     break;
@@ -52,8 +55,9 @@ public class MenuChiTietHoaDon {
                 case 6:
                     danhSachChiTiet.Thongke();
                     break;
-                case 0:
-                    System.out.println("Thoát chương trình");
+                case 7:
+                    danhSachChiTiet.ThongkeTheoSanpham();
+                    break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ");
                     break;

@@ -98,10 +98,7 @@ public class DsChitietSp {
     }
     public void Xoa(int ma)
     {
-        if(ds.length==0)
-        {
-            return;
-        }
+
         for (int i=0; i<ds.length;i++) {
             if(ds[i].getMa()==ma)
             {
@@ -136,7 +133,7 @@ public class DsChitietSp {
         {
             if(ct.getMa()==ma)
             {
-                ct.Nhap();
+                ct.Sua();
                 Suatofile(ct,ma);
                 System.out.println("Sửa thành công.");
                 return;
@@ -144,15 +141,15 @@ public class DsChitietSp {
         }
           System.out.println("mã chi tiết sản phẩm không tồn tại.");
     }
-    public void Sua(int ma)
+    public void Sua(int ma,ChitietSp chitietSp)
     {
 
         for (ChitietSp ct : ds)
         {
             if(ct.getMa()==ma)
             {
-                ct.Nhap();
-                Suatofile(ct,ma);
+                ct=chitietSp;
+                Suatofile(chitietSp,ma);
                 return;
             }
         }

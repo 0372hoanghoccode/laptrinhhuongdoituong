@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 public class DsHoaDon {
     Scanner sc = new Scanner(System.in);
     private HoaDon[]  ds;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public DsHoaDon() {
         ds = new HoaDon[0];
@@ -62,12 +61,11 @@ public class DsHoaDon {
     }
     public void Them(int maHoaDon, Date ngayLap, int maNhanVien, int maKhachHang,int tongSoluong, float tongTien)
     {
-        HoaDon hoaDon=new HoaDon(maHoaDon,ngayLap,maNhanVien,maKhachHang,tongSoluong,tongTien);
-
-        if(!checkma(hoaDon.getMaHoaDon()))
+        if(!checkma(maHoaDon))
         {
             return;
         }
+        HoaDon hoaDon=new HoaDon(maHoaDon,ngayLap,maNhanVien,maKhachHang,tongSoluong,tongTien);
         ds= Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=hoaDon;
         Themtofile(hoaDon);
@@ -78,7 +76,7 @@ public class DsHoaDon {
             System.out.println("Chưa có hóa đơn nào.");
             return;
         }
-            System.out.print("Nhập mã hóa đơn cần xóa: ");
+            System.out.print("Nhập mã hóa đơn cần xóa :");
             int maHoaDon = sc.nextInt();
             for (int i = 0; i < ds.length; i++) {
                 if (ds[i].getMaHoaDon() == maHoaDon) {
@@ -92,7 +90,7 @@ public class DsHoaDon {
                     return;
                 }
             }
-           System.out.println("Không tìm thấy mã hóa đơn.");
+           System.out.println("Mã hóa đơn không tồn tại.");
     }
     public void Xoa(int ma){
         for (int i = 0; i < ds.length; i++) {
@@ -126,6 +124,17 @@ public class DsHoaDon {
         System.out.println("Không tìm thấy mã hóa đơn.");
 
     }
+    public void Sua(int ma, HoaDon hd)
+    {
+        for (HoaDon hoaDon : ds) {
+            if (hoaDon.getMaHoaDon() == ma) {
+                hoaDon=hd;
+                Suatofile(hoaDon,ma);
+                System.out.println("Sửa thành công.");
+                return;
+            }
+        }
+    }
 
     public HoaDon Timkiem(int ma) {
 
@@ -138,6 +147,10 @@ public class DsHoaDon {
         return null;
     }
     public void Timkiem() {
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách hóa đơn trống.");return;
+        }
        System.out.print("Nhập mã hóa đơn :");
        int ma= sc.nextInt();
         for (HoaDon d : ds) {
@@ -169,8 +182,7 @@ public class DsHoaDon {
         LocalDate fromDate = null;
         LocalDate toDate = null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-        System.out.println("Nhập ngày bắt đầu (dd-MM-yyyy): ");
+        System.out.println("Nhập ngày bắt đầu (dd-MM-yyyy) :");
         String fromDateStr = sc.nextLine();
         try {
             fromDate = LocalDate.parse(fromDateStr, formatter);
@@ -178,7 +190,7 @@ public class DsHoaDon {
             System.out.println("Không hợp lệ. Định dạng: dd-MM-yyyy");
         }
 
-        System.out.println("Nhập ngày kết thúc (dd-MM-yyyy): ");
+        System.out.println("Nhập ngày kết thúc (dd-MM-yyyy) :");
         String toDateStr = sc.nextLine();
         try {
             toDate = LocalDate.parse(toDateStr, formatter);

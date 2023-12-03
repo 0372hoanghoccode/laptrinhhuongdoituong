@@ -23,13 +23,13 @@ public class MenuDsNhanVien {
         do {
             Scanner sc = new Scanner(System.in);
             System.out.println("-----------------------------------------");
+            System.out.println("---   0.Thoát chương trình           ----");
             System.out.println("---   1.Xem thông tin nhân viên      ----");
             System.out.println("---   2.Thêm nhân viên               ----");
             System.out.println("---   3.Sửa Thông tin nhân viên      ----");
             System.out.println("---   4.Xóa nhân viên                ----");
             System.out.println("---   5.Tìm kiếm nhân viên           ----");
             System.out.println("---   6.Thống kê mức lương nhân viên ----");
-            System.out.println("---   0.Thoát chương trình           ----");
             System.out.println("-----------------------------------------");
             System.out.print("Nhập lựa chọn: ");
             luachon = sc.nextInt();
