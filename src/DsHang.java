@@ -109,7 +109,7 @@ public class DsHang {
             System.out.println("Danh sách hãng trống.");
             return;
         }
-        System.out.println("Nhập mã cần sửa :");
+        System.out.print("Nhập mã cần sửa :");
         int ma=new Scanner(System.in).nextInt();
         for (Hang hang : ds)
         {

@@ -22,9 +22,9 @@ public class MenuDsHang {
             System.out.println("--------------------------------------------");
             System.out.println("-- 0.Thoát                                --");
             System.out.println("-- 1.Xem danh sách hãng                   --");
-            System.out.println("-- 2.Thêm chi tiết hãng                   --");
-            System.out.println("-- 3.Xóa chi tiết hãng                    --");
-            System.out.println("-- 4.Sửa chi tiết hãng                    --");
+            System.out.println("-- 2.Thêm hãng                            --");
+            System.out.println("-- 3.Xóa hãng                             --");
+            System.out.println("-- 4.Sửa hãng                             --");
             System.out.println("-- 5.Tìm kiếm hãng                        --");
             System.out.println("-- 6.Thống kê hãng                        --");
             System.out.println("--------------------------------------------");

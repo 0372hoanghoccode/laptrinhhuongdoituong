@@ -28,10 +28,18 @@ public class File {
 
         try {
             BufferedWriter  writer= new BufferedWriter(new FileWriter(filePath));
-            for (String line : content) {
-                writer.write(line);
-                writer.newLine();  // This writes a newline
+            for(int i = 0; i < content.size(); i++) {
+                if(i==content.size()-1)
+                {
+                    writer.write(content.get(i));
+                }else {
+                    writer.write(content.get(i));
+                    writer.newLine();  // This writes a newline
+                }
+
+
             }
+
             writer.close();
         } catch (IOException e) {
           System.err.println(e);
