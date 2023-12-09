@@ -59,16 +59,6 @@ public class Hang  implements doituong{
     {
         System.out.println("Mã "+ma+" tên "+tenhang+" địa chỉ "+diachi);
     }
-    public void Sua()
-    {
-        String x="";
-        System.out.print("Nhập tên hãng (enter để lấy dữ liệu cũ) :");
-       x=new Scanner(System.in).nextLine();
-       if(!x.isEmpty()) {tenhang=x;x="";}
-        System.out.print("Nhập địa chỉ hãng (enter để lấy dữ liệu cũ) :");
-         x=new Scanner(System.in).nextLine();
-        if(!x.isEmpty()) {diachi=x;}
 
-    }
 
 }

@@ -1,14 +1,13 @@
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 public class DsHoaDon {
     Scanner sc = new Scanner(System.in);
     private HoaDon[]  ds;
-    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public DsHoaDon() {
         ds = new HoaDon[0];
     }
@@ -115,7 +114,33 @@ public class DsHoaDon {
         int maHoaDon = sc.nextInt();
         for (HoaDon hoaDon : ds) {
             if (hoaDon.getMaHoaDon() == maHoaDon) {
-               hoaDon.Sua();
+
+                String s="";
+                Scanner sc = new Scanner(System.in);
+                System.out.print("Nhập mã nhân viên (enter để lấy dữ liệu cũ): ");
+                s=sc.nextLine();
+                if (!s.isEmpty()){hoaDon.setMaNhanVien(Integer.parseInt(s));s="";}
+                System.out.print("Nhập mã khách hàng (enter để lấy dữ liệu cũ): ");
+                s=sc.nextLine();
+                if (!s.isEmpty()){hoaDon.setMaKhachHang(Integer.parseInt(s));s="";}
+                System.out.print("Nhập số lương (enter để lấy dữ liệu cũ): ");
+                s=sc.nextLine();
+                if (!s.isEmpty()){hoaDon.setTongSoluong(Integer.parseInt(s));s="";}
+                System.out.print("Nhập tổng tiền (enter để lấy dữ liệu cũ): ");
+                s=sc.nextLine();
+                if (!s.isEmpty()){hoaDon.setTongTien(Float.parseFloat(s));s="";}
+                System.out.print("Nhập ngày lập: dd/MM/yyyy  (enter để lấy dữ liệu cũ) ");
+                s=sc.nextLine();
+                if (!s.isEmpty()){
+                    try {
+                        hoaDon.setNgayLap(dateFormat.parse(s));
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+
+
                 Suatofile(hoaDon,maHoaDon);
                 System.out.println("Sửa thành công.");
                 return;
@@ -135,6 +160,7 @@ public class DsHoaDon {
             }
         }
     }
+
 
     public HoaDon Timkiem(int ma) {
 
@@ -177,7 +203,6 @@ public class DsHoaDon {
        System.out.println("Có "+ds.length+" hóa đơn");
    }
 
-
     public void thongKeVaHienthiHoaDonTheoNgay() {
         LocalDate fromDate = null;
         LocalDate toDate = null;
@@ -205,7 +230,7 @@ public class DsHoaDon {
             }
         }
         if(count != 0) {
-            System.out.println("Có " + count + " hóa đơn từ " + fromDate.format(dateFormatter) + " đến " + toDate.format(dateFormatter) + " bao gồm: ");
+            System.out.println("Có " + count + " hóa đơn từ " + fromDateStr + " đến " + toDateStr + " bao gồm: ");
             for (int i = 0; i < ds.length; i++) {
                 LocalDate ngayLap = ds[i].getNgayLap().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if (!ngayLap.isBefore(fromDate) && !ngayLap.isAfter(toDate)) {
@@ -213,8 +238,68 @@ public class DsHoaDon {
                 }
             }
         }else{
-            System.out.println("Không có hóa đơn từ " + fromDate.format(dateFormatter) + " đến " + toDate.format(dateFormatter));
+            System.out.println("Không có hóa đơn từ " + fromDateStr + " đến " + toDateStr);
         }
+    }
+    public void Timkiemkhachhangmuanhieunhattrongnam()
+    {
+        if(ds.length==0){System.out.println("Danh sách trống.");return;}
+        System.out.print("Nhập năm  :");
+        int year=sc.nextInt();
+        int kq=-1;
+        List<Integer> ma = new ArrayList<Integer>();
+        for (HoaDon hoaDon:ds)
+        {
+          if( hoaDon.getNgayLap().getYear()==year && hoaDon.getTongTien()>=kq)
+          {
+             int co=0;
+             for (int i=0;i<ma.size();i++)
+             {
+                 if(ma.get(i)==hoaDon.getMaKhachHang())
+                 {
+                     co=1;
+                     break;
+                 }
+             }
+             if(co==0){
+                 ma.add(hoaDon.getMaKhachHang());
+             }
+          }
+        }
+        System.out.print("Các khách hàng mua nhều nhất trong năm là :");
+        for (int i=0;i<ma.size();i++)
+        {
+            System.out.print(" "+ma.get(i));
+
+        }
+        System.out.println();
+    }
+
+    public void ThongKedoanhthutheoquy()
+    {
+        System.out.print("Nhập năm cần thống kê :");
+        int year=sc.nextInt();
+        float q1=0,q2=0,q3=0,q4=0;
+        for (HoaDon hd:ds) {
+            if(hd.getNgayLap().getYear()==year) {
+                if (hd.getNgayLap().getMonth() == 1 || hd.getNgayLap().getMonth() == 2 || hd.getNgayLap().getMonth() == 3) {
+                    q1 += hd.getTongTien();
+                }
+                if (hd.getNgayLap().getMonth() == 4 || hd.getNgayLap().getMonth() == 5 || hd.getNgayLap().getMonth() == 6) {
+                    q2 += hd.getTongTien();
+                }
+                if (hd.getNgayLap().getMonth() == 7 || hd.getNgayLap().getMonth() == 8 || hd.getNgayLap().getMonth() == 9) {
+                    q3 += hd.getTongTien();
+                }
+                if (hd.getNgayLap().getMonth() == 10 || hd.getNgayLap().getMonth() == 11 || hd.getNgayLap().getMonth() == 12) {
+                    q4 += hd.getTongTien();
+
+                }
+            }
+        }
+        System.out.println("Doanh thu trong quý 1 "+q1+" quý 2 "+q2+" quý 3 "+q3+" quý 4 "+q4);
+        System.out.println("Tổng doang thu trong cả năm :"+(q1+q2+q3+q4));
+
     }
 
 
@@ -225,7 +310,7 @@ public class DsHoaDon {
         String strDate = format.format(hoaDon.getNgayLap());
         File file=new File();
         int max=file.getMaxId("dshoadon.txt");
-        String data=(max+1)+","+ hoaDon.getMaNhanVien()+","+ hoaDon.getMaKhachHang()+","+strDate+","+ hoaDon.getTongSoluong()+","+ hoaDon.getTongTien();
+        String data=(max+1)+","+strDate+","+ hoaDon.getMaNhanVien()+","+ hoaDon.getMaKhachHang()+","+ hoaDon.getTongSoluong()+","+ hoaDon.getTongTien();
         file.WriteNewLine(data,"dshoadon.txt");
      return max+1;
     }
@@ -235,6 +320,7 @@ public class DsHoaDon {
         String strDate = format.format(hoaDon.getNgayLap());
         File file=new File();
         String data=hoaDon.getMaHoaDon()+","+strDate+","+hoaDon.getMaNhanVien()+","+ hoaDon.getMaKhachHang()+","+hoaDon.getTongSoluong()+","+hoaDon.getTongTien();
+        System.out.println(data);
         file.WriteNewLine(data,"dshoadon.txt");
 
     }

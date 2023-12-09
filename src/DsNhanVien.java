@@ -104,7 +104,20 @@ public class DsNhanVien {
         {
             if(nhanVien.getMaNhanVien()==maNhanVien)
             {
-                nhanVien.Sua();
+
+                String x="";
+                Scanner sc = new Scanner(System.in);
+                System.out.print("Nhập họ nhân viên (enter để lấy dữ liệu cũ): ");
+                x=sc.nextLine();
+                if(!x.isEmpty()){nhanVien.setHoNhanVien(x);x="";}
+                System.out.print("Nhập tên nhân viên (enter để lấy dữ liệu cũ): ");
+                x=sc.nextLine();
+                if(!x.isEmpty()){nhanVien.setTenNhanVien(x);x="";}
+                System.out.print("Nhập lương nhân viên (enter để lấy dữ liệu cũ): ");
+                x=sc.nextLine();
+                if(!x.isEmpty()){nhanVien.setLuong(Float.parseFloat(x));x="";}
+
+
                 Suatofile(nhanVien,maNhanVien);
                 System.out.println("Thông tin nhân viên đã được cập nhật.");
             }
@@ -145,6 +158,7 @@ public class DsNhanVien {
         }
         return null;
     }
+
     public void XemDs()
     {
         for (int i=0;i< ds.length;i++)

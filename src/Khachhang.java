@@ -84,20 +84,5 @@ public Khachhang()
     {
         System.out.println("Khách hàng có mã :"+ma+" \nhọ :"+ho+"\ntên :"+ten+"\nđịa chỉ :"+diachi+ "\nsdt :"+sdt);
     }
-    public void Sua()
-    {
-      String x="";
-        System.out.print("Nhập họ (enter để lấy giá trị cũ) :");
-        x=new Scanner(System.in).nextLine();
-        if(!x.isEmpty()){ho=x; x="";}
-        System.out.print("Nhập tên (enter để lấy giá trị cũ) :");
-        x=new Scanner(System.in).nextLine();
-        if(!x.isEmpty()){ten=x;x="";}
-        System.out.print("Nhập địa chỉ (enter để lấy giá trị cũ) :");
-        x=new Scanner(System.in).nextLine();
-        if(!x.isEmpty()){diachi=x;x="";}
-        System.out.print("Nhập số điện thoại (enter để lấy giá trị cũ) :");
-        x=new Scanner(System.in).nextLine();
-        if(!x.isEmpty()){sdt=x;}
-    }
+
 }

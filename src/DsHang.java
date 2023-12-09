@@ -115,7 +115,13 @@ public class DsHang {
         {
             if(hang.getMa()==ma)
             {
-                hang.Sua();
+                String x="";
+                System.out.print("Nhập tên hãng (enter để lấy dữ liệu cũ) :");
+                x=new Scanner(System.in).nextLine();
+                if(!x.isEmpty()) {hang.setTenhang(x);x="";}
+                System.out.print("Nhập địa chỉ hãng (enter để lấy dữ liệu cũ) :");
+                x=new Scanner(System.in).nextLine();
+                if(!x.isEmpty()) {hang.setDiachi(x);x="";}
                 Suatofile(hang,ma);
                 System.out.println("Sửa thành công.");
                 return;

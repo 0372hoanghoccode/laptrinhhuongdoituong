@@ -105,33 +105,6 @@ abstract class Dienthoai {
         System.out.println("Mã hãng :" +maHang);
         System.out.println("Kích thước :" +kichThuoc);
     }
-    public void Sua(){
-        String x = "";
-        System.out.println("Nhập tên (enter để lấy dữ liệu cũ): ");
-        x = scanner.nextLine();
-        if (!x.isEmpty()) {ten = x;x = "";}
-        System.out.println("Nhập kích thước (enter để lấy dữ liệu cũ): ");
-        x = scanner.nextLine();
-        if (!x.isEmpty()) {
-            kichThuoc = x;
-            x = "";
-        }
-        System.out.print("Nhập số lượng (enter để lấy dữ liệu cũ) :");
-        x = scanner.nextLine();
-        if (!x.isEmpty()) {
-            soLuong = Integer.parseInt(x);
-        }
-        System.out.print("Nhập đơn giá (enter để lấy dữ liệu cũ) :");
-        x = scanner.nextLine();
-        if (!x.isEmpty()) {
-            donGia = Float.parseFloat(x);
-        }
-        System.out.print("Nhập  mã hãng (enter để lấy dữ liệu cũ) :");
-        x = scanner.nextLine();
-        if (!x.isEmpty()) {
-            maHang = Integer.parseInt(x);
-        }
 
-    }
     abstract void Goi();
 }

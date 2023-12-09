@@ -132,7 +132,46 @@ public class DsDienthoai {
        {
            if(dt.getMaSanPham()==maSanPham)
            {
-               dt.Sua();
+               String x = "";
+               System.out.println("Nhập tên (enter để lấy dữ liệu cũ): ");
+               x = scanner.nextLine();
+               if (!x.isEmpty()) {dt.setTen( x);x = "";}
+               System.out.println("Nhập kích thước (enter để lấy dữ liệu cũ): ");
+               x = scanner.nextLine();
+               if (!x.isEmpty()) {dt.setKichThuoc(x);x = "";}
+               System.out.print("Nhập số lượng (enter để lấy dữ liệu cũ) :");
+               x = scanner.nextLine();
+               if (!x.isEmpty()) {dt.setSoLuong( Integer.parseInt(x));x="";}
+               System.out.print("Nhập đơn giá (enter để lấy dữ liệu cũ) :");
+               x = scanner.nextLine();
+               if (!x.isEmpty()) {dt.setDonGia( Float.parseFloat(x));x="";}
+               System.out.print("Nhập  mã hãng (enter để lấy dữ liệu cũ) :");
+               x = scanner.nextLine();
+               if (!x.isEmpty()) {dt.setMaHang( Integer.parseInt(x));x="";}
+               if(dt instanceof DTPT){
+                   System.out.print("Nhập bàn phím (enter để lấy dữ liệu cũ) :");
+                   x = scanner.nextLine();
+                  if(!x.isEmpty()){((DTPT) dt).setBanPhim(x);x="";}
+               }else if(dt instanceof Smartphone)
+               {
+                   System.out.print("Nhập hệ điều hành (enter để lấy dữ liệu cũ) :");
+                   x = scanner.nextLine();
+                   if(!x.isEmpty()){
+                       ((Smartphone) dt).setHeDieuHanh(x);x="";
+                   }
+                   System.out.print("Nhập dung lương RAM (Gb) (enter để lấy dữ liệu cũ) :");
+                   x = scanner.nextLine();
+                   if(!x.isEmpty()){
+                       ((Smartphone) dt).setRam(Integer.parseInt(x));x="";
+                   }
+                   System.out.print("Nhập chip (enter để lấy dữ liệu cũ) :");
+                   x = scanner.nextLine();
+                   if(!x.isEmpty()){
+                       ((Smartphone) dt).setChip(x);x="";
+                   }
+
+               }
+
 
            }
 

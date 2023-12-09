@@ -107,7 +107,21 @@ public class DsKhachhang {
         {
             if(khachhang.getMa()==ma)
             {
-                khachhang.Sua();
+
+                String x="";
+                System.out.print("Nhập họ (enter để lấy giá trị cũ) :");
+                x=new Scanner(System.in).nextLine();
+                if(!x.isEmpty()){khachhang.setHo(x); x="";}
+                System.out.print("Nhập tên (enter để lấy giá trị cũ) :");
+                x=new Scanner(System.in).nextLine();
+                if(!x.isEmpty()){khachhang.setTen(x);x="";}
+                System.out.print("Nhập địa chỉ (enter để lấy giá trị cũ) :");
+                x=new Scanner(System.in).nextLine();
+                if(!x.isEmpty()){khachhang.setDiachi(x);x="";}
+                System.out.print("Nhập số điện thoại (enter để lấy giá trị cũ) :");
+                x=new Scanner(System.in).nextLine();
+                if(!x.isEmpty()){khachhang.setSdt(x);x="";}
+
                 Suatofile(khachhang,ma);
                 System.out.println("Sửa thành công.");
                 return;

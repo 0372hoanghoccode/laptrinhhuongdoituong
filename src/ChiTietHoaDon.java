@@ -90,24 +90,5 @@ public class ChiTietHoaDon implements doituong {
         System.out.println("Đơn giá :" + donGia);
         System.out.println("Thành tiền :" + thanhTien);
     }
-    public void Sua()
-    {
-        String x="";
-        System.out.print("Nhập mã hóa đơn (enter để lấy dữ liệu cũ): ");
-        x = sc.nextLine();
-        if(!x.isEmpty()){maHoaDon=Integer.parseInt(x);x="";}
-        System.out.print("Nhập mã sản phẩm (enter để lấy dữ liệu cũ): ");
-        x = sc.nextLine();
-        if(!x.isEmpty()){maSanPham=Integer.parseInt(x);x="";}
-        System.out.print("Nhập số lượng mua (enter để lấy dữ liệu cũ): ");
-        x = sc.nextLine();
-        if(!x.isEmpty()){soLuongMua=Integer.parseInt(x);x="";}
-        System.out.print("Nhập đơn giá (enter để lấy dữ liệu cũ): ");
-        x = sc.nextLine();
-        if(!x.isEmpty()){donGia=Float.parseFloat(x);x="";}
-        System.out.print("Nhập thành tiền (enter để lấy dữ liệu cũ): ");
-        x = sc.nextLine();
-        if(!x.isEmpty()){thanhTien=Float.parseFloat(x);x="";}
 
-    }
 }

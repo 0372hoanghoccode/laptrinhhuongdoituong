@@ -33,6 +33,7 @@ public class MainMenu {
                     break;
                 case 7:
                     new MenuChiTietHoaDon();
+                    break;
                 case 8:
                     new MenuDsHang();
                 default:

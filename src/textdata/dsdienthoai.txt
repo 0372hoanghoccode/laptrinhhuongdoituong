@@ -1,6 +1,6 @@
 1,1,100,5000000.0,1,Asus Zenfone 8,5.5,Android 11,8,Snapdragon 888
-2,1,30,3000000,2,Apple iPhone 12,6.1,iOS 14,4,A14 Bionic
-3,1,40,1500000,3,Samsung Galaxy A32,6.4,Android 11,6,MediaTek Helio G80
+2,1,50,3000000.0,2,Apple iPhone 12,6.1,iOS 14,4,A14 Bionic
+3,1,36,1500000.0,3,Samsung Galaxy A32,6.4,Android 11,6,MediaTek Helio G80
 4,1,70,1000000,4,Oppo A54,6.51,Android 10,4,Mediatek Helio P35
 5,0,60,700000,5,Nokia 3310,2.4,Phím số
 6,1,80,900000,6,Realme C15,6.5,Android 10,4,Mediatek Helio G35

@@ -71,18 +71,5 @@ public class NhanVien  implements doituong{
         System.out.println("Tên nhân viên: " + tenNhanVien);
         System.out.println("Lương nhân viên: " + luong);
     }
-    public void Sua()
-    {
-        String x="";
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập họ nhân viên (enter để lấy dữ liệu cũ): ");
-        x=sc.nextLine();
-        if(!x.isEmpty()){hoNhanVien=x;x="";}
-        System.out.print("Nhập tên nhân viên (enter để lấy dữ liệu cũ): ");
-        x=sc.nextLine();
-        if(!x.isEmpty()){tenNhanVien=x;x="";}
-        System.out.print("Nhập lương nhân viên (enter để lấy dữ liệu cũ): ");
-        x=sc.nextLine();
-        if(!x.isEmpty()){luong=Float.parseFloat(x);}
-    }
+
 }

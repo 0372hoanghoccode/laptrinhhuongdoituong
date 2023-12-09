@@ -38,6 +38,8 @@ public class MenuHoaDon {
             System.out.println("-- 5.Tìm kiếm hóa đơn                     --");
             System.out.println("-- 6.Thống kê hóa đơn                     --");
             System.out.println("-- 7.Thống kê hóa đơn từ ngày đến ngày    --");
+            System.out.println("-- 8.Thống kê hóa đơn theo quý            --");
+            System.out.println("-- 9.Xuất khách hàng mua nhiều nhất năm   --");
             System.out.println("--------------------------------------------");
             System.out.print("Nhập lựa chọn: ");
             switch (new Scanner(System.in).nextInt()) {
@@ -63,6 +65,12 @@ public class MenuHoaDon {
                     break;
                 case 7:
                     danhsachHoaDon.thongKeVaHienthiHoaDonTheoNgay();
+                    break;
+                case 8:
+                    danhsachHoaDon.ThongKedoanhthutheoquy();
+                    break;
+                case 9:
+                    danhsachHoaDon.Timkiemkhachhangmuanhieunhattrongnam();
                     break;
                 default:
                     System.out.println("Giá trị không hợp lệ.");
