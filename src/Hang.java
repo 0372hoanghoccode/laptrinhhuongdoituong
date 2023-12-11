@@ -57,6 +57,7 @@ public class Hang  implements doituong{
     }
     public  void Xuat()
     {
+        System.out.println("------------------------------");
         System.out.println("Mã "+ma+" tên "+tenhang+" địa chỉ "+diachi);
     }
 

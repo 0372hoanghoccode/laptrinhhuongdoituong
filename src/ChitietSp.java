@@ -69,12 +69,7 @@ public class ChitietSp implements doituong {
         return flash;
     }
 
-
     public void setFlash(boolean flash) {
-        this.flash = flash;
-    }
-
-    public void setflash(boolean flash) {
         this.flash = flash;
     }
 
@@ -125,6 +120,7 @@ public class ChitietSp implements doituong {
     public void setDungluongpin(int dungluongpin) {
         this.dungluongpin = dungluongpin;
     }
+
     public void Nhap()
     {
         System.out.print("Nhập mã chi tiết sản phẩm :");
@@ -150,7 +146,7 @@ public class ChitietSp implements doituong {
     }
     public void Xuat()
     {
-
+        System.out.println("------------------------------");
         System.out.println("Mã chi tiết sản phẩm :"+ma);
         System.out.println("Mã sản phẩm : "+masp);
         System.out.println("Camera : "+camera);
@@ -163,36 +159,5 @@ public class ChitietSp implements doituong {
         System.out.println("Loại pin : "+loaipin);
 
     }
-    public void Sua()
-    {
-        Scanner sc=new Scanner(System.in);
-        String tr="";
-        System.out.println("Nhập mã sản phẩm (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.masp=Integer.parseInt(tr);tr="";}
-        System.out.println("Nhập bộ nhớ (enter để lấy dữ liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.bonho=Integer.parseInt(tr);tr="";}
-        System.out.println("Nhập dung lượng pin (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.dungluongpin=Integer.parseInt(tr);tr="";}
-        System.out.println("Hỗ trợ camera true/false ? (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.camera=Boolean.parseBoolean(tr);tr="";}
-        System.out.println("Hỗ tr Bluetooth ? (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.bluetooth=Boolean.parseBoolean(tr);tr="";}
-        System.out.println("Hỗ trợ Flash ? (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.flash=Boolean.parseBoolean(tr);tr="";}
-        System.out.print("Nhập độ phân giải (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.dophangiai=tr;tr="";}
-        System.out.println("Nhập cổng sạc (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.congsac=tr;tr="";}
-        System.out.println("Nập loại pin (enter để lấy dưc liệu cũ):");
-        tr=sc.nextLine();
-        if(!tr.isEmpty()){this.loaipin=tr;}
-    }
+
 }

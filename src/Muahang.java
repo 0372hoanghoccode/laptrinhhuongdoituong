@@ -52,8 +52,8 @@ Muahang()
             tongtien+=arr[i][3];
             tongsoluong+=(int)arr[i][1];
         }
-
         int mahd=DsHoaDon.Themhoadontofile(new HoaDon(-1,new Date(),manv,makh,tongsoluong,tongtien));
+        HoaDon hoaDon=new HoaDon(mahd,new Date(),manv,makh,tongsoluong,tongtien);
         List<ChiTietHoaDon> chiTietHoaDons=new ArrayList<>();
         for (int i=0;i<sl;i++)
         {
@@ -63,5 +63,21 @@ Muahang()
         }
         DsChiTietHoaDon.ThemDschitiethoadontofile(chiTietHoaDons);
         System.out.println("Mua hàng thành công.");
+        Xuathoadon(hoaDon,chiTietHoaDons);
+    }
+    public void Xuathoadon(HoaDon hoaDon,List<ChiTietHoaDon> chiTietHoaDons)
+    {
+        System.out.println("------Hóa đơn của bạn------");
+        hoaDon.Xuat();
+        System.out.println("------Chi tiết hóa đơn------");
+        for (int i=0;i< chiTietHoaDons.size();i++)
+        {
+            System.out.println("....sản phẩm thứ "+(i+1)+"....");
+            System.out.println("Mã sản phẩm :" + chiTietHoaDons.get(i).getMaSanPham());
+            System.out.println("Số lượng mua :" + chiTietHoaDons.get(i).getSoLuongMua());
+            System.out.println("Đơn giá :" + chiTietHoaDons.get(i).getDonGia());
+            System.out.println("Thành tiền :" + chiTietHoaDons.get(i).getThanhTien());
+
+        }
     }
 }

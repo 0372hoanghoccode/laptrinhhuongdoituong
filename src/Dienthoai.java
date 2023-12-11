@@ -98,6 +98,7 @@ abstract class Dienthoai {
     }
 
     public void Xuat() {
+        System.out.println("------------------------------");
         System.out.println("Mã sản phẩm :" +maSanPham);
         System.out.println("Tên sản phẩm :" +ten);
         System.out.println("Số lượng:" +soLuong);

@@ -83,6 +83,7 @@ public class ChiTietHoaDon implements doituong {
         thanhTien = sc.nextFloat();
     }
     public void Xuat(){
+        System.out.println("------------------------------");
         System.out.println("Mã chi tiết hóa đơn :" + maChiTietHoaDon);
         System.out.println("Mã hóa đơn :" + maHoaDon);
         System.out.println("Mã sản phẩm :" + maSanPham);

@@ -65,7 +65,9 @@ public class Smartphone extends Dienthoai implements doituong {
     @Override
     public void Xuat() {
         super.Xuat();
-        System.out.printf("Hệ điều hành: %s\nRAM: %d\nChip: %s\n", heDieuHanh, ram, chip);
+        System.out.println("Hệ điều hành :"+heDieuHanh);
+        System.out.println("RAM :"+ram);
+        System.out.println("Chip :"+chip);
     }
 
     public void Goi(){

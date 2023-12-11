@@ -82,6 +82,7 @@ public Khachhang()
     }
     public void Xuat()
     {
+        System.out.println("------------------------------");
         System.out.println("Khách hàng có mã :"+ma+" \nhọ :"+ho+"\ntên :"+ten+"\nđịa chỉ :"+diachi+ "\nsdt :"+sdt);
     }
 

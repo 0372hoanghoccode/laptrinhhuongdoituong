@@ -133,7 +133,36 @@ public class DsChitietSp {
         {
             if(ct.getMa()==ma)
             {
-                ct.Sua();
+                Scanner sc=new Scanner(System.in);
+                String tr="";
+                System.out.println("Nhập mã sản phẩm (enter để lấy dữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setMasp(Integer.parseInt(tr));tr="";}
+                System.out.println("Nhập bộ nhớ (enter để lấy dữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setBonho(Integer.parseInt(tr));tr="";}
+                System.out.println("Nhập dung lượng pin (enter để lấy dữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setDungluongpin(Integer.parseInt(tr));tr="";}
+                System.out.println("Hỗ trợ camera true/false ? (enter để lấy dữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setCamera(Boolean.parseBoolean(tr));tr="";}
+                System.out.println("Hỗ tr Bluetooth ? (enter để lấy dữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setBluetooth(Boolean.parseBoolean(tr));tr="";}
+                System.out.println("Hỗ trợ Flash ? (enter để lấy đữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setFlash(Boolean.parseBoolean(tr));tr="";}
+                System.out.print("Nhập độ phân giải (enter để lấy đữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setDophangiai(tr);tr="";}
+                System.out.println("Nhập cổng sạc (enter để lấy dữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setCongsac(tr);tr="";}
+                System.out.println("Nhập loại pin (enter để lấy dữ liệu cũ):");
+                tr=sc.nextLine();
+                if(!tr.isEmpty()){ct.setLoaipin(tr);tr="";}
+
                 Suatofile(ct,ma);
                 System.out.println("Sửa thành công.");
                 return;

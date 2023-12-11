@@ -120,7 +120,7 @@ public class HoaDon  implements doituong{
     }
 
     public void Xuat() {
-        System.out.println("-------------------------------");
+        System.out.println("------------------------------");
         System.out.println("Mã hóa đơn: " + maHoaDon);
         System.out.println("Ngày lập hóa đơn: " + dateFormat.format(ngayLap));
         System.out.println("Mã nhân viên: " + maNhanVien);

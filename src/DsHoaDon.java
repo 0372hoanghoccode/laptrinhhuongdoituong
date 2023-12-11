@@ -241,38 +241,34 @@ public class DsHoaDon {
             System.out.println("Không có hóa đơn từ " + fromDateStr + " đến " + toDateStr);
         }
     }
-    public void Timkiemkhachhangmuanhieunhattrongnam()
+    public void Timkiembakhachhangmuadonlonnhat()
     {
         if(ds.length==0){System.out.println("Danh sách trống.");return;}
         System.out.print("Nhập năm  :");
         int year=sc.nextInt();
         int kq=-1;
-        List<Integer> ma = new ArrayList<Integer>();
+       int kh1=-1,kh2=-1,kh3=-1;
+       float maxt1=-1,maxt2=-1,maxt3=-1;
         for (HoaDon hoaDon:ds)
         {
-          if( hoaDon.getNgayLap().getYear()==year && hoaDon.getTongTien()>=kq)
+          if( (hoaDon.getNgayLap().getYear()+1900)==year && hoaDon.getTongTien()>maxt3)
           {
-             int co=0;
-             for (int i=0;i<ma.size();i++)
-             {
-                 if(ma.get(i)==hoaDon.getMaKhachHang())
-                 {
-                     co=1;
-                     break;
-                 }
-             }
-             if(co==0){
-                 ma.add(hoaDon.getMaKhachHang());
-             }
+           if(hoaDon.getTongTien()>=maxt1){
+               kh3=kh2;kh2=kh1;kh1=hoaDon.getMaKhachHang();
+               maxt3=maxt2;maxt2=maxt1;maxt1=hoaDon.getTongTien();
+           }else if(hoaDon.getTongTien()>=maxt2){
+              kh3=kh2;kh2=hoaDon.getMaKhachHang();
+              maxt3=maxt2;maxt2=hoaDon.getTongTien();
+          } else if (hoaDon.getTongTien()>maxt3) {
+               kh3=hoaDon.getMaKhachHang();
+               maxt3=hoaDon.getTongTien();
+           }
           }
         }
         System.out.print("Các khách hàng mua nhều nhất trong năm là :");
-        for (int i=0;i<ma.size();i++)
-        {
-            System.out.print(" "+ma.get(i));
-
-        }
-        System.out.println();
+       System.out.println("khách hàng thứ nhất có mã "+kh1+" mua lớn nhất "+maxt1);
+        System.out.println("khách hàng thứ hai có mã "+kh2+" mua lớn nhất "+maxt2);
+        System.out.println("khách hàng thứ ba có mã "+kh3+" mua lớn nhất "+maxt3);
     }
 
     public void ThongKedoanhthutheoquy()
@@ -281,7 +277,7 @@ public class DsHoaDon {
         int year=sc.nextInt();
         float q1=0,q2=0,q3=0,q4=0;
         for (HoaDon hd:ds) {
-            if(hd.getNgayLap().getYear()==year) {
+            if(hd.getNgayLap().getYear()==(year+1900)) {
                 if (hd.getNgayLap().getMonth() == 1 || hd.getNgayLap().getMonth() == 2 || hd.getNgayLap().getMonth() == 3) {
                     q1 += hd.getTongTien();
                 }
