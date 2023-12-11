@@ -22,7 +22,7 @@ public class MenuDsNhanVien {
         int luachon;
         do {
             Scanner sc = new Scanner(System.in);
-            System.out.println("-----------------------------------------");
+            System.out.println("-------------Quản lí nhân viên-----------");
             System.out.println("---   0.Thoát chương trình           ----");
             System.out.println("---   1.Xem thông tin nhân viên      ----");
             System.out.println("---   2.Thêm nhân viên               ----");

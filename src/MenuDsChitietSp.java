@@ -24,7 +24,7 @@ public class MenuDsChitietSp {
     void  Menu()
     {
         while (true) {
-            System.out.println("--------------------------------------------");
+            System.out.println("-----------Quản lý chi tiết sản phẩm--------");
             System.out.println("-- 0.Thoát                                --");
             System.out.println("-- 1.Xem danh sách chi tiết sản phẩm      --");
             System.out.println("-- 2.Thêm chi tiết sản phẩm               --");

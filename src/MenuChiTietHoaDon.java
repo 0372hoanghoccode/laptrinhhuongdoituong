@@ -22,7 +22,7 @@ public class MenuChiTietHoaDon {
     public void menu(){
         int luachon;
         do{
-            System.out.println("--------------------------------------------");
+            System.out.println("-----------Quản lí chi tiết hóa đơn---------");
             System.out.println("-- 0.Thoát                                --");
             System.out.println("-- 1.Xem danh sách chi tiết hóa đơn       --");
             System.out.println("-- 2.Thêm chi tiết hóa đơn                --");
