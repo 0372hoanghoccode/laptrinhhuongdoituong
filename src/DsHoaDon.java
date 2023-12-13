@@ -186,6 +186,25 @@ public class DsHoaDon {
         }
         System.out.println("Không tìm thấy.");
     }
+    public void Timkiemtheomakh() {
+        if(ds.length==0)
+        {
+            System.out.println("Danh sách hóa đơn trống.");return;
+        }
+        System.out.print("Nhập mã khách hàng :");
+        int ma= sc.nextInt();
+        boolean co=false;
+        for (HoaDon d : ds) {
+            if (d.getMaKhachHang() == ma) {
+                co=true;
+                d.Xuat();
+
+            }
+        }
+        if(co)
+            return;
+        System.out.println("Không tìm thấy.");
+    }
    public void XemDs()
    {
        if(ds.length==0)
@@ -278,16 +297,16 @@ public class DsHoaDon {
         float q1=0,q2=0,q3=0,q4=0;
         for (HoaDon hd:ds) {
             if(hd.getNgayLap().getYear()==(year+1900)) {
-                if (hd.getNgayLap().getMonth() == 1 || hd.getNgayLap().getMonth() == 2 || hd.getNgayLap().getMonth() == 3) {
+                if (hd.getNgayLap().getMonth()+1 == 1 || hd.getNgayLap().getMonth()+1 == 2 || hd.getNgayLap().getMonth()+1 == 3) {
                     q1 += hd.getTongTien();
                 }
-                if (hd.getNgayLap().getMonth() == 4 || hd.getNgayLap().getMonth() == 5 || hd.getNgayLap().getMonth() == 6) {
+                if (hd.getNgayLap().getMonth()+1 == 4 || hd.getNgayLap().getMonth()+1 == 5 || hd.getNgayLap().getMonth()+1 == 6) {
                     q2 += hd.getTongTien();
                 }
-                if (hd.getNgayLap().getMonth() == 7 || hd.getNgayLap().getMonth() == 8 || hd.getNgayLap().getMonth() == 9) {
+                if (hd.getNgayLap().getMonth()+1 == 7 || hd.getNgayLap().getMonth()+1 == 8 || hd.getNgayLap().getMonth()+1 == 9) {
                     q3 += hd.getTongTien();
                 }
-                if (hd.getNgayLap().getMonth() == 10 || hd.getNgayLap().getMonth() == 11 || hd.getNgayLap().getMonth() == 12) {
+                if (hd.getNgayLap().getMonth()+1 == 10 || hd.getNgayLap().getMonth()+1 == 11 || hd.getNgayLap().getMonth()+1 == 12) {
                     q4 += hd.getTongTien();
 
                 }
