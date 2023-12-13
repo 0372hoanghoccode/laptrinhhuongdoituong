@@ -98,13 +98,12 @@ abstract class Dienthoai {
     }
 
     public void Xuat() {
-        System.out.println("------------------------------");
         System.out.println("Mã sản phẩm :" +maSanPham);
         System.out.println("Tên sản phẩm :" +ten);
         System.out.println("Số lượng:" +soLuong);
         System.out.println("Đơn giá :" +donGia);
         System.out.println("Mã hãng :" +maHang);
-        System.out.println("Kích thước :" +kichThuoc);
+        System.out.println("Kích thước :" +kichThuoc+" inch");
     }
 
     abstract void Goi();
