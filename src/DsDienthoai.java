@@ -246,6 +246,25 @@ public class DsDienthoai {
 
         System.out.println("Mã sản phẩm không tồn tại.");
     }
+    public void Timkiemtheokhoanggia()
+    {
+        System.out.print("Nhập giá bắt đầu :");
+        float giabt=scanner.nextFloat();
+        System.out.print("Nhập giá kết thúc :");
+        float giakt=scanner.nextFloat();
+        int count=0;
+        for (Dienthoai dienthoai :ds)
+        {
+           if( dienthoai.getDonGia()>=giabt && dienthoai.getDonGia()<=giakt)
+           {
+               count++;
+               dienthoai.Xuat();
+           }
+
+        }
+        System.out.println("Có "+count+" điện thoaại thỏa điều kiện.");
+
+    }
 
     public static void Muahang(int ma,int sl)
     {

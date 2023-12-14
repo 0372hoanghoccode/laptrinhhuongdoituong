@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class MenuDsDienthoai {
     private DsDienthoai dsDienthoai ;
-
      MenuDsDienthoai() {
         File file = new File();
         List<String> data = file.ReadFile("dsdienthoai.txt");
@@ -32,6 +31,7 @@ public class MenuDsDienthoai {
             System.out.println("-- 5.Tìm kiếm điện thoại                  --");
             System.out.println("-- 6.Thống kê điện thoại                  --");
             System.out.println("-- 7.Gọi                                  --");
+            System.out.println("-- 8.Tìm kiếm điện thoại theo khoảng giá  --");
             System.out.println("--------------------------------------------");
             System.out.print("Nhập lựa chọn: ");
             switch (new Scanner(System.in).nextInt()) {
@@ -57,6 +57,9 @@ public class MenuDsDienthoai {
                     break;
                 case 7:
                     dsDienthoai.Goi();
+                    break;
+                case 8:
+                    dsDienthoai.Timkiemtheokhoanggia();
                     break;
                 default:
                     System.out.println("Giá trị không hợp lệ.");

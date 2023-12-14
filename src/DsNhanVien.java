@@ -118,8 +118,6 @@ public class DsNhanVien {
                 System.out.print("Nhập lương nhân viên (enter để lấy dữ liệu cũ): ");
                 x=sc.nextLine();
                 if(!x.isEmpty()){nhanVien.setLuong(Float.parseFloat(x));x="";}
-
-
                 Suatofile(nhanVien,maNhanVien);
                 System.out.println("Thông tin nhân viên đã được cập nhật.");
                 return;
@@ -226,6 +224,7 @@ public void Thongke()
         for (int i = 0; i < ds.length; i++) {
             if (ds[i].getLuong() > luongThongKe) {
                 count++;
+                ds[i].Xuat();
             }
         }
         System.out.println("Có " + count + " nhân viên có mức lương lớn hơn "+luongThongKe);
@@ -235,6 +234,7 @@ public void Thongke()
         for(int i = 0; i < ds.length; i++){
             if(ds[i].getLuong() < luongThongKe){
                 count++;
+                ds[i].Xuat();
             }
         }
         System.out.println("Có " + count + " nhân viên có mức lương nhỏ hơn "+luongThongKe);
@@ -243,7 +243,9 @@ public void Thongke()
         int count = 0;
         for(int i = 0; i < ds.length; i++){
             if(ds[i].getLuong() >= luongBatDau && ds[i].getLuong() <= luongKetThuc){
+                ds[i].Xuat();
                 count++;
+
             }
         }
         System.out.println("Có " + count + " nhân viên thỏa từ "+luongBatDau+" đến "+luongKetThuc);

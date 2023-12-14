@@ -222,7 +222,7 @@ public class DsHoaDon {
        System.out.println("Có "+ds.length+" hóa đơn");
    }
 
-    public void thongKeVaHienthiHoaDonTheoNgay() {
+    public void TimHoaDonTheoNgay() {
         LocalDate fromDate = null;
         LocalDate toDate = null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -242,14 +242,16 @@ public class DsHoaDon {
             System.out.println("Không hợp lệ. Định dạng: dd-MM-yyyy");
         }
         int count = 0;
+        float tongtien=0;
         for (int i = 0; i < ds.length; i++) {
             LocalDate ngayLap = ds[i].getNgayLap().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             if (!ngayLap.isBefore(fromDate) && !ngayLap.isAfter(toDate)) {
                 count++;
+                tongtien+=ds[i].getTongTien();
             }
         }
         if(count != 0) {
-            System.out.println("Có " + count + " hóa đơn từ " + fromDateStr + " đến " + toDateStr + " bao gồm: ");
+            System.out.println("Có " + count + " hóa đơn từ " + fromDateStr + " đến " + toDateStr +" Tổng tiền "+tongtien+" bao gồm: ");
             for (int i = 0; i < ds.length; i++) {
                 LocalDate ngayLap = ds[i].getNgayLap().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if (!ngayLap.isBefore(fromDate) && !ngayLap.isAfter(toDate)) {

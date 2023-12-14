@@ -37,7 +37,7 @@ public class MenuHoaDon {
             System.out.println("-- 4.Sửa hóa đơn                          --");
             System.out.println("-- 5.Tìm kiếm hóa đơn                     --");
             System.out.println("-- 6.Thống kê hóa đơn                     --");
-            System.out.println("-- 7.Thống kê hóa đơn từ ngày đến ngày    --");
+            System.out.println("-- 7.Tìm hóa đơn từ ngày đến ngày         --");
             System.out.println("-- 8.Thống kê hóa đơn theo quý            --");
             System.out.println("-- 9.Tìm 3 hàng mua nhiều nhất năm        --");
             System.out.println("-- 10.Tìm kiếm hoóa đơn theo mã khách hàng--");
@@ -65,7 +65,7 @@ public class MenuHoaDon {
                     danhsachHoaDon.Thongke();
                     break;
                 case 7:
-                    danhsachHoaDon.thongKeVaHienthiHoaDonTheoNgay();
+                    danhsachHoaDon.TimHoaDonTheoNgay();
                     break;
                 case 8:
                     danhsachHoaDon.ThongKedoanhthutheoquy();

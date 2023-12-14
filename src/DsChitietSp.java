@@ -285,6 +285,7 @@ public class DsChitietSp {
         );
 
     }
+
     public void Themtofile(ChitietSp chitietSp)
     {
         File file=new File();
