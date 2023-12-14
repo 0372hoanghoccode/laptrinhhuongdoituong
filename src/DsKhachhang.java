@@ -204,7 +204,7 @@ public class DsKhachhang {
         int x=0;
         for (Khachhang khachhang :ds)
         {
-            if(khachhang.getHo().equals(ten))
+            if(khachhang.getTen().equals(ten))
             {
                 x++;
             }
