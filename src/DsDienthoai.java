@@ -152,6 +152,8 @@ public class DsDienthoai {
                    System.out.print("Nhập bàn phím (enter để lấy dữ liệu cũ) :");
                    x = scanner.nextLine();
                   if(!x.isEmpty()){((DTPT) dt).setBanPhim(x);x="";}
+                  Suatofile(dt,maSanPham);
+                  System.out.println("Sửa thành công.");return;
                }else if(dt instanceof Smartphone)
                {
                    System.out.print("Nhập hệ điều hành (enter để lấy dữ liệu cũ) :");
@@ -169,14 +171,15 @@ public class DsDienthoai {
                    if(!x.isEmpty()){
                        ((Smartphone) dt).setChip(x);x="";
                    }
-
+                   Suatofile(dt,maSanPham);
+                   System.out.println("Sửa thành công."); return;
                }
 
 
            }
 
        }
-            System.out.println("Mã sàn phẩm không tồn tại.");
+
 
     }
 

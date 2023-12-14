@@ -21,6 +21,8 @@ public class DsNhanVien {
             }
             ds= Arrays.copyOf(ds,ds.length+1);
             ds[ds.length-1]=nhanVien;
+        System.out.print("Thêm thành công.");
+        Themtofile(nhanVien);
     }
     public void Them(int maNhanVien, String hoNhanVien, String tenNhanVien, float luong) {
         NhanVien nhanVien = new NhanVien(maNhanVien,hoNhanVien,tenNhanVien,luong);
@@ -120,6 +122,7 @@ public class DsNhanVien {
 
                 Suatofile(nhanVien,maNhanVien);
                 System.out.println("Thông tin nhân viên đã được cập nhật.");
+                return;
             }
         }
         System.out.println("Mã nhân viên không tồn tại.");
